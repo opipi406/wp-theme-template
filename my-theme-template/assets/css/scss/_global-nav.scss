@@ -1,0 +1,57 @@
+/*-----------------------------------------------------
+  Global Navigation (Header Menu)
+------------------------------------------------------*/
+@import "colors";
+@import "media-query";
+
+@mixin g-nav-link {
+  & > a {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    line-height: 1.8;
+
+    cursor: pointer;
+    transition: all 0.3s;
+
+    color: ui-palette();
+
+    &:hover {
+      color: ui-palette(secondary, dark);
+    }
+  }
+}
+
+// ヘッダーメニュー
+.header__nav .menu {
+  display: flex;
+  flex-wrap: wrap;
+
+  user-select: none;
+
+  & > .menu__item {
+    position: relative;
+
+    @include g-nav-link();
+  }
+
+  & > * + * {
+    margin-left: 16px;
+  }
+}
+
+// ハンバーガーメニュー
+.burger-menu__nav .menu {
+  padding: 80px 24px;
+
+  user-select: none;
+
+  & > .menu__item {
+    position: relative;
+
+    margin-bottom: 18px;
+
+    @include g-nav-link();
+  }
+}

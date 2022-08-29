@@ -1,0 +1,52 @@
+/*-----------------------------------------------------
+  Header
+------------------------------------------------------*/
+@import "media-query";
+@import "colors";
+$header-height: 80px;
+
+
+header {
+  // position: fixed;
+  position: relative;
+  z-index: 99;
+
+  width: 100vw;
+  height: $header-height;
+  // inset: 0 0 auto 0;
+
+  box-shadow: 0 1px 3px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+
+  background-color: bg-palette(header);
+
+  @include mq-up(md) {
+    padding: 0 40px;
+  }
+  @include mq-down(md) {
+    padding: 0 12px;
+
+    &__nav {
+      display: none;
+
+      pointer-events: none;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+
+    color: text-palette(inverse);
+  }
+
+  & > * + * {
+    margin-left: 16px;
+  }
+}

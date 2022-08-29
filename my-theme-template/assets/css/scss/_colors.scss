@@ -1,0 +1,77 @@
+@function light($color) {
+  @return saturate(lighten($color, 15%), 15%);
+}
+@function dark($color) {
+  @return saturate(darken($color, 15%), 7%);
+}
+@function torn_map($color) {
+  @return (
+  default: $color,
+  light: light($color),
+  dark: dark($color),
+  );
+}
+
+/*-----------------------------------------------------
+  テキストパレット
+------------------------------------------------------*/
+$text-palettes: (
+  main:       torn_map(#3a3a3a),
+  primary:    torn_map(#0f5387),
+  secondary:  torn_map(#870e58),
+  success:    torn_map(#005b2a),
+  info:       torn_map(#00839d),
+  warn:       torn_map(#8f5f00),
+  error:      torn_map(#7d0000),
+  inverse:    torn_map(#f1f1f1),
+) !default;
+/*-----------------------------------------------------
+  UIパレット
+------------------------------------------------------*/
+$ui-palettes: (
+  main:       torn_map(#f1f1f1),
+  primary:    torn_map(#bea9ed),
+  secondary:  torn_map(#eda9cf),
+  success:    torn_map(#4cd78d),
+  info:       torn_map(#00c6ed),
+  warn:       torn_map(#f9c256),
+  error:      torn_map(#f16565),
+) !default;
+/*-----------------------------------------------------
+  背景パレット
+------------------------------------------------------*/
+$bg-palettes: (
+  main: (
+    light:    #ffffff,
+    default:  darken(#ffffff, 5%),
+    dark:     darken(#ffffff, 10%),
+  ),
+  
+  primary:    #e5efff,
+  secondary:  darken(#e5efff, 15%),
+  
+  header:     lighten(#000000, 30%),
+
+  inverse: (
+    light:    lighten(#000000, 10%),
+    default:  lighten(#000000, 15%),
+    dark:     lighten(#000000, 20%),
+  ),
+) !default;
+
+
+@function text-palette( $palette_name: "main", $tone_name: "default" ) {
+  $palette: map-get( $text-palettes, $palette_name );
+  @return map-get( $palette, $tone_name );
+}
+@function ui-palette( $palette_name: "main", $tone_name: "default" ) {
+  $palette: map-get( $ui-palettes, $palette_name );
+  @return map-get( $palette, $tone_name );
+}
+@function bg-palette( $palette_name: "main", $tone_name: "default" ) {
+  @if ($palette_name == "main" or $palette_name == "inverse") {
+    $palette: map-get( $bg-palettes, $palette_name );
+    @return map-get( $palette, $tone_name );
+  }
+  @return map-get( $bg-palettes, $palette_name );
+}

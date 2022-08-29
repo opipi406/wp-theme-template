@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:5.7
+    container_name: wp_db
+    environment:
+      MYSQL_ROOT_PASSWORD: password # rootユーザのパスワード（任意に指定可）
+      MYSQL_DATABASE: wp_db # WordPress用データベース名（任意に指定可）
+      MYSQL_USER: user # WordPress用接続ユーザ名（任意に指定可）
+      MYSQL_PASSWORD: password # WordPress用パスワード（任意に指定可）
+    volumes:
+      - ./db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    depends_on:
+     - db
+    ports:
+     - "10090:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306 # データベースサーバ名：ポート番号
+      WORDPRESS_DB_NAME: wp_db # WordPress用データベース名（MYSQL_DATABASEに合わせる）
+      WORDPRESS_DB_USER: user # WordPress用接続ユーザ名（MYSQL_USERに合わせる）
+      WORDPRESS_DB_PASSWORD: password # WordPress用パスワード（MYSQL_PASSWORDに合わせる）
+      WORDPRESS_DEBUG : 1 #デバッグモードON
+    volumes:
+       - ./html:/var/www/html
+       
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - 10099:80

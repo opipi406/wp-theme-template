@@ -1,0 +1,24 @@
+/*-----------------------------------------------------
+  Footer
+------------------------------------------------------*/
+@import "media-query";
+@import "colors";
+$footer-height: 80px;
+
+footer {
+  height: $footer-height;
+  padding: 0.1px;
+
+  background-color: bg-palette(header);
+}
+
+#copyright {
+  font-size: 1.2rem;
+
+  line-height: $footer-height;
+  margin: 0;
+
+  text-align: center;
+
+  color: text-palette(inverse);
+}
