@@ -1,6 +1,24 @@
-.w50 { width: 50%; }
-.w60 { width: 60%; }
-.w70 { width: 70%; }
-.w80 { width: 80%; }
-.w90 { width: 90%; }
-.w100 { width: 100%; }
+$spacing-unit: 8px;
+
+.w50  { width: 50% !important; }
+.w60  { width: 60% !important; }
+.w70  { width: 70% !important; }
+.w80  { width: 80% !important; }
+.w90  { width: 90% !important; }
+.w100 { width: 100% !important; }
+
+@for $i from 1 to 6 {
+  .pt#{$i} { padding-top:     $spacing-unit * $i !important; }
+  .pr#{$i} { padding-right:   $spacing-unit * $i !important; }
+  .pb#{$i} { padding-bottom:  $spacing-unit * $i !important; }
+  .pl#{$i} { padding-left:    $spacing-unit * $i !important; }
+  .px#{$i} { padding-right:   $spacing-unit * $i !important; padding-left:   $spacing-unit * $i !important; }
+  .py#{$i} { padding-top:     $spacing-unit * $i !important; padding-bottom: $spacing-unit * $i !important; }
+
+  .mt#{$i} { margin-top:     $spacing-unit * $i !important; }
+  .mr#{$i} { margin-right:   $spacing-unit * $i !important; }
+  .mb#{$i} { margin-bottom:  $spacing-unit * $i !important; }
+  .ml#{$i} { margin-left:    $spacing-unit * $i !important; }
+  .mx#{$i} { margin-right:   $spacing-unit * $i !important; margin-left:   $spacing-unit * $i !important; }
+  .my#{$i} { margin-top:     $spacing-unit * $i !important; margin-bottom: $spacing-unit * $i !important; }
+}

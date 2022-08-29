@@ -7,10 +7,12 @@
 $burger-menu__btn-size: 32px;
 // ハンバーガーメニューのボタンの色
 $burger-menu__btn-color: bg-palette();
+// ハンバーガーメニューのテキストの色
+$burger-menu__text-color: bg-palette(inverse);
 // コンテンツ部分の横幅
 $burger-menu__contain-width: 400px;
 // オーバーレイカラー
-$burger-overlay__color: #00000040;
+$burger-menu__overlay-color: #00000040;
 
 .burger-menu {
   position: relative;
@@ -86,6 +88,7 @@ $burger-overlay__color: #00000040;
   height: 3px;
 
   transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
+  transform: translateY(3px);
 
   background-color: $burger-menu__btn-color;
 
@@ -143,7 +146,7 @@ $burger-overlay__color: #00000040;
     cursor: default;
     pointer-events: all;
 
-    background-color: $burger-overlay__color;
+    background-color: $burger-menu__overlay-color;
   }
 }
 
