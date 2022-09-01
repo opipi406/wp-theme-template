@@ -1,0 +1,124 @@
+/*-----------------------------------------------------
+  Form
+------------------------------------------------------*/
+
+// フォーム間の余白
+$form__margin: 16px;
+
+
+.contact-form {
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+// フォームアイテム
+.form-item {
+  margin-bottom: $form__margin;
+}
+
+// 必須ラベル
+.required {
+  font-size: 1rem;
+
+  margin-left: 12px;
+  padding: 2px 6px;
+
+  color: #ffffff;
+  border-radius: 4px;
+  background-color: #ff6464;
+}
+
+
+// --------------------------------------------------
+// Contact Form 7
+// --------------------------------------------------
+.wpcf7 {
+  // label
+  label {
+    display: block;
+
+    margin-bottom: 6px;
+  }
+
+  input, textarea, select {
+    font-size: 1rem;
+
+    width: 100%;
+    padding: 8px;
+
+    border: 1px solid #cccccc;
+
+    &:focut {
+      border: 1px solid #009de1;
+    }
+  }
+
+  textarea {
+    height: 300px;
+  }
+
+  select {
+    cursor: pointer;
+  }
+
+  // Submit Button
+  .wpcf7-submit {
+    margin-top: 40px;
+
+    transition: 0.2s;
+    text-align: center;
+
+    &:hover {
+      background-color: #e6e6e6;
+    }
+  }
+
+  // Spinner
+  .wpcf7-spinner {
+    margin-top: 12px;
+  }
+}
+
+.wpcf7 {
+  .wpcf7-not-valid {
+    background: #ffb6c1;
+  }
+
+  span.wpcf7-not-valid-tip {
+    font-size: 80%;
+  }
+
+  .wpcf7-response-output {
+    padding: 12px;
+
+    color: #d14a00;
+    border: none !important;
+    border-radius: 4px;
+    background: #ffe0e5;
+  }
+
+  // Success
+  form.sent .wpcf7-response-output {
+    color: #057254;
+    background: #e0ffe9;
+  }
+  // Error
+  form.faild .wpcf7-response-output, form.invalid .wpcf7-response-output, form.unaccepted .wpcf7-response-output
+  form.spam .wpcf7-response-output {
+    color: #d14a00;
+    background: #ffe0e5;
+  }
+
+  .wpcf7-validation-errors {
+    color: #b94a48;
+    border: 1px solid #eed3d7;
+    background-color: #f2dede;
+  }
+
+  .wpcf7-mail-sent-ok {
+    color: #3a87ad;
+    border: 1px solid #bce8f1;
+    background-color: #d9edf7;
+  }
+}

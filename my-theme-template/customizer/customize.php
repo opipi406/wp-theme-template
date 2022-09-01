@@ -3,9 +3,9 @@
 /**
  * テーマカスタマイザー
  */
-if (!class_exists('Sample_Customize')) {
+if (!class_exists('Op_Customize')) {
 
-  class Sample_Customize {
+  class Op_Customize {
 
     /**
      * Register customizer options.
@@ -22,84 +22,179 @@ if (!class_exists('Sample_Customize')) {
         'priority' => 9000,
         'description' => ''
       ));
-      $wp_customize->add_setting('twitter_link');
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'twitter_link', array(
-        'label' => 'Twitterリンク',
+      $wp_customize->add_setting(
+        'online_store_link',
+        array('sanitize_callback' => 'esc_url_raw')
+      );
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'online_store_link', array(
+        'label' => 'ONLINE STORE リンク',
         'section' => 'link_section',
-        'settings' => 'twitter_link',
+        'settings' => 'online_store_link',
+      )));
+      $wp_customize->add_setting(
+        'instagram_link',
+        array('sanitize_callback' => 'esc_url_raw')
+      );
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'instagram_link', array(
+        'label' => 'Instagramリンク',
+        'section' => 'link_section',
+        'settings' => 'instagram_link',
       )));
 
       /*----------------------------------------------------
-        スライダー設定
+        アート作品画像設定
       -----------------------------------------------------*/
-      $wp_customize->add_panel('slider_panel', array(
-        'title' => 'キャラクタースライダー設定',
+      $wp_customize->add_panel('art_panel', array(
+        'title' => 'アート作品画像設定',
         'priority' => 9010,
-        'description' => 'キャラクター説明セクションのスライダー画像、キャラ名、説明文を設定します。スライダーは最大５枚まで設定できます。画像とキャラクター名の両方を設定した場合のみ有効になります。'
+        'description' => 'アート作品画像を設定します。'
       ));
 
-      // スライダー5枚分のセクションを追加するため1~5でループ
-      for ($i = 1; $i <= 5; $i++) {
-        $wp_customize->add_section("slider_section_$i", array(
-          'title' => "スライダー ${i}枚目",
-          'panel' => "slider_panel",
+      // 6枚分のセクションを追加するため1~6でループ
+      for ($i = 1; $i <= 6; $i++) {
+        $wp_customize->add_section("art_section_$i", array(
+          'title' => "アート作品画像 ${i}枚目",
+          'panel' => "art_panel",
         ));
-        $wp_customize->add_setting("slider_url_$i");
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "slider_url_$i", array(
-          'label' => 'スライダー画像',
-          'section' => "slider_section_$i",
-          'settings' => "slider_url_$i",
+        $wp_customize->add_setting(
+          "art_url_$i",
+          array('sanitize_callback' => 'esc_url_raw')
+        );
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "art_url_$i", array(
+          'label' => "作品画像",
+          'section' => "art_section_$i",
+          'settings' => "art_url_$i",
         )));
-        $wp_customize->add_setting("slider_name_$i");
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "slider_name_$i", array(
-          'label' => 'キャラクター名',
-          'section' => "slider_section_$i",
-          'settings' => "slider_name_$i",
+        $wp_customize->add_setting(
+          "art_title_$i",
+          array('sanitize_callback' => 'sanitize_text_field')
+        );
+        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "art_title_$i", array(
+          'label' => "作品名",
+          'section' => "art_section_$i",
+          'settings' => "art_title_$i",
         )));
-        $wp_customize->add_setting("slider_description_$i");
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "slider_description_$i", array(
-          'label' => '説明文',
-          'type'=>'textarea',
-          'section' => "slider_section_$i",
-          'settings' => "slider_description_$i",
+        $wp_customize->add_setting(
+          "art_description_$i",
+          array('sanitize_callback' => 'sanitize_textarea_field')
+        );
+        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "art_description_$i", array(
+          'label' => "作品説明",
+          'type' => 'textarea',
+          'section' => "art_section_$i",
+          'settings' => "art_description_$i",
         )));
       }
-      $wp_customize->add_section("slider_common_section", array(
-        'title' => "スライダー設定（共通）",
-        'panel' => "slider_panel",
-      ));
-      $wp_customize->add_setting('chara_description_height', array('default' => 90));
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'chara_description_height', array(
-        'label' => 'キャラクター説明文の縦幅[px]',
-        'type' => 'number',
-        'section' => 'slider_common_section',
-        'settings' => 'chara_description_height',
-      )));
 
+      /*----------------------------------------------------
+        イラスト作品画像設定
+      -----------------------------------------------------*/
+      $wp_customize->add_panel('illust_panel', array(
+        'title' => 'イラスト作品画像設定',
+        'priority' => 9010,
+        'description' => 'イラスト作品画像を設定します。'
+      ));
+
+      // 6枚分のセクションを追加するため1~6でループ
+      for ($i = 1; $i <= 6; $i++) {
+        $wp_customize->add_section("illust_section_$i", array(
+          'title' => "イラスト作品画像 ${i}枚目",
+          'panel' => "illust_panel",
+        ));
+        $wp_customize->add_setting("illust_url_$i");
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "illust_url_$i", array(
+          'label' => "作品画像",
+          'section' => "illust_section_$i",
+          'settings' => "illust_url_$i",
+        )));
+        $wp_customize->add_setting("illust_title_$i");
+        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "illust_title_$i", array(
+          'label' => "作品名",
+          'section' => "illust_section_$i",
+          'settings' => "illust_title_$i",
+        )));
+        $wp_customize->add_setting("illust_description_$i");
+        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "illust_description_$i", array(
+          'label' => "作品説明",
+          'type' => 'textarea',
+          'section' => "illust_section_$i",
+          'settings' => "illust_description_$i",
+        )));
+
+        /*----------------------------------------------------
+          フォーム設定
+        -----------------------------------------------------*/
+        $wp_customize->add_section('form_section', array(
+          'title' => 'フォーム設定',
+          'priority' => 9020,
+          'description' => 'オーダー受付のフォームの設定を行います。'
+        ));
+        $wp_customize->add_setting('cf7_shortcode');
+        $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'cf7_shortcode', array(
+          'label' => 'ContactForm7のショートコード',
+          'section' => 'form_section',
+          'settings' => 'cf7_shortcode',
+        )));
+
+      }
     }
   }
 
-  add_action('customize_register', array('Sample_Customize', 'register'));
+  add_action('customize_register', array('Op_Customize', 'register'));
 }
 
 /**
- * Twitterリンクの取得
+ * ONLINE STOREリンクの取得
  */
-function get_twitter_url() {
-  $url = esc_url(get_theme_mod('twitter_link'));
+function get_online_store_url() {
+  $url = esc_url(get_theme_mod('online_store_link'));
   return $url;
 }
 
 /**
- * スライダー情報の取得
+ * インスタグラムリンクの取得
  */
-function get_slider_data() {
+function get_instagram_url() {
+  $url = esc_url(get_theme_mod('instagram_link'));
+  return $url;
+}
+
+/**
+ * アート画像データの取得
+ */
+function get_art_data() {
   $data = array();
-  for ($i = 1; $i <= 5; $i++) {
-    $url = esc_url(get_theme_mod("slider_url_$i"));
-    $name = get_theme_mod("slider_name_$i");
-    $description = get_theme_mod("slider_description_$i");
-    if ($url != "" && $name != "") $data[] = array('url' => $url, 'name' => $name, 'description' => $description);
-  } 
+  for ($i = 1; $i <= 6; $i++) {
+    $url = esc_url(get_theme_mod("art_url_$i"));
+    $title = get_theme_mod("art_title_$i");
+    $description = nl2br(get_theme_mod("art_description_$i"));
+    if ($url != "" && $title != "") {
+      $data[] = array(
+        'url' => $url,
+        'title' => $title,
+        'description' => $description
+      );
+    }
+  }
+  return $data;
+}
+
+/**
+ * イラスト画像データの取得
+ */
+function get_illust_data() {
+  $data = array();
+  for ($i = 1; $i <= 6; $i++) {
+    $url = esc_url(get_theme_mod("illust_url_$i"));
+    $title = get_theme_mod("illust_title_$i");
+    $description = nl2br(get_theme_mod("illust_description_$i"));
+    if ($url != "" && $title != "") {
+      $data[] = array(
+        'url' => $url,
+        'title' => $title,
+        'description' => $description
+      );
+    }
+  }
   return $data;
 }

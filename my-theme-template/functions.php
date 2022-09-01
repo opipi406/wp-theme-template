@@ -1,4 +1,11 @@
 <?php
+// バンドルされたJavaScriptファイルを使用する
+define('USE_BUNDLE_JS', false);
+
+/**
+ * 管理バーの非表示
+ */
+// add_filter('show_admin_bar', '__return_false');
 
 /**
  * テーマセットアップ

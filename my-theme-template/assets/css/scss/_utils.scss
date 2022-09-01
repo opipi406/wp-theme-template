@@ -1,24 +1,73 @@
-$spacing-unit: 8px;
+// --------------------------------------------------------------
+// 汎用クラス
+// ----------
+// 
 
-.w50  { width: 50% !important; }
-.w60  { width: 60% !important; }
-.w70  { width: 70% !important; }
-.w80  { width: 80% !important; }
-.w90  { width: 90% !important; }
-.w100 { width: 100% !important; }
+$spacing: 8px;
+$prefix-list: 'md', 'sm', 'xs';
 
+// ----------------------------------------------------------
+//  横幅
+// ----------------------------------------------------------
+.w-10  { width: 10% !important; }
+.w-25  { width: 25% !important; }
+.w-50  { width: 50% !important; }
+.w-60  { width: 60% !important; }
+.w-70  { width: 70% !important; }
+.w-80  { width: 80% !important; }
+.w-90  { width: 90% !important; }
+.w-100 { width: 100% !important; }
+
+// ----------------------------------------------------------
+//  余白
+// ----------------------------------------------------------
 @for $i from 1 to 6 {
-  .pt#{$i} { padding-top:     $spacing-unit * $i !important; }
-  .pr#{$i} { padding-right:   $spacing-unit * $i !important; }
-  .pb#{$i} { padding-bottom:  $spacing-unit * $i !important; }
-  .pl#{$i} { padding-left:    $spacing-unit * $i !important; }
-  .px#{$i} { padding-right:   $spacing-unit * $i !important; padding-left:   $spacing-unit * $i !important; }
-  .py#{$i} { padding-top:     $spacing-unit * $i !important; padding-bottom: $spacing-unit * $i !important; }
+  .pt-#{$i} { padding-top:     $spacing * $i !important; }
+  .pr-#{$i} { padding-right:   $spacing * $i !important; }
+  .pb-#{$i} { padding-bottom:  $spacing * $i !important; }
+  .pl-#{$i} { padding-left:    $spacing * $i !important; }
+  .px-#{$i} { padding-right:   $spacing * $i !important; padding-left:   $spacing * $i !important; }
+  .py-#{$i} { padding-top:     $spacing * $i !important; padding-bottom: $spacing * $i !important; }
 
-  .mt#{$i} { margin-top:     $spacing-unit * $i !important; }
-  .mr#{$i} { margin-right:   $spacing-unit * $i !important; }
-  .mb#{$i} { margin-bottom:  $spacing-unit * $i !important; }
-  .ml#{$i} { margin-left:    $spacing-unit * $i !important; }
-  .mx#{$i} { margin-right:   $spacing-unit * $i !important; margin-left:   $spacing-unit * $i !important; }
-  .my#{$i} { margin-top:     $spacing-unit * $i !important; margin-bottom: $spacing-unit * $i !important; }
+  .mt-#{$i} { margin-top:     $spacing * $i !important; }
+  .mr-#{$i} { margin-right:   $spacing * $i !important; }
+  .mb-#{$i} { margin-bottom:  $spacing * $i !important; }
+  .ml-#{$i} { margin-left:    $spacing * $i !important; }
+  .mx-#{$i} { margin-right:   $spacing * $i !important; margin-left:   $spacing * $i !important; }
+  .my-#{$i} { margin-top:     $spacing * $i !important; margin-bottom: $spacing * $i !important; }
+}
+
+@each $prefix in $prefix-list {
+  @for $i from 1 to 6 {
+    @include mq-down($prefix) {
+      .pt-#{$prefix}-#{$i} { padding-top:     $spacing * $i !important; }
+      .pr-#{$prefix}-#{$i} { padding-right:   $spacing * $i !important; }
+      .pb-#{$prefix}-#{$i} { padding-bottom:  $spacing * $i !important; }
+      .pl-#{$prefix}-#{$i} { padding-left:    $spacing * $i !important; }
+      .px-#{$prefix}-#{$i} { padding-right:   $spacing * $i !important; padding-left:   $spacing * $i !important; }
+      .py-#{$prefix}-#{$i} { padding-top:     $spacing * $i !important; padding-bottom: $spacing * $i !important; }
+    
+      .mt-#{$prefix}-#{$i} { margin-top:     $spacing * $i !important; }
+      .mr-#{$prefix}-#{$i} { margin-right:   $spacing * $i !important; }
+      .mb-#{$prefix}-#{$i} { margin-bottom:  $spacing * $i !important; }
+      .ml-#{$prefix}-#{$i} { margin-left:    $spacing * $i !important; }
+      .mx-#{$prefix}-#{$i} { margin-right:   $spacing * $i !important; margin-left:   $spacing * $i !important; }
+      .my-#{$prefix}-#{$i} { margin-top:     $spacing * $i !important; margin-bottom: $spacing * $i !important; }
+    }
+  }
+}
+
+// ----------------------------------------------------------
+//  テキスト
+// ----------------------------------------------------------
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+.text-center { text-align: center !important; }
+
+@each $prefix in $prefix-list {
+  @include mq-down($prefix) {
+    .text-#{$prefix}-left { text-align: left !important; }
+    .text-#{$prefix}-right { text-align: right !important; }
+    .text-#{$prefix}-center { text-align: center !important; }
+  }
 }

@@ -1,9 +1,6 @@
 /*-----------------------------------------------------
-  Global Navigation (Header Menu)
+  Global Navigation (and Header Menu Navigation)
 ------------------------------------------------------*/
-@import "colors";
-@import "media-query";
-
 @mixin g-nav-link {
   & > a {
     font-family: "Montserrat", sans-serif;
@@ -30,7 +27,7 @@
 
   user-select: none;
 
-  & > .menu__item {
+  .menu-item {
     position: relative;
 
     @include g-nav-link();
@@ -43,15 +40,27 @@
 
 // ハンバーガーメニュー
 .burger-menu__nav .menu {
-  padding: 80px 24px;
+  margin: 160px 0;
+  padding: 0 16px;
 
   user-select: none;
 
-  & > .menu__item {
+  .menu-item {
+    font-size: 1.5rem;
+
     position: relative;
 
     margin-bottom: 18px;
 
+    text-align: center;
+
     @include g-nav-link();
   }
+}
+
+// ロゴ
+.burger-menu-logo {
+  padding: 0 16px;
+
+  text-align: right;
 }

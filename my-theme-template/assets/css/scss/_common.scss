@@ -3,12 +3,18 @@
 
 body {
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  // font-family: "游明朝","Yu Mincho",YuMincho,"Hiragino Mincho Pro",serif;
   font-size: 100%;
 
-  line-height: 1;
+  line-height: 1.5;
 
   color: text-palette();
   background-color: bg-palette();
+
+  // 背景画像を設定する場合
+  // background-image: url('../images/bg.jpg');
+  // background-repeat: repeat;
+  // background-size: contain;
 }
 
 .wrap {
@@ -24,6 +30,17 @@ body {
   }
 }
 
+// スクロール禁止
+.scroll-prevent {
+  overflow: hidden;
+
+  height: 100%;
+
+  @include mq-up(md) {
+    padding-right: 7px; // ガタつき対策
+  }
+}
+
 /*-----------------------------------------------------
   クリック・タップ時の青枠除去
 ------------------------------------------------------*/
@@ -34,4 +51,30 @@ a {
   cursor: pointer;
 
   -webkit-tap-highlight-color: transparent;
+}
+
+/*-----------------------------------------------------
+  xボタン
+------------------------------------------------------*/
+.cross {
+  &::before, &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 3px;
+    height: 100%;
+
+    content: "";
+
+    background: #ffffff;
+  }
+
+  &::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+  }
 }
