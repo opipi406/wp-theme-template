@@ -2,19 +2,25 @@
 @import "media-query";
 
 body {
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  // font-family: "游明朝","Yu Mincho",YuMincho,"Hiragino Mincho Pro",serif;
+  // font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-family: "游明朝","Yu Mincho",YuMincho,"Hiragino Mincho Pro",serif;
   font-size: 100%;
 
-  line-height: 1.5;
+  line-height: 2;
 
   color: text-palette();
   background-color: bg-palette();
-
   // 背景画像を設定する場合
   // background-image: url('../images/bg.jpg');
   // background-repeat: repeat;
   // background-size: contain;
+
+  @include mq-up(xl) {
+    font-size: 120%;
+  }
+  @include mq-up(xxl) {
+    font-size: 140%;
+  }
 }
 
 .wrap {
@@ -23,11 +29,11 @@ body {
 .spacer {
   margin: auto;
 }
-
-.sp {
-  @include mq-up(xs) {
-    display: none;
-  }
+.rounded {
+  border-radius: 25px;
+}
+.shadow {
+  box-shadow: 0 0 5px #a5a5a5;
 }
 
 // スクロール禁止
@@ -40,10 +46,7 @@ body {
     padding-right: 7px; // ガタつき対策
   }
 }
-
-/*-----------------------------------------------------
-  クリック・タップ時の青枠除去
-------------------------------------------------------*/
+// クリック・タップ時の青枠除去
 *:focus {
   outline: none;
 }
@@ -52,10 +55,7 @@ a {
 
   -webkit-tap-highlight-color: transparent;
 }
-
-/*-----------------------------------------------------
-  xボタン
-------------------------------------------------------*/
+// xボタン
 .cross {
   &::before, &::after {
     position: absolute;
@@ -69,12 +69,25 @@ a {
 
     background: #ffffff;
   }
-
   &::before {
     transform: translate(-50%,-50%) rotate(45deg);
   }
-
   &::after {
     transform: translate(-50%,-50%) rotate(-45deg);
+  }
+}
+
+// ======================================================
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing * 2;
+
+  @include mq-up(sm) {
+    padding: 0 $spacing * 4;
+  }
+  @include mq-up(md) {
+    padding: 0 $spacing * 8;
   }
 }

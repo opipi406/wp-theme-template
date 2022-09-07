@@ -3,7 +3,6 @@
 ------------------------------------------------------*/
 footer {
   background-color: bg-palette(header);
-  box-shadow: 0 0 5px #a0a0a0;
 }
 
 footer .footer-content {
@@ -13,6 +12,8 @@ footer .footer-content {
   flex-wrap: wrap;
 
   padding: 60px 60px 0 60px;
+
+  box-shadow: 0 0 5px #a0a0a0;
 }
 
 footer .content {

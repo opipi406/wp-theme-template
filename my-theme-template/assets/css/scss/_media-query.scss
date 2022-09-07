@@ -4,6 +4,7 @@ $breakpoint-up: (
   "md": 768px,
   "lg": 1000px,
   "xl": 1200px,
+  "xxl": 1600px,
 ) !default;
 $breakpoint-down: (
   "xs": 399px,
@@ -11,6 +12,7 @@ $breakpoint-down: (
   "md": 767px,
   "lg": 999px,
   "xl": 1199px,
+  "xxl": 1599px,
 ) !default;
 
 @mixin mq-up($breakpoint: md) {

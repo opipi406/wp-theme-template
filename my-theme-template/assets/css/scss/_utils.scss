@@ -1,27 +1,86 @@
 // --------------------------------------------------------------
 // 汎用クラス
-// ----------
+// --------------------------------------------------------------
+// d-{p}-none       - display: none
+// d-{p}-inline     - display: inline 
+// d-{p}-block      - display: block
 // 
+// flx-{p}-row      - flex-direction: row
+// flx-{p}-row-r    - flex-direction: row-reverse
+// flx-{p}-col      - flex-direction: column
+// flx-{p}-col-r    - flex-direction: column-reverse
+// 
+// w-{p}-{n}        - width: {n}% (10 ~ 100)
+// px-{p}-{n}       - padding-left, padding-right (0 ~ 12)
+// 
+// text-{p}-center  - text-center
 
 $spacing: 8px;
-$prefix-list: 'md', 'sm', 'xs';
+$prefix-list: 'lg', 'md', 'sm', 'xs';
+
+// ----------------------------------------------------------
+//  ディスプレイ関連
+// ----------------------------------------------------------
+.d-none { display: none !important; }
+.d-inline { display: inline !important; }
+.d-block { display: block !important; }
+
+@each $prefix in $prefix-list {
+  @include mq-down($prefix) {
+    .d-#{$prefix}-none { display: none !important; }
+    .d-#{$prefix}-inline { display: inline !important; }
+    .d-#{$prefix}-block { display: block !important; }
+  }
+}
+
+.flx-row { flex-direction: row !important; }
+.flx-row-r { flex-direction: row-reverse !important; }
+.flx-col { flex-direction: column !important; }
+.flx-col-r { flex-direction: column-reverse !important; }
+
+@each $prefix in $prefix-list {
+  @include mq-down($prefix) {
+    .flx-#{$prefix}-row { flex-direction: row !important; }
+    .flx-#{$prefix}-row-r { flex-direction: row-reverse !important; }
+    .flx-#{$prefix}-col { flex-direction: column !important; }
+    .flx-#{$prefix}-col-r { flex-direction: column-reverse !important; }
+  }
+}
+
 
 // ----------------------------------------------------------
 //  横幅
 // ----------------------------------------------------------
-.w-10  { width: 10% !important; }
-.w-25  { width: 25% !important; }
-.w-50  { width: 50% !important; }
-.w-60  { width: 60% !important; }
-.w-70  { width: 70% !important; }
-.w-80  { width: 80% !important; }
-.w-90  { width: 90% !important; }
-.w-100 { width: 100% !important; }
+@for $i from 1 through 10 {
+  .w-#{$i}0  { width: 10% * $i !important; }
+}
+
+@each $prefix in $prefix-list {
+  @for $i from 1 through 10 {
+    @include mq-down($prefix) {
+      .w-#{$prefix}-#{$i}0  { width: 10% * $i !important; }
+    }
+  }
+}
 
 // ----------------------------------------------------------
 //  余白
 // ----------------------------------------------------------
-@for $i from 1 to 6 {
+.pt-auto { padding-top:     auto !important; }
+.pr-auto { padding-right:   auto !important; }
+.pb-auto { padding-bottom:  auto !important; }
+.pl-auto { padding-left:    auto !important; }
+.px-auto { padding-right:   auto !important; padding-left:   auto !important; }
+.py-auto { padding-top:     auto !important; padding-bottom: auto !important; }
+
+.mt-auto { margin-top:     auto !important; }
+.mr-auto { margin-right:   auto !important; }
+.mb-auto { margin-bottom:  auto !important; }
+.ml-auto { margin-left:    auto !important; }
+.mx-auto { margin-right:   auto !important; margin-left:   auto !important; }
+.my-auto { margin-top:     auto !important; margin-bottom: auto !important; }
+
+@for $i from 0 through 12 {
   .pt-#{$i} { padding-top:     $spacing * $i !important; }
   .pr-#{$i} { padding-right:   $spacing * $i !important; }
   .pb-#{$i} { padding-bottom:  $spacing * $i !important; }
@@ -38,7 +97,24 @@ $prefix-list: 'md', 'sm', 'xs';
 }
 
 @each $prefix in $prefix-list {
-  @for $i from 1 to 6 {
+
+  @include mq-down($prefix) {
+    .pt-#{$prefix}-auto { padding-top:     auto !important; }
+    .pr-#{$prefix}-auto { padding-right:   auto !important; }
+    .pb-#{$prefix}-auto { padding-bottom:  auto !important; }
+    .pl-#{$prefix}-auto { padding-left:    auto !important; }
+    .px-#{$prefix}-auto { padding-right:   auto !important; padding-left:   auto !important; }
+    .py-#{$prefix}-auto { padding-top:     auto !important; padding-bottom: auto !important; }
+
+    .mt-#{$prefix}-auto { margin-top:     auto !important; }
+    .mr-#{$prefix}-auto { margin-right:   auto !important; }
+    .mb-#{$prefix}-auto { margin-bottom:  auto !important; }
+    .ml-#{$prefix}-auto { margin-left:    auto !important; }
+    .mx-#{$prefix}-auto { margin-right:   auto !important; margin-left:   auto !important; }
+    .my-#{$prefix}-auto { margin-top:     auto !important; margin-bottom: auto !important; }
+  }
+
+  @for $i from 0 through 12 {
     @include mq-down($prefix) {
       .pt-#{$prefix}-#{$i} { padding-top:     $spacing * $i !important; }
       .pr-#{$prefix}-#{$i} { padding-right:   $spacing * $i !important; }
@@ -55,6 +131,7 @@ $prefix-list: 'md', 'sm', 'xs';
       .my-#{$prefix}-#{$i} { margin-top:     $spacing * $i !important; margin-bottom: $spacing * $i !important; }
     }
   }
+  
 }
 
 // ----------------------------------------------------------
