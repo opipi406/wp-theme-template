@@ -1,0 +1,45 @@
+.fv {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100vh;
+
+  text-align: center;
+
+  color: text-palette(inverse);
+  background: url("../images/fv.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &__title {
+    font-size: 3rem;
+
+    z-index: 1;
+
+    line-height: 1;
+    padding: 24px 12px;
+
+    border: 2px solid text-palette(inverse);
+
+    @include mq-down(sm) {
+      font-size: 8vw;
+      padding: 12px 12px;
+    }
+  }
+
+  &::before {
+    position: absolute;
+
+    content: "";
+
+    background-color: #0000004d;
+
+    inset: 0;
+  }
+}
