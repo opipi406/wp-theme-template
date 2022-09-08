@@ -19,14 +19,18 @@ $spacing: 8px;
 $prefix-list: 'lg', 'md', 'sm', 'xs';
 
 // ----------------------------------------------------------
-//  ディスプレイ関連
+//  レイアウト
 // ----------------------------------------------------------
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
 .d-none { display: none !important; }
 .d-inline { display: inline !important; }
 .d-block { display: block !important; }
 
 @each $prefix in $prefix-list {
   @include mq-down($prefix) {
+    .#{$prefix}-relative { position: relative !important; }
+    .#{$prefix}-absolute { position: absolute !important; }
     .d-#{$prefix}-none { display: none !important; }
     .d-#{$prefix}-inline { display: inline !important; }
     .d-#{$prefix}-block { display: block !important; }
@@ -80,7 +84,7 @@ $prefix-list: 'lg', 'md', 'sm', 'xs';
 .mx-auto { margin-right:   auto !important; margin-left:   auto !important; }
 .my-auto { margin-top:     auto !important; margin-bottom: auto !important; }
 
-@for $i from 0 through 12 {
+@for $i from 0 through 24 {
   .pt-#{$i} { padding-top:     $spacing * $i !important; }
   .pr-#{$i} { padding-right:   $spacing * $i !important; }
   .pb-#{$i} { padding-bottom:  $spacing * $i !important; }
@@ -114,7 +118,7 @@ $prefix-list: 'lg', 'md', 'sm', 'xs';
     .my-#{$prefix}-auto { margin-top:     auto !important; margin-bottom: auto !important; }
   }
 
-  @for $i from 0 through 12 {
+  @for $i from 0 through 24 {
     @include mq-down($prefix) {
       .pt-#{$prefix}-#{$i} { padding-top:     $spacing * $i !important; }
       .pr-#{$prefix}-#{$i} { padding-right:   $spacing * $i !important; }
@@ -146,5 +150,31 @@ $prefix-list: 'lg', 'md', 'sm', 'xs';
     .text-#{$prefix}-left { text-align: left !important; }
     .text-#{$prefix}-right { text-align: right !important; }
     .text-#{$prefix}-center { text-align: center !important; }
+  }
+}
+
+.text-bold   { font-weight: bold !important; }
+
+.text-xs    { font-size: 0.75rem !important; }
+.text-sm    { font-size: 0.875rem !important; }
+.text-base  { font-size: 1rem !important; }
+.text-lg    { font-size: 1.125rem !important; }
+.text-xl    { font-size: 1.25rem !important; }
+.text-2xl   { font-size: 1.5rem !important; }
+.text-3xl   { font-size: 1.875rem !important; }
+.text-4xl   { font-size: 2.25rem !important; }
+.text-5xl   { font-size: 3rem !important; }
+
+@each $prefix in $prefix-list {
+  @include mq-down($prefix) {
+    .text-#{$prefix}-xs   { font-size: 0.75rem !important; }
+    .text-#{$prefix}-sm   { font-size: 0.875rem !important; }
+    .text-#{$prefix}-base { font-size: 1rem !important; }
+    .text-#{$prefix}-lg   { font-size: 1.125rem !important; }
+    .text-#{$prefix}-xl   { font-size: 1.25rem !important; }
+    .text-#{$prefix}-2xl  { font-size: 1.5rem !important; }
+    .text-#{$prefix}-3xl  { font-size: 1.875rem !important; }
+    .text-#{$prefix}-4xl  { font-size: 2.25rem !important; }
+    .text-#{$prefix}-5xl  { font-size: 3rem !important; }
   }
 }
