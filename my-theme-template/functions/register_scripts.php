@@ -10,14 +10,20 @@ function register_scripts() {
     外部スクリプト
   -----------------------------------------------------*/
   $extensions = array(
-    'anime' => 'anime.min.js',
-    // 'inview' => 'jquery.inview.min.js',
-    // 'arctext' => 'jquery.arctext.js',
-    'slick' => 'slick.min.js',
+    // 'anime' => "$base_url/ext/anime.min.js",
+    // 'arctext' => "$base_url/ext/jquery.arctext.js",
   );
 
-  foreach ($extensions as $key => $file_name) {
-    wp_enqueue_script($key, "$base_url/ext/$file_name", array('jquery'));
+  if (JSEXT_USE_GSAP) {
+    $extensions['gsap-core'] = "//cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js";
+    $extensions['gsap-scroll'] = "//cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js";
+  }
+  if (JSEXT_USE_SLICK) {
+    $extensions['slick'] = "$base_url/ext/slick.min.js";
+  }
+
+  foreach ($extensions as $key => $file_path) {
+    wp_enqueue_script($key, "$file_path", array('jquery'));
   }
 
   /*----------------------------------------------------
