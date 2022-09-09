@@ -10,6 +10,7 @@ function register_scripts() {
     外部スクリプト
   -----------------------------------------------------*/
   $extensions = array(
+    // 'wow' => "$base_url/ext/wow.min.js",
     // 'anime' => "$base_url/ext/anime.min.js",
     // 'arctext' => "$base_url/ext/jquery.arctext.js",
   );
