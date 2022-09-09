@@ -16,7 +16,7 @@
 // text-{p}-center  - text-center
 
 $spacing: 8px;
-$prefix-list: 'lg', 'md', 'sm', 'xs';
+$prefix-list: 'xl' 'lg', 'md', 'sm', 'xs';
 
 // ----------------------------------------------------------
 //  レイアウト
@@ -164,6 +164,7 @@ $prefix-list: 'lg', 'md', 'sm', 'xs';
 .text-3xl   { font-size: 1.875rem !important; }
 .text-4xl   { font-size: 2.25rem !important; }
 .text-5xl   { font-size: 3rem !important; }
+.text-6xl   { font-size: 3.75rem !important; }
 
 @each $prefix in $prefix-list {
   @include mq-down($prefix) {
@@ -176,5 +177,6 @@ $prefix-list: 'lg', 'md', 'sm', 'xs';
     .text-#{$prefix}-3xl  { font-size: 1.875rem !important; }
     .text-#{$prefix}-4xl  { font-size: 2.25rem !important; }
     .text-#{$prefix}-5xl  { font-size: 3rem !important; }
+    .text-#{$prefix}-6xl  { font-size: 3.75rem !important; }
   }
 }

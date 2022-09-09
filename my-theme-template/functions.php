@@ -57,5 +57,5 @@ require get_template_directory() . '/customizer/style_customize.php';
 /*----------------------------------------------------
   headタグに追加するコード
 -----------------------------------------------------*/
-// require get_template_directory() . '/functions/add_head_webfonts.php'; // webフォントの読み込み
+// require get_template_directory() . '/functions/add_head_webfonts.php'; // webフォント(Adobeフォント?)の読み込み
 require get_template_directory() . '/functions/add_head_custom_styles.php'; // カスタマイザーで設定したstyle情報の設定
