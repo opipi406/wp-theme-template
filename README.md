@@ -5,7 +5,7 @@ WordPress案件用のセットアップテンプレート
 # Installation
 ## 1. リポジトリのクローン
 ```bash
-git clone hoge
+git clone https://github.com/opipi406/wp-theme-template/edit/master/README.md
 ```
 ## 2. イメージ・コンテナの作成
 ```bash
