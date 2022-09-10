@@ -2,7 +2,7 @@
   ハンバーガーメニュー
 ------------------------------------------------------*/
 // ハンバーガーメニューのボタンサイズ
-$burger-menu__btn-size: 32px;
+$burger-menu__btn-size: 30px;
 // ハンバーガーメニューのボタンの色
 $burger-menu__btn-color: #494949;
 $burger-menu__btn-color--open: #494949;
@@ -13,7 +13,7 @@ $burger-menu__bg-color: bg-palette();
 // コンテンツ部分の基本横幅
 $burger-menu__contain-width: 400px;
 // オーバーレイ透過度
-$burger-menu__overlay-opacity: .25;
+$burger-menu__overlay-opacity: 0.25;
 
 .burger-menu {
   position: relative;
@@ -22,10 +22,12 @@ $burger-menu__overlay-opacity: .25;
   display: flex;
   align-items: center;
 
+  width: $burger-menu__btn-size;
   height: $burger-menu__btn-size;
 
   // ボタン
   &__btn {
+    position: relative;
     z-index: 100;
 
     width: 100%;
@@ -80,16 +82,17 @@ $burger-menu__overlay-opacity: .25;
   ハンバーガーメニューのボタンアイコン
 ------------------------------------------------------*/
 .burger-menu-line {
-  position: relative;
+  position: absolute;
   z-index: 100;
+  left: 0;
+  bottom: calc(50% - 1.5px);
 
   display: inline-block;
 
-  width: $burger-menu__btn-size;
+  width: 100%;
   height: 3px;
 
   transition: all 0.3s;
-  transform: translateY(3px);
 
   background-color: $burger-menu__btn-color;
 
@@ -106,10 +109,10 @@ $burger-menu__overlay-opacity: .25;
     background-color: $burger-menu__btn-color;
   }
   &::before {
-    transform: translateY(-$burger-menu__btn-size / 3);
+    transform: translateY(-11px);
   }
   &::after {
-    transform: translateY($burger-menu__btn-size / 3);
+    transform: translateY(11px);
   }
   &.open {
     background-color: transparent !important;
@@ -147,7 +150,7 @@ $burger-menu__overlay-opacity: .25;
     cursor: default;
     pointer-events: auto;
 
-    background-color: #000000;
     opacity: $burger-menu__overlay-opacity;
+    background-color: #000000;
   }
 }
