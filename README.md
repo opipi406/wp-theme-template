@@ -5,7 +5,7 @@ WordPress案件用のセットアップテンプレート
 # Installation
 ## 1. リポジトリのクローン
 ```bash
-git clone hoge
+git clone https://github.com/opipi406/wp-theme-template/edit/master/README.md [プロジェクト名]
 ```
 ## 2. イメージ・コンテナの作成
 ```bash
@@ -29,7 +29,7 @@ docker-compose up -d
 ## 4. 雛形テーマファイルの移行
 `html/wp-content/themes/` に `my-theme`ディレクトリを移動する
 ```bash
-mv my-theme-template html/wp-content/themes/[自作テーマ名]
+mv ./my-theme-template ./html/wp-content/themes/[自作テーマ名]
 ```
 
 
