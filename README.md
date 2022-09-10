@@ -29,7 +29,7 @@ docker-compose up -d
 ## 4. 雛形テーマファイルの移行
 `html/wp-content/themes/` に `my-theme`ディレクトリを移動する
 ```bash
-mv my-theme-template html/wp-content/themes/[自作テーマ名]
+mv ./my-theme-template ./html/wp-content/themes/[自作テーマ名]
 ```
 
 
