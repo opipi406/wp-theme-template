@@ -118,11 +118,13 @@ $burger-menu__overlay-opacity: 0.25;
     background-color: transparent !important;
     &::before {
       transform: rotate(-225deg);
+      // transform: rotate(-45deg);
 
       background-color: $burger-menu__btn-color--open !important;
     }
     &::after {
       transform: rotate(225deg);
+      // transform: rotate(45deg);
 
       background-color: $burger-menu__btn-color--open !important;
     }
