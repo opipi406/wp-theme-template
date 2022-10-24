@@ -32,6 +32,11 @@ docker-compose up -d
 mv ./my-theme-template ./html/wp-content/themes/[自作テーマ名]
 ```
 
+## 5. 自作テーマディレクトリのシンボリックリンクを作成 （任意）
+```bash
+ln -s ./html/wp-content/themes/[自作テーマ名]/[自作テーマ名]
+```
+
 
 # Note
 
