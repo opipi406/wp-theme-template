@@ -3,10 +3,10 @@ WordPress案件用のセットアップテンプレート
 
 
 # Installation
-## 1. リポジトリのクローン
-```bash
-git clone https://github.com/opipi406/wp-theme-template/edit/master/README.md [プロジェクト名]
-```
+## 1. リポジトリの作成・クローン
+1. [テンプレートリポジトリ](https://github.com/ucan-lab/docker-laravel/generate)からリポジトリを作成
+2. Git clone & change directory
+
 ## 2. イメージ・コンテナの作成
 ```bash
 docker-compose up -d
