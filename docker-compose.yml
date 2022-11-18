@@ -2,6 +2,7 @@ version: "3.7"
 services:
   db:
     image: mysql:5.7
+    platform: linux/amd64 # M1,M2 Macでなければコメントアウト
     container_name: wp_db
     environment:
       MYSQL_ROOT_PASSWORD: password # rootユーザのパスワード（任意に指定可）
@@ -13,6 +14,7 @@ services:
 
   wordpress:
     image: wordpress:latest
+    platform: linux/amd64 # M1,M2 Macでなければコメントアウト
     container_name: wordpress
     depends_on:
      - db
@@ -29,6 +31,7 @@ services:
        
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
+    platform: linux/amd64 # M1,M2 Macでなければコメントアウト
     container_name: phpmyadmin
     depends_on:
       - db
