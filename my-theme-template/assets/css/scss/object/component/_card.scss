@@ -1,10 +1,11 @@
 $card__x-pad: 20px;
 $card__y-pad: 20px;
-$card__thumb-height: 300px;
+$card__thumb-height: 150px;
+$card-gap: 24px;
 
-//------------------------------
+//----------------------------------------------------
 //	カードリストボックス
-//------------------------------
+//----------------------------------------------------
 .card-list {
   display: flex;
   justify-content: flex-start;
@@ -17,16 +18,17 @@ $card__thumb-height: 300px;
     padding-right: 16px;
     padding-left: 16px;
   }
+
+  gap: $card-gap $card-gap;
 }
 
-//------------------------------
+//----------------------------------------------------
 //	カード本体
-//------------------------------
+//----------------------------------------------------
 .card {
   position: relative;
 
   overflow: hidden;
-  // width: calc((100% - $card__x-pad * 1) / 2);
 
   width: 25%;
   height: auto;
@@ -36,15 +38,17 @@ $card__thumb-height: 300px;
   background-color: #ffffff;
   box-shadow: 0 0 5px #6f6f6f6d;
 
+  @include mq-down(xxl) {
+    width: calc(100% / 4 - (#{$card-gap} * 0.75));
+  }
   @include mq-down(lg) {
-    width: calc(100% / 3);
+    width: calc(100% / 3 - (#{$card-gap} * 0.6666));
   }
   @include mq-down(md) {
-    width: 50%;
+    width: calc(50% - (#{$card-gap} * 0.5));
   }
   @include mq-down(sm) {
     width: 100%;
-    margin-bottom: 16px;
   }
 
   // サムネイルボックス
@@ -59,7 +63,7 @@ $card__thumb-height: 300px;
     transition: 0.6s;
 
     @include mq-down(md) {
-      height: 55vw;
+      height: 40vw;
     }
 
     backface-visibility: hidden;
@@ -72,6 +76,8 @@ $card__thumb-height: 300px;
     min-height: 170px;
     padding: 24px;
 
+    background-color: #efedf7;
+
     @include mq-down(sm) {
       padding: 8px 12px;
     }
@@ -79,27 +85,18 @@ $card__thumb-height: 300px;
 
   // タイトル
   &__title {
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     font-weight: bold;
 
     overflow: hidden;
 
-    height: 82px;
+    height: 42px;
     line-height: 1.4;
-    margin: 24px 0;
-    padding: 0 24px;
+    margin-bottom: 12px;
+  }
 
-    @include mq-down(lg) {
-      font-size: min(6vw, 1.2rem);
-
-      padding: 0;
-    }
-    @include mq-down(md) {
-      font-size: 1rem;
-
-      height: 60px;
-      margin: 12px 0;
-    }
+  // テキスト
+  &__text {
   }
 
   // 詳細 （日付　or author?）
@@ -130,56 +127,8 @@ $card__thumb-height: 300px;
     }
   }
 
-  // 丸ボタン
-  &__btn {
-    $size: 80px;
-    $size-sp: 60px;
-    $breakpoint: xl;
-
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-
-    width: $size;
-    height: $size;
-
-    transition: 0.3s;
-
-    border-radius: 50%;
-    background-color: ui-palette(primary, dark);
-
-    @include mq-down($breakpoint) {
-      width: $size-sp;
-      height: $size-sp;
-    }
-
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 33px;
-      bottom: 0;
-
-      width: calc($size / 3);
-      height: calc($size / 3);
-      margin: auto;
-
-      content: "";
-      transform: rotate(45deg);
-
-      border-top: 3px solid #ffffff;
-      border-right: 3px solid #ffffff;
-
-      @include mq-down($breakpoint) {
-        right: 25px;
-
-        width: calc($size-sp / 3);
-        height: calc($size-sp / 3);
-      }
-    }
-  }
-
   &:hover {
-    color: text-palette(inverse);
+    color: text-palette(primary);
     background-color: ui-palette(primary);
   }
   &:hover &__thumb {
