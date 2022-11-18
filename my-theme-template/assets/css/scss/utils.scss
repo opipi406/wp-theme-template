@@ -1,35 +1,75 @@
-// --------------------------------------------------------------
-// ユーティリティクラス
-// --------------------------------------------------------------
-// d-{p}-none       - display: none
-// d-{p}-inline     - display: inline 
-// d-{p}-block      - display: block
-// d-{p}-flex       - display: flex
-
-// justify-{p}-start    - justify-content: flex-start
-// justify-{p}-end      - justify-content: flex-end
-// justify-{p}-center   - justify-content: center
-// justify-{p}-between  - justify-content: space-between
-// justify-{p}-around  - justify-content: space-around
-// justify-{p}-evenly  - justify-content: space-evenly
+// ==========================================================================
+// Utility Classes
 // 
-// flx-{p}-row      - flex-direction: row
-// flx-{p}-row-r    - flex-direction: row-reverse
-// flx-{p}-col      - flex-direction: column
-// flx-{p}-col-r    - flex-direction: column-reverse
+//  [p] - media query prefix (xs, sm, md, lg, xl, xxl)
+// ==========================================================================
 // 
-// w-{p}-{n}        - width: {n}% (10 ~ 100)
-// px-{p}-{n}       - padding-left, padding-right (0 ~ 12)
 // 
-// text-{p}-center  - text-center
+// ----------------------------
+//  Layout
+// ----------------------------
+// relative         - position: relative
+// absolute         - position: absolute
+// 
+// d-[p]-none       - display: none
+// d-[p]-inline     - display: inline 
+// d-[p]-block      - display: block
+// d-[p]-flex       - display: flex
+// 
+// ----------------------------
+//  Flex Box
+// ----------------------------
+// justify-[p]-start    - justify-content: flex-start
+// justify-[p]-end      - justify-content: flex-end
+// justify-[p]-center   - justify-content: center
+// justify-[p]-between  - justify-content: space-between
+// justify-[p]-around   - justify-content: space-around
+// justify-[p]-evenly   - justify-content: space-evenly
+// 
+// align-[p]-center     - align-items: center
+// align-[p]-stretch    - align-items: stretch
+// 
+// grow-[p]-1           - flex-grow: 1
+// 
+// flx-[p]-row      - flex-direction: row
+// flx-[p]-row-r    - flex-direction: row-reverse
+// flx-[p]-col      - flex-direction: column
+// flx-[p]-col-r    - flex-direction: column-reverse
+// 
+// ----------------------------
+//  inset layout
+// ----------------------------
+// top-[p]-[n]      - top: [n]rem ([n] = 0.25, 0.5, 0.75...)
+// 
+// ----------------------------
+//  Spacing
+// ----------------------------
+// w-[p]-[n]        - width:  [n]% ([n] = 5, 10, 15 ... 100)
+// h-[p]-[n]        - height: [n]% ([n] = 5, 10, 15 ... 100)
+// px-[p]-[n]       - padding-left, padding-right ([n] = 0 ~ 24)
+// mx-[p]-[n]       - margin-left, margin-right ([n] = 0 ~ 24)
+// 
+// ----------------------------
+//  Text
+// ----------------------------
+// text-[p]-center  - text-center
+// text-[p]-left    - text-left
+// text-[p]-right   - text-right
+// 
+// text-bold        - font-weight: bold 
+// text-red         - color: red
+// 
+// text-[p]-[s]     - font-size ([s] = xs, sm, base, lg, xl, 2xl, 3xl ... 6xl)
 
-@import "media-query";
+@import "foundation/media-query";
+@import "foundation/variable";
 
+// $rem-list: 0.25rem, 0.5rem, 0.75rem, 1rem, 1.25rem, 1.5rem, 1.75rem, 2rem;
 $spacing: 8px;
 $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 
 // ----------------------------------------------------------
-//  レイアウト
+//  Layout, Flex Box
 // ----------------------------------------------------------
 .relative { position: relative !important; }
 .absolute { position: absolute !important; }
@@ -44,6 +84,9 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 .justify-between { justify-content: space-between !important; }
 .justify-around { justify-content: space-around !important; }
 .justify-evenly { justify-content: space-evenly !important; }
+
+.align-center { align-items: center !important; }
+.align-stretch { align-items: stretch !important; }
 
 .grow-1 { flex-grow: 1 !important; }
 
@@ -63,6 +106,9 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
     .justify-#{$p}-around { justify-content: space-around !important; }
     .justify-#{$p}-evenly { justify-content: space-evenly !important; }
 
+    .align-#{$p}-center { align-items: center !important; }
+    .align-#{$p}-stretch { align-items:stretch !important; }
+
     .grow-#{$p}-1 { flex-grow: 1 !important; }
   }
 }
@@ -81,24 +127,63 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
   }
 }
 
+.object-cover { object-fit: cover !important; }
+.object-contain { object-fit: contain !important; }
+
 
 // ----------------------------------------------------------
-//  横幅
+//  Spacing1
 // ----------------------------------------------------------
-@for $i from 1 through 10 {
-  .w-#{$i}0  { width: 10% * $i !important; }
+.w-auto { width: auto !important; }
+@for $i from 1 through 20 {
+  .w-#{$i*5}  { width: #{$i * 5%} !important; }
 }
 
 @each $p in $prefix-list {
-  @for $i from 1 through 10 {
+  .w-#{$p}-auto { width: auto !important; }
+  @for $i from 1 through 20 {
     @include mq-down($p) {
-      .w-#{$p}-#{$i}0  { width: 10% * $i !important; }
+      .w-#{$p}-#{$i*5}  { width: #{$i * 5%} !important; }
     }
   }
 }
+.h-auto { height: auto !important; }
+@for $i from 1 through 20 {
+  .h-#{$i*5}  { height: #{$i * 5%} !important; }
+}
+
 
 // ----------------------------------------------------------
-//  余白
+//  inset layout
+// ----------------------------------------------------------
+@for $i from 0 through 24 {
+  .inset-#{$i}    { inset:    #{$i * 0.25rem} !important; }
+  .top-#{$i}      { top:      #{$i * 0.25rem} !important; }
+  .right-#{$i}    { right:    #{$i * 0.25rem} !important; }
+  .bottom-#{$i}   { bottom:   #{$i * 0.25rem} !important; }
+  .left-#{$i}     { left:     #{$i * 0.25rem} !important; }
+  .inset-x-#{$i}  { left:     #{$i * 0.25rem} !important; right:  #{$i * 0.25rem} !important; }
+  .inset-y-#{$i}  { top:      #{$i * 0.25rem} !important; bottom: #{$i * 0.25rem} !important; }
+}
+
+@each $p in $prefix-list {
+
+  @for $i from 0 through 24 {
+    @include mq-down($p) {
+      .inset-#{$p}-#{$i}    { inset:    #{$i * 0.25rem} !important; }
+      .top-#{$p}-#{$i}      { top:      #{$i * 0.25rem} !important; }
+      .right-#{$p}-#{$i}    { right:    #{$i * 0.25rem} !important; }
+      .bottom-#{$p}-#{$i}   { bottom:   #{$i * 0.25rem} !important; }
+      .left-#{$p}-#{$i}     { left:     #{$i * 0.25rem} !important; }
+      .inset-x-#{$p}-#{$i}  { left:     #{$i * 0.25rem} !important; right:  #{$i * 0.25rem} !important; }
+      .inset-y-#{$p}-#{$i}  { top:      #{$i * 0.25rem} !important; bottom: #{$i * 0.25rem} !important; }
+    }
+  }
+  
+}
+
+// ----------------------------------------------------------
+//  Spacing2
 // ----------------------------------------------------------
 .pt-auto { padding-top:     auto !important; }
 .pr-auto { padding-right:   auto !important; }
@@ -115,13 +200,15 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 .my-auto { margin-top:     auto !important; margin-bottom: auto !important; }
 
 @for $i from 0 through 24 {
-  .pt-#{$i} { padding-top:     $spacing * $i !important; }
-  .pr-#{$i} { padding-right:   $spacing * $i !important; }
-  .pb-#{$i} { padding-bottom:  $spacing * $i !important; }
-  .pl-#{$i} { padding-left:    $spacing * $i !important; }
-  .px-#{$i} { padding-right:   $spacing * $i !important; padding-left:   $spacing * $i !important; }
-  .py-#{$i} { padding-top:     $spacing * $i !important; padding-bottom: $spacing * $i !important; }
+  .p-#{$i}  { padding:          $spacing * $i !important; }
+  .pt-#{$i} { padding-top:      $spacing * $i !important; }
+  .pr-#{$i} { padding-right:    $spacing * $i !important; }
+  .pb-#{$i} { padding-bottom:   $spacing * $i !important; }
+  .pl-#{$i} { padding-left:     $spacing * $i !important; }
+  .px-#{$i} { padding-right:    $spacing * $i !important; padding-left:   $spacing * $i !important; }
+  .py-#{$i} { padding-top:      $spacing * $i !important; padding-bottom: $spacing * $i !important; }
 
+  .m-#{$i}  { margin:         $spacing * $i !important; }
   .mt-#{$i} { margin-top:     $spacing * $i !important; }
   .mr-#{$i} { margin-right:   $spacing * $i !important; }
   .mb-#{$i} { margin-bottom:  $spacing * $i !important; }
@@ -150,13 +237,15 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 
   @for $i from 0 through 24 {
     @include mq-down($p) {
-      .pt-#{$p}-#{$i} { padding-top:     $spacing * $i !important; }
-      .pr-#{$p}-#{$i} { padding-right:   $spacing * $i !important; }
-      .pb-#{$p}-#{$i} { padding-bottom:  $spacing * $i !important; }
-      .pl-#{$p}-#{$i} { padding-left:    $spacing * $i !important; }
-      .px-#{$p}-#{$i} { padding-right:   $spacing * $i !important; padding-left:   $spacing * $i !important; }
-      .py-#{$p}-#{$i} { padding-top:     $spacing * $i !important; padding-bottom: $spacing * $i !important; }
+      .pt#{$p}-#{$i}  { padding:          $spacing * $i !important; }
+      .pt-#{$p}-#{$i} { padding-top:      $spacing * $i !important; }
+      .pr-#{$p}-#{$i} { padding-right:    $spacing * $i !important; }
+      .pb-#{$p}-#{$i} { padding-bottom:   $spacing * $i !important; }
+      .pl-#{$p}-#{$i} { padding-left:     $spacing * $i !important; }
+      .px-#{$p}-#{$i} { padding-right:    $spacing * $i !important; padding-left:   $spacing * $i !important; }
+      .py-#{$p}-#{$i} { padding-top:      $spacing * $i !important; padding-bottom: $spacing * $i !important; }
     
+      .m-#{$p}-#{$i}  { margin:         $spacing * $i !important; }
       .mt-#{$p}-#{$i} { margin-top:     $spacing * $i !important; }
       .mr-#{$p}-#{$i} { margin-right:   $spacing * $i !important; }
       .mb-#{$p}-#{$i} { margin-bottom:  $spacing * $i !important; }
@@ -169,7 +258,7 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 }
 
 // ----------------------------------------------------------
-//  テキスト
+//  Text
 // ----------------------------------------------------------
 .text-left { text-align: left !important; }
 .text-right { text-align: right !important; }

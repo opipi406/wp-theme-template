@@ -3,12 +3,12 @@
 /**
  * Adobe webフォントの読み込みスクリプトをwp_headに追加
  */
-function add_head_webfonts() {
+function add_head_adobefont() {
   ?>
   <script>
     (function(d) {
       var config = {
-        kitId: 'vwh6eqe',
+        kitId: 'jue1uwq',
         scriptTimeout: 3000,
         async: true
       },
@@ -18,4 +18,4 @@ function add_head_webfonts() {
   <?php
 }
 
-add_action('wp_head', 'add_head_webfonts');
+add_action('wp_head', 'add_head_adobefont');

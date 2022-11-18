@@ -1,0 +1,11 @@
+.DS_Store
+.gitignore
+.git/
+gulpfile.js
+webpack.config.js
+package.json
+package-lock.json
+node_modules/
+assets/css/scss/
+assets/css/dist.utils
+assets/js/dev

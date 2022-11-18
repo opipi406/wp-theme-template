@@ -3,9 +3,9 @@
 /**
  * スタイルカスタマイザー
  */
-if (!class_exists('Op_StyleCustomize')) {
+if (!class_exists('My_StyleCustomize')) {
 
-  class Op_StyleCustomize {
+  class My_StyleCustomize {
 
     /**
      * Register customizer options.
@@ -83,5 +83,5 @@ if (!class_exists('Op_StyleCustomize')) {
     }
   }
 
-  add_action('customize_register', array('Op_StyleCustomize', 'register'));
+  add_action('customize_register', array('My_StyleCustomize', 'register'));
 }

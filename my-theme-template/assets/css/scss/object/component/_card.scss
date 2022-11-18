@@ -1,0 +1,199 @@
+$card__x-pad: 20px;
+$card__y-pad: 20px;
+$card__thumb-height: 300px;
+
+//------------------------------
+//	カードリストボックス
+//------------------------------
+.card-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @include mq-down(sm) {
+    flex-direction: column;
+
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+//------------------------------
+//	カード本体
+//------------------------------
+.card {
+  position: relative;
+
+  overflow: hidden;
+  // width: calc((100% - $card__x-pad * 1) / 2);
+
+  width: 25%;
+  height: auto;
+
+  transition: 0.3s;
+
+  background-color: #ffffff;
+  box-shadow: 0 0 5px #6f6f6f6d;
+
+  @include mq-down(lg) {
+    width: calc(100% / 3);
+  }
+  @include mq-down(md) {
+    width: 50%;
+  }
+  @include mq-down(sm) {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  // サムネイルボックス
+  &__thumb-box {
+    overflow: hidden;
+  }
+  // サムネイル
+  &__thumb {
+    width: 100%;
+    height: $card__thumb-height;
+
+    transition: 0.6s;
+
+    @include mq-down(md) {
+      height: 55vw;
+    }
+
+    backface-visibility: hidden;
+    will-change: transform;
+    object-fit: cover;
+  }
+
+  // ボディ
+  &__body {
+    min-height: 170px;
+    padding: 24px;
+
+    @include mq-down(sm) {
+      padding: 8px 12px;
+    }
+  }
+
+  // タイトル
+  &__title {
+    font-size: 1.5vw;
+    font-weight: bold;
+
+    overflow: hidden;
+
+    height: 82px;
+    line-height: 1.4;
+    margin: 24px 0;
+    padding: 0 24px;
+
+    @include mq-down(lg) {
+      font-size: min(6vw, 1.2rem);
+
+      padding: 0;
+    }
+    @include mq-down(md) {
+      font-size: 1rem;
+
+      height: 60px;
+      margin: 12px 0;
+    }
+  }
+
+  // 詳細 （日付　or author?）
+  &__detail {
+    font-size: 0.75rem;
+
+    min-height: 40px;
+    padding: 0 12px;
+
+    color: text-palette(secondary);
+  }
+
+  // タグリスト
+  &__tag-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+    padding-right: 80px;
+
+    @include mq-down(xl) {
+      padding-right: 50px;
+    }
+
+    .tag {
+      margin-top: 12px;
+    }
+  }
+
+  // 丸ボタン
+  &__btn {
+    $size: 80px;
+    $size-sp: 60px;
+    $breakpoint: xl;
+
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+
+    width: $size;
+    height: $size;
+
+    transition: 0.3s;
+
+    border-radius: 50%;
+    background-color: ui-palette(primary, dark);
+
+    @include mq-down($breakpoint) {
+      width: $size-sp;
+      height: $size-sp;
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 33px;
+      bottom: 0;
+
+      width: calc($size / 3);
+      height: calc($size / 3);
+      margin: auto;
+
+      content: "";
+      transform: rotate(45deg);
+
+      border-top: 3px solid #ffffff;
+      border-right: 3px solid #ffffff;
+
+      @include mq-down($breakpoint) {
+        right: 25px;
+
+        width: calc($size-sp / 3);
+        height: calc($size-sp / 3);
+      }
+    }
+  }
+
+  &:hover {
+    color: text-palette(inverse);
+    background-color: ui-palette(primary);
+  }
+  &:hover &__thumb {
+    transform: scale(1.1);
+  }
+  &:hover &__btn {
+    background-color: ui-palette(primary, light);
+  }
+
+  &__link {
+    position: absolute;
+
+    display: block;
+
+    inset: 0;
+  }
+}

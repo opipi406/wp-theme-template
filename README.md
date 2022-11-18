@@ -1,10 +1,9 @@
 # WordPress自作テーマ開発用テンプレート（Docker環境）
 WordPress案件用のセットアップテンプレート
 
-
 # Installation
 ## 1. リポジトリの作成・クローン
-1. [テンプレートリポジトリ](https://github.com/ucan-lab/docker-laravel/generate)からリポジトリを作成
+1. [テンプレートリポジトリ](https://github.com/opipi406/wp-theme-template/generate)からリポジトリを作成
 2. Git clone & change directory
 
 ## 2. イメージ・コンテナの作成
@@ -12,12 +11,10 @@ WordPress案件用のセットアップテンプレート
 docker-compose up -d
 ```
 
-### WordPressコンテナ
-`localhost:10090`  
-ユーザ名: 
+WordPressコンテナ : `localhost:10090`  
+phpMyAdminコンテナ : `localhost:10099`  
 
-### phpMyAdminコンテナ
-`localhost:10099`  
+mysqlのユーザーアカウントを作成していない場合、`localhost:10099`に接続して以下のユーザーアカウントを作成  
 
 ユーザ名: user  
 パスワード: password  
@@ -34,9 +31,21 @@ mv ./my-theme-template ./html/wp-content/themes/[自作テーマ名]
 
 ## 5. 自作テーマディレクトリのシンボリックリンクを作成 （任意）
 ```bash
-ln -s ./html/wp-content/themes/[自作テーマ名]/[自作テーマ名]
+ln -s ./html/wp-content/themes/[自作テーマ名] [自作テーマ名]
 ```
 
+## 6. 後処理、テーマディレクトリをgit管理下に置く
+```bash
+rm -rf .git .gitignore
+```
+```bash
+cd ./html/wp-content/themes/[自作テーマ名]
+git init
+```
+
+# 実行環境
+OS `mac OS`
+node `v16.17.0`
 
 # Note
 

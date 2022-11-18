@@ -3,16 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "gulp": "gulp",
-    "gulp:utils": "gulp sass-utils",
-    "gulp:purge": "gulp purge-utils",
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "dev": "gulp",
+    "dev:nosync": "gulp nosync",
+    "build:utils": "gulp sass-utils",
+    "purge:utils": "gulp purge-utils",
+    "build:webpack": "webpack",
+    "dev:webpack": "webpack --watch"
   },
   "keywords": [],
   "author": "opipi",
   "license": "",
   "devDependencies": {
+    "browser-sync": "^2.27.10",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-purgecss": "^4.1.3",

@@ -1,3 +1,5 @@
 // エントリポイント
-import "./main";
-import "./burger-menu";
+import './main'
+import './anim'
+import './burger-menu'
+import './slider'
