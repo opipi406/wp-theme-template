@@ -1,6 +1,9 @@
 <?php get_header(); ?>
 
 <main>
+
+  <?php get_template_part('template-parts/first-view'); ?>
+
   <section class="intro" style="padding-top: 24px">
     <div class="container" style="background: #ededed">
       <h1 class="heading">Hello World.</h1>
