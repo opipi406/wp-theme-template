@@ -26,12 +26,12 @@ mysqlのユーザーアカウントを作成していない場合、`localhost:1
 ## 4. 雛形テーマファイルの移行
 `html/wp-content/themes/` に `my-theme`ディレクトリを移動する
 ```bash
-mv ./my-theme-template ./html/wp-content/themes/[自作テーマ名]
+mv ./my-theme-template ./html/wp-content/themes/<自作テーマ名>
 ```
 
 ## 5. 自作テーマディレクトリのシンボリックリンクを作成 （任意）
 ```bash
-ln -s ./html/wp-content/themes/[自作テーマ名] [自作テーマ名]
+ln -s ./html/wp-content/themes/<自作テーマ名> <自作テーマ名>
 ```
 
 ## 6. 後処理、テーマディレクトリをgit管理下に置く
@@ -39,13 +39,21 @@ ln -s ./html/wp-content/themes/[自作テーマ名] [自作テーマ名]
 rm -rf .git .gitignore
 ```
 ```bash
-cd ./html/wp-content/themes/[自作テーマ名]
+cd ./html/wp-content/themes/<自作テーマ名>
 git init
 ```
 
+## 7. first commit
+```bash
+git add .
+git commit -m "first commit"
+git remote add origin <URL>
+git push -uf origin main
+```
+
 # 実行環境
-OS `mac OS`
-node `v16.17.0`
+OS `mac OS`  
+node `v16.17.0`  
 
 # Note
 
