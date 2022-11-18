@@ -1,49 +1,43 @@
-//------------------------------
+//----------------------------------------------------
 //	Foundation
-//------------------------------
+//----------------------------------------------------
 @import "foundation/variable";
 @import "foundation/color";
 @import "foundation/media-query";
 @import "foundation/common";
 @import "foundation/typography";
 
-//------------------------------
+//----------------------------------------------------
 //	Layout
-//------------------------------
+//----------------------------------------------------
 @import "layout/first-view";
 @import "layout/footer";
 @import "layout/header";
 @import "layout/global-nav";
 @import "layout/form";
 
-//------------------------------
+//----------------------------------------------------
 //	Component
-//------------------------------
+//----------------------------------------------------
 @import "object/component/breadcrumbs";
 @import "object/component/btn";
 @import "object/component/burger-menu";
 @import "object/component/card";
 @import "object/component/concentration-line";
+@import "object/component/cross";
 @import "object/component/float-page-top-btn";
 @import "object/component/frame";
 @import "object/component/heading";
 @import "object/component/pagination";
 @import "object/component/sns-btn";
 
-//------------------------------
+//----------------------------------------------------
 //	Project
-//------------------------------
+//----------------------------------------------------
 @import "object/project/gallery";
 @import "object/project/list";
 
-
-body {
-  margin-top: $header-height-lg;
-
-  @include mq-down(xxl) {
-    margin-top: $header-height;
-  }
-  @include mq-down(sm) {
-    margin-top: $header-height-sm;
-  }
-}
+//----------------------------------------------------
+//	Utility
+//----------------------------------------------------
+@import "object/utility/border";

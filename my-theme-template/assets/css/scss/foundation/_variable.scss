@@ -1,7 +1,27 @@
+//----------------------------------------------------
+//	Font
+//----------------------------------------------------
+$font-main: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
+  'Hiragino Sans', Meiryo, sans-serif;
+$font-sub: '游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif;
 
-$font-main: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-$font-sub: "游明朝","Yu Mincho",YuMincho,"Hiragino Mincho Pro",serif;
+//----------------------------------------------------
+//	Container
+//----------------------------------------------------
+$container-size: 1200px;
+$container-default-pad: 16px;
+$container-pad: (
+  // "xs": 16px,
+  'sm': 32px,
+  'md': 64px
+);
 
-$header-height-lg: 120px;
-$header-height: 100px;
-$header-height-sm: 60px;
+//----------------------------------------------------
+//	Header
+//----------------------------------------------------
+$header-height: (
+  'default': 120px,
+  'sm': 60px,
+  'md': 100px,
+  'lg': 120px,
+);

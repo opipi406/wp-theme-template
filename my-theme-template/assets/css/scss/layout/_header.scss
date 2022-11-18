@@ -1,19 +1,20 @@
-/*-----------------------------------------------------
-  Header
-------------------------------------------------------*/
-$header-height: 80px;
-
-
 header {
   position: fixed;
   // position: relative;
   z-index: 99;
 
   width: 100vw;
-  height: $header-height;
-  inset: 0 0 auto 0;
+  height: $header-height--default;
 
   box-shadow: 0 0 5px #a0a0a0;
+
+  inset: 0 0 auto 0;
+
+  @each $mq in map-keys($container-pad) {
+    @include mq-up($mq) {
+      height: map-get($header-height, $mq);
+    }
+  }
 }
 
 .header {

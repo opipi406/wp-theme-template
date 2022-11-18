@@ -1,49 +1,50 @@
-html {
-  font-family: $font-main;
-  font-size: 16px;
-
-  line-height: 2;
-
-  @include mq-up(xl) {
-    font-size: 18px;
-  }
-  @include mq-up(xxl) {
-    font-size: 24px;
-  }
-}
-
 body {
-  color: text-palette();
-  background-color: bg-palette();
   // 背景画像を設定する場合
   // background-image: url('../images/bg.jpg');
   // background-repeat: repeat;
   // background-size: contain;
 }
 
+// セクション共通
+section {
+  position: relative;
+}
+
+// メインコンテンツ
+main {
+  min-height: 100vh;
+  padding-top: $header-height--default;
+
+  @each $mq in map-keys($container-pad) {
+    @include mq-up($mq) {
+      padding-top: map-get($header-height, $mq);
+    }
+  }
+}
+
+// コンテナ
+.container {
+  max-width: $container-size;
+  margin: 0 auto;
+  padding: 0 $container-pad--default;
+
+  @each $mq in map-keys($container-pad) {
+    @include mq-up($mq) {
+      padding: 0 map-get($container-pad, $mq);
+    }
+  }
+}
+
+// Wrapper
 .wrap {
   overflow: hidden;
 }
+
+// Spacer
 .spacer {
   margin: auto;
 }
-.rounded {
-  border-radius: 25px;
-}
-.shadow {
-  box-shadow: 0 0 5px #a5a5a5;
-}
 
-// スクロール禁止
-.scroll-prevent {
-  overflow: hidden;
-
-  height: 100%;
-
-  @include mq-up(md) {
-    padding-right: 7px; // ガタつき対策
-  }
-}
 // クリック・タップ時の青枠除去
 *:focus {
   outline: none;
@@ -52,57 +53,4 @@ a {
   cursor: pointer;
 
   -webkit-tap-highlight-color: transparent;
-}
-// xボタン
-.cross {
-  &::before, &::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    width: 3px;
-    height: 100%;
-
-    content: "";
-
-    background: #ffffff;
-  }
-  &::before {
-    transform: translate(-50%,-50%) rotate(45deg);
-  }
-  &::after {
-    transform: translate(-50%,-50%) rotate(-45deg);
-  }
-}
-
-// ======================================================
-
-// セクション共通
-section {
-  position: relative;
-}
-
-main {
-  min-height: 100vh;
-}
-
-// コンテナ
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-
-  @include mq-up(sm) {
-    padding: 0 32px;
-  }
-  @include mq-up(md) {
-    padding: 0 64px;
-  }
-  @include mq-up(xxl) {
-    max-width: 1600px;
-  }
-}
-
-.bgcolor-main {
-  background-color: bg-palette();
 }
