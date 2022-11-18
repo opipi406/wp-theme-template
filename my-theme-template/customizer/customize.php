@@ -3,16 +3,18 @@
 /**
  * テーマカスタマイザー
  */
-if (!class_exists('Op_Customize')) {
+if (!class_exists('My_Customize')) {
 
-  class Op_Customize {
+  class My_Customize
+  {
 
     /**
      * Register customizer options.
      * 
      * @param WP_Customize_Manager $wp_customize テーマカスタマイザーオブジェクト
      */
-    public static function register($wp_customize) {
+    public static function register($wp_customize)
+    {
 
       /*----------------------------------------------------
         リンク設定
@@ -22,15 +24,37 @@ if (!class_exists('Op_Customize')) {
         'priority' => 9000,
         'description' => ''
       ));
+
       $wp_customize->add_setting(
-        'online_store_link',
+        'facebook_link',
         array('sanitize_callback' => 'esc_url_raw')
       );
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'online_store_link', array(
-        'label' => 'ONLINE STORE リンク',
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'facebook_link', array(
+        'label' => 'Facebookリンク',
         'section' => 'link_section',
-        'settings' => 'online_store_link',
+        'settings' => 'facebook_link',
       )));
+
+      $wp_customize->add_setting(
+        'twitter_link',
+        array('sanitize_callback' => 'esc_url_raw')
+      );
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'twitter_link', array(
+        'label' => 'Twitterリンク',
+        'section' => 'link_section',
+        'settings' => 'twitter_link',
+      )));
+
+      $wp_customize->add_setting(
+        'youtube_link',
+        array('sanitize_callback' => 'esc_url_raw')
+      );
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'youtube_link', array(
+        'label' => 'Youtubeリンク',
+        'section' => 'link_section',
+        'settings' => 'youtube_link',
+      )));
+
       $wp_customize->add_setting(
         'instagram_link',
         array('sanitize_callback' => 'esc_url_raw')
@@ -41,159 +65,115 @@ if (!class_exists('Op_Customize')) {
         'settings' => 'instagram_link',
       )));
 
-      /*----------------------------------------------------
-        アート作品画像設定
-      -----------------------------------------------------*/
-      $wp_customize->add_panel('art_panel', array(
-        'title' => 'アート作品画像設定',
-        'priority' => 9010,
-        'description' => 'アート作品画像を設定します。'
-      ));
-
-      // 6枚分のセクションを追加するため1~6でループ
-      for ($i = 1; $i <= 6; $i++) {
-        $wp_customize->add_section("art_section_$i", array(
-          'title' => "アート作品画像 ${i}枚目",
-          'panel' => "art_panel",
-        ));
-        $wp_customize->add_setting(
-          "art_url_$i",
-          array('sanitize_callback' => 'esc_url_raw')
-        );
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "art_url_$i", array(
-          'label' => "作品画像",
-          'section' => "art_section_$i",
-          'settings' => "art_url_$i",
-        )));
-        $wp_customize->add_setting(
-          "art_title_$i",
-          array('sanitize_callback' => 'sanitize_text_field')
-        );
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "art_title_$i", array(
-          'label' => "作品名",
-          'section' => "art_section_$i",
-          'settings' => "art_title_$i",
-        )));
-        $wp_customize->add_setting(
-          "art_description_$i",
-          array('sanitize_callback' => 'sanitize_textarea_field')
-        );
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "art_description_$i", array(
-          'label' => "作品説明",
-          'type' => 'textarea',
-          'section' => "art_section_$i",
-          'settings' => "art_description_$i",
-        )));
-      }
+      $wp_customize->add_setting(
+        'MANKAI_production_link',
+        array('sanitize_callback' => 'esc_url_raw')
+      );
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'MANKAI_production_link', array(
+        'label' => 'MANKAI production 外部リンク',
+        'section' => 'link_section',
+        'settings' => 'MANKAI_production_link',
+      )));
 
       /*----------------------------------------------------
-        イラスト作品画像設定
+        TOPスライダー設定
       -----------------------------------------------------*/
-      $wp_customize->add_panel('illust_panel', array(
-        'title' => 'イラスト作品画像設定',
+      $wp_customize->add_panel('slider_panel', array(
+        'title' => 'TOPスライダー設定',
         'priority' => 9010,
-        'description' => 'イラスト作品画像を設定します。'
+        'description' => 'トップページのスライダー画像を設定します。画像サイズは 1440x800(PC)、375x700(スマホ) 推奨です。最大10枚まで設定できます（１〜１０枚分全て設定しなくても動作します）'
       ));
 
-      // 6枚分のセクションを追加するため1~6でループ
-      for ($i = 1; $i <= 6; $i++) {
-        $wp_customize->add_section("illust_section_$i", array(
-          'title' => "イラスト作品画像 ${i}枚目",
-          'panel' => "illust_panel",
+      for ($i = 1; $i <= 10; $i++) {
+        $wp_customize->add_section("slider_section_$i", array(
+          'title' => "スライダー ${i}枚目",
+          'panel' => "slider_panel",
         ));
-        $wp_customize->add_setting("illust_url_$i");
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "illust_url_$i", array(
-          'label' => "作品画像",
-          'section' => "illust_section_$i",
-          'settings' => "illust_url_$i",
+        $wp_customize->add_setting("slider_src_pc_$i");
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "slider_src_pc_$i", array(
+          'label' => 'スライダー画像（PC用）',
+          'section' => "slider_section_$i",
+          'settings' => "slider_src_pc_$i",
         )));
-        $wp_customize->add_setting("illust_title_$i");
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "illust_title_$i", array(
-          'label' => "作品名",
-          'section' => "illust_section_$i",
-          'settings' => "illust_title_$i",
+        $wp_customize->add_setting("slider_src_sp_$i");
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "slider_src_sp_$i", array(
+          'label' => 'スライダー画像（スマホ用）',
+          'section' => "slider_section_$i",
+          'settings' => "slider_src_sp_$i",
         )));
-        $wp_customize->add_setting("illust_description_$i");
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "illust_description_$i", array(
-          'label' => "作品説明",
-          'type' => 'textarea',
-          'section' => "illust_section_$i",
-          'settings' => "illust_description_$i",
+        $wp_customize->add_setting("slider_alt_$i");
+        $wp_customize->add_control(new WP_Customize_Control($wp_customize, "slider_alt_$i", array(
+          'label' => '代替テキスト（省略可）',
+          'section' => "slider_section_$i",
+          'settings' => "slider_alt_$i",
         )));
-
-        /*----------------------------------------------------
-          フォーム設定
-        -----------------------------------------------------*/
-        $wp_customize->add_section('form_section', array(
-          'title' => 'フォーム設定',
-          'priority' => 9020,
-          'description' => 'オーダー受付のフォームの設定を行います。'
-        ));
-        $wp_customize->add_setting('cf7_shortcode');
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'cf7_shortcode', array(
-          'label' => 'ContactForm7のショートコード',
-          'section' => 'form_section',
-          'settings' => 'cf7_shortcode',
-        )));
-
       }
     }
   }
 
-  add_action('customize_register', array('Op_Customize', 'register'));
+  add_action('customize_register', array('My_Customize', 'register'));
 }
 
 /**
- * ONLINE STOREリンクの取得
+ * Facebookリンクの取得
  */
-function get_online_store_url() {
-  $url = esc_url(get_theme_mod('online_store_link'));
-  return $url;
+function get_facebook_url()
+{
+  $url = esc_url(get_theme_mod('facebook_link'));
+  return $url ? $url : '#';
 }
-
+/**
+ * Twitterリンクの取得
+ */
+function get_twitter_url()
+{
+  $url = esc_url(get_theme_mod('twitter_link'));
+  return $url ? $url : '#';
+}
+/**
+ * Youtubeリンクの取得
+ */
+function get_youtube_url()
+{
+  $url = esc_url(get_theme_mod('youtube_link'));
+  return $url ? $url : '#';
+}
 /**
  * インスタグラムリンクの取得
  */
-function get_instagram_url() {
+function get_instagram_url()
+{
   $url = esc_url(get_theme_mod('instagram_link'));
-  return $url;
+  return $url ? $url : '#';
 }
 
-/**
- * アート画像データの取得
- */
-function get_art_data() {
-  $data = array();
-  for ($i = 1; $i <= 6; $i++) {
-    $url = esc_url(get_theme_mod("art_url_$i"));
-    $title = get_theme_mod("art_title_$i");
-    $description = nl2br(get_theme_mod("art_description_$i"));
-    if ($url != "" && $title != "") {
-      $data[] = array(
-        'url' => $url,
-        'title' => $title,
-        'description' => $description
-      );
-    }
-  }
-  return $data;
-}
 
 /**
- * イラスト画像データの取得
+ * MANKAI production外部リンクの取得
  */
-function get_illust_data() {
-  $data = array();
-  for ($i = 1; $i <= 6; $i++) {
-    $url = esc_url(get_theme_mod("illust_url_$i"));
-    $title = get_theme_mod("illust_title_$i");
-    $description = nl2br(get_theme_mod("illust_description_$i"));
-    if ($url != "" && $title != "") {
-      $data[] = array(
-        'url' => $url,
-        'title' => $title,
-        'description' => $description
-      );
+function get_MANKAI_production_url()
+{
+  $url = esc_url(get_theme_mod('MANKAI_production_link'));
+  return $url ? $url : '#';
+}
+
+
+/**
+ * スライダー情報の取得
+ */
+function get_slider_data()
+{
+  $data = [];
+  for ($i = 1; $i <= 10; $i++) {
+    $src_pc = esc_url(get_theme_mod("slider_src_pc_$i"));
+    $src_sp = esc_url(get_theme_mod("slider_src_sp_$i"));
+    $alt = get_theme_mod("slider_alt_$i");
+    if ($src_pc != "" && $src_sp != "") {
+      $data[] = [
+        'src_pc' => $src_pc,
+        'src_sp' => $src_sp,
+        'alt' => $alt,
+      ];
     }
   }
   return $data;

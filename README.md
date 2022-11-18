@@ -32,6 +32,8 @@ docker-compose up -d
 mv ./my-theme-template ./html/wp-content/themes/[自作テーマ名]
 ```
 
+# 実行環境
+node `v16.17.0`
 
 # Note
 

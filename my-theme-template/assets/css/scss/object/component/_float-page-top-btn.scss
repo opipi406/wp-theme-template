@@ -1,0 +1,73 @@
+.float-page-maromaro {
+  position: fixed;
+  z-index: 5;
+  right: 19px;
+  bottom: 120px;
+
+  width: 100px;
+
+  @include mq-down(xl) {
+    right: 14px;
+    bottom: 90px;
+
+    width: 80px;
+  }
+}
+.float-page-top-btn {
+  font-size: 0.75rem;
+
+  position: fixed;
+  z-index: 5;
+  right: 24px;
+  bottom: 24px;
+
+  display: block;
+
+  width: 90px;
+  height: 90px;
+  line-height: 1.25;
+  padding-top: 35px;
+
+  transition: 0.5s;
+  text-align: center;
+
+  color: text-palette(inverse);
+  border: 1px solid #ffffffa3;
+  border-radius: 50%;
+  background-color: ui-palette(primary, dark);
+
+  @include mq-down(xl) {
+    font-size: 0.5rem;
+
+    width: 60px;
+    height: 60px;
+    padding-top: 25px;
+  }
+
+  &::after {
+    position: absolute;
+    top: 15px;
+    left: 38px;
+
+    width: 15px;
+    height: 15px;
+    margin: auto;
+
+    content: "";
+    transform: rotate(-45deg);
+
+    border-top: 3px solid #ffffff;
+    border-right: 3px solid #ffffff;
+
+    @include mq-down(xl) {
+      left: 24px;
+
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &:hover {
+    background-color: ui-palette(primary);
+  }
+}

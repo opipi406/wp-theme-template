@@ -3,7 +3,8 @@
 /**
  * スクリプトファイルの読み込み
  */
-function register_scripts() {
+function register_script()
+{
   $base_url = get_template_directory_uri() . '/assets/js';
 
   /*----------------------------------------------------
@@ -33,6 +34,8 @@ function register_scripts() {
   $my_scripts = array(
     'main-js' => 'main.js',
     'burger-js' => 'burger-menu.js',
+    'anim-js' => 'anim.js',
+    'slider-js' => 'slider.js',
   );
   $deps = array('jquery', ...array_keys($extensions));
 
@@ -45,4 +48,4 @@ function register_scripts() {
   }
 }
 
-add_action('wp_enqueue_scripts', 'register_scripts');
+add_action('wp_enqueue_scripts', 'register_script');

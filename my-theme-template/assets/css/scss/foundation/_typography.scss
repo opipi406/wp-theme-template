@@ -1,0 +1,10 @@
+.typography {
+  font-size: 1.5rem;
+
+  @include mq-down(lg) {
+    font-size: 1.25rem;
+  }
+  @include mq-down(md) {
+    font-size: 1rem;
+  }
+}

@@ -1,58 +1,88 @@
-const gulp = require('gulp')
-const sass = require("gulp-sass")(require("sass"));
-const autoprefixer = require("gulp-autoprefixer");
+const { task, watch, dest, src, series } = require('gulp')
+const sass = require('gulp-sass')(require('sass'))
+const autoprefixer = require('gulp-autoprefixer')
+const browserSync = require('browser-sync')
 const purgecss = require('gulp-purgecss')
 
 // expanded     一般的なCSSのフォーマットで出力
 // compact      セレクタごとに１行にまとめて出力
 // compressed   圧縮された状態で出力
 const outputStyle = {
-  outputStyle: "compressed"
-};
+  outputStyle: 'expanded',
+}
 
-const utilityClassPath = "assets/css/scss/utils.scss";
+const utilityClassPath = 'assets/css/scss/utils.scss'
 
 /*----------------------------------------------------
   Watch
 -----------------------------------------------------*/
-gulp.task('default', () => {
-  return gulp.watch("assets/css/scss/**/*.scss", () => {
-    return gulp
-      .src(["assets/css/scss/**/*.scss", "!" + utilityClassPath])
+task('default', () => {
+  browserSync.init({
+    proxy: 'localhost:10090',
+    notify: false,
+    open: 'external',
+  })
+
+  watch(
+    ['assets/css/scss/**/*.scss', 'assets/js/**/*.js', '**/*.php'],
+    series(['compile']),
+  ).on('change', browserSync.reload)
+})
+
+task('nosync', () => {
+  return watch(
+    ['assets/css/scss/**/*.scss', 'assets/js/**/*.js', '**/*.php'],
+    series(['compile']),
+  )
+})
+
+/*----------------------------------------------------
+  Compile
+-----------------------------------------------------*/
+task('compile', () => {
+  return (
+    src(['assets/css/scss/**/*.scss', '!' + utilityClassPath])
       // Sassコンパイル
-      .pipe(sass(outputStyle).on("error", sass.logError))
+      .pipe(sass(outputStyle).on('error', sass.logError))
       // ベンダープレフィックス自動付与
       .pipe(autoprefixer())
       // 出力先
-      .pipe(gulp.dest('assets/css'))
-  });
-});
-
+      .pipe(dest('assets/css'))
+  )
+})
 
 /*----------------------------------------------------
-  Purge
+  Purge Utility Classes
 -----------------------------------------------------*/
-gulp.task('purge-utils', () => {
-  return gulp
-    .src('assets/css/utils.css')
+task('purge-utils', () => {
+  return src('assets/css/utils.css')
     .pipe(
       purgecss({
-        content: ['*.php', 'template-parts/**/*.php']
-      })
+        content: ['*.php', 'template-parts/**/*.php'],
+      }),
     )
-    .pipe(gulp.dest('assets/css'))
-});
+    .pipe(dest('assets/css'))
+})
 
 /*----------------------------------------------------
-  Sass Compile Utility Class
+  Sass Compile Utility Classes
 -----------------------------------------------------*/
-gulp.task('sass-utils', () => {
-  return gulp
-    .src(utilityClassPath)
-    // Sassコンパイル
-    .pipe(sass(outputStyle).on("error", sass.logError))
-    // ベンダープレフィックス自動付与
-    .pipe(autoprefixer())
-    // 出力先
-    .pipe(gulp.dest('assets/css/build'))
-});
+task('sass-utils', () => {
+  return (
+    src(utilityClassPath)
+      // Sassコンパイル
+      .pipe(
+        sass({
+          outputStyle: 'expanded',
+        }).on('error', sass.logError),
+      )
+      // ベンダープレフィックス自動付与
+      .pipe(autoprefixer())
+      // 出力先
+      // .pipe(dest('assets/css/dist.utils')).on('end', () => { console.info('Generated utility class!! [assets/css/dist.utils/utils.css]'); })
+      .pipe(dest('assets/css'))
+      .on('end', () => {
+        console.info('Generated utility class!! [assets/css/utils.css]')
+      })
+  )
+})

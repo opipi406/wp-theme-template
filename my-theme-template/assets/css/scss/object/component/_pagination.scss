@@ -1,0 +1,126 @@
+.pagination {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+  padding: 40px 0;
+
+  @include mq-down(sm) {
+    padding-bottom: 100px;
+  }
+
+  .page-numbers {
+    $root: #{&};
+    $size: 45px;
+    $size-sp: 32px;
+    $breakpoint: md;
+
+    font-size: 1.5rem;
+
+    position: relative;
+
+    width: $size;
+    height: $size;
+    line-height: $size;
+    margin: 0 12px;
+
+    transition: 0.3s;
+    text-align: center;
+
+    color: text-palette(inverse);
+    border-radius: 50%;
+    background-color: #d1d1d1;
+
+    @include mq-down($breakpoint) {
+      width: $size-sp;
+      height: $size-sp;
+      line-height: $size-sp;
+      margin: 0 4px;
+    }
+
+    &:hover {
+      background-color: #8f8f8f;
+    }
+
+    &.current, &.prev, &.next {
+      background-color: ui-palette(primary, dark);
+    }
+
+    &.prev:hover, &.next:hover {
+      background-color: ui-palette(primary);
+    }
+
+    &.prev {
+      margin-left: 0;
+
+      @include mq-down(sm) {
+        position: absolute;
+        bottom: 40px;
+        left: 25%;
+      }
+    }
+    &.next {
+      margin-right: 0;
+
+      @include mq-down(sm) {
+        position: absolute;
+        right: 25%;
+        bottom: 40px;
+      }
+    }
+
+    &.dots {
+      color: #8f8f8f;
+      background-color: transparent;
+    }
+
+    &.prev, &.next {
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        bottom: 0;
+
+        width: calc($size / 2.5);
+        height: calc($size / 2.5);
+        margin: auto;
+
+        content: "";
+
+        border-top: 4px solid white;
+        border-right: 4px solid white;
+
+        @include mq-down($breakpoint) {
+          right: 18px;
+
+          width: calc($size-sp / 2.5);
+          height: calc($size-sp / 2.5);
+        }
+      }
+    }
+
+    &.prev::after {
+      right: 10px;
+
+      transform: rotate(225deg);
+
+      @include mq-down($breakpoint) {
+        right: 8px;
+      }
+    }
+
+    &.next::after {
+      right: 16px;
+
+      transform: rotate(45deg);
+
+      @include mq-down($breakpoint) {
+        right: 12px;
+      }
+    }
+  }
+}

@@ -1,0 +1,179 @@
+.btn {
+  $root: #{&};
+
+  position: relative;
+
+  min-width: 140px;
+  padding: 4px 16px;
+
+  transition: 0.3s;
+  text-align: center;
+
+  color: text-palette(inverse);
+  border-radius: 2rem;
+  background-color: ui-palette(primary, dark);
+
+  @include mq-down(sm) {
+    font-size: 1rem;
+
+    min-width: auto;
+    padding: 0 8px;
+  }
+
+  &:hover {
+    background-color: ui-palette(primary, light);
+  }
+
+  // デコレーション付き
+  &--arrow, &--arrow-down, &--pdf {
+    padding-right: 50px;
+
+    background-color: ui-palette(primary);
+
+    @include mq-up(md) {
+      &#{$root}--lg {
+        padding-right: 72px;
+      }
+    }
+
+    &:hover {
+      background-color: lighten(ui-palette(primary), 10%);
+    }
+
+    &:hover::before {
+      background-color: ui-palette(primary, light);
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+
+      overflow: hidden;
+
+      width: 50px;
+
+      content: "";
+      transition: 0.3s;
+
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      background-color: ui-palette(primary, dark);
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      bottom: 0;
+
+      width: 15px;
+      height: 15px;
+      margin: auto;
+
+      content: "";
+      transform: rotate(45deg);
+
+      border-top: 3px solid #ffffff;
+      border-right: 3px solid #ffffff;
+    }
+  }
+
+  &--arrow-down::after {
+    top: -5px;
+
+    transform: rotate(135deg);
+  }
+
+
+
+  &--pdf::after {
+    font-size: 1.25rem;
+
+    right: 0 !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100% !important;
+    margin: 0;
+
+    content: "PDF";
+    transform: none;
+    text-align: center;
+
+    color: white;
+    border: none;
+  }
+
+  &--lg::after {
+    width: 70px;
+
+    @include mq-down(md) {
+      width: 50px;
+    }
+  }
+}
+
+/*----------------------------------------------------
+  Container
+-----------------------------------------------------*/
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mq-down(md) {
+    flex-direction: column;
+  }
+
+  li {
+    display: table;
+
+    min-width: 250px;
+    min-height: 60px;
+    margin: 0 12px;
+
+    @include mq-down(md) {
+      min-height: 45px;
+      margin: 12px 0;
+    }
+  }
+
+  .btn {
+    display: table-cell;
+
+    width: 350px;
+    padding-left: 0;
+
+    vertical-align: middle;
+
+    @include mq-up(md) {
+      &--lg {
+        width: 500px;
+
+        &::before {
+          width: 70px;
+        }
+      }
+    }
+    @include mq-down(md) {
+      width: 100%;
+    }
+
+    &--lg {
+      &.btn--arrow::after, &.btn--arrow-down::after {
+        right: 30px;
+
+        width: 20px;
+        height: 20px;
+
+        @include mq-down(md) {
+          right: 18px;
+        }
+      }
+    }
+  }
+}
