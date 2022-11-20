@@ -4,6 +4,8 @@ html {
 
   line-height: 1.5rem;
 
+  color: text-palette(main);
+
   @include mq-up(xl) {
     font-size: 18px;
   }
@@ -13,5 +15,4 @@ html {
 }
 
 .typography {
-
 }

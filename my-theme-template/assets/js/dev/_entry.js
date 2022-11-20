@@ -1,5 +1,6 @@
 // エントリポイント
 import './main'
+import './span_wrap'
 import './anim'
-import './burger-menu'
+import './burger_menu'
 import './slider'

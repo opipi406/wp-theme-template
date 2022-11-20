@@ -85,8 +85,8 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 .justify-around { justify-content: space-around !important; }
 .justify-evenly { justify-content: space-evenly !important; }
 
-.align-center { align-items: center !important; }
-.align-stretch { align-items: stretch !important; }
+.items-center { align-items: center !important; }
+.items-stretch { align-items: stretch !important; }
 
 .grow-1 { flex-grow: 1 !important; }
 
@@ -200,21 +200,21 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 .my-auto { margin-top:     auto !important; margin-bottom: auto !important; }
 
 @for $i from 0 through 24 {
-  .p-#{$i}  { padding:          $spacing * $i !important; }
-  .pt-#{$i} { padding-top:      $spacing * $i !important; }
-  .pr-#{$i} { padding-right:    $spacing * $i !important; }
-  .pb-#{$i} { padding-bottom:   $spacing * $i !important; }
-  .pl-#{$i} { padding-left:     $spacing * $i !important; }
-  .px-#{$i} { padding-right:    $spacing * $i !important; padding-left:   $spacing * $i !important; }
-  .py-#{$i} { padding-top:      $spacing * $i !important; padding-bottom: $spacing * $i !important; }
+  .p-#{$i}  { padding:          #{$i * 0.25rem} !important; }
+  .pt-#{$i} { padding-top:      #{$i * 0.25rem} !important; }
+  .pr-#{$i} { padding-right:    #{$i * 0.25rem} !important; }
+  .pb-#{$i} { padding-bottom:   #{$i * 0.25rem} !important; }
+  .pl-#{$i} { padding-left:     #{$i * 0.25rem} !important; }
+  .px-#{$i} { padding-right:    #{$i * 0.25rem} !important; padding-left:   #{$i * 0.25rem} !important; }
+  .py-#{$i} { padding-top:      #{$i * 0.25rem} !important; padding-bottom: #{$i * 0.25rem} !important; }
 
-  .m-#{$i}  { margin:         $spacing * $i !important; }
-  .mt-#{$i} { margin-top:     $spacing * $i !important; }
-  .mr-#{$i} { margin-right:   $spacing * $i !important; }
-  .mb-#{$i} { margin-bottom:  $spacing * $i !important; }
-  .ml-#{$i} { margin-left:    $spacing * $i !important; }
-  .mx-#{$i} { margin-right:   $spacing * $i !important; margin-left:   $spacing * $i !important; }
-  .my-#{$i} { margin-top:     $spacing * $i !important; margin-bottom: $spacing * $i !important; }
+  .m-#{$i}  { margin:         #{$i * 0.25rem} !important; }
+  .mt-#{$i} { margin-top:     #{$i * 0.25rem} !important; }
+  .mr-#{$i} { margin-right:   #{$i * 0.25rem} !important; }
+  .mb-#{$i} { margin-bottom:  #{$i * 0.25rem} !important; }
+  .ml-#{$i} { margin-left:    #{$i * 0.25rem} !important; }
+  .mx-#{$i} { margin-right:   #{$i * 0.25rem} !important; margin-left:   #{$i * 0.25rem} !important; }
+  .my-#{$i} { margin-top:     #{$i * 0.25rem} !important; margin-bottom: #{$i * 0.25rem} !important; }
 }
 
 @each $p in $prefix-list {
@@ -237,21 +237,21 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
 
   @for $i from 0 through 24 {
     @include mq-down($p) {
-      .pt#{$p}-#{$i}  { padding:          $spacing * $i !important; }
-      .pt-#{$p}-#{$i} { padding-top:      $spacing * $i !important; }
-      .pr-#{$p}-#{$i} { padding-right:    $spacing * $i !important; }
-      .pb-#{$p}-#{$i} { padding-bottom:   $spacing * $i !important; }
-      .pl-#{$p}-#{$i} { padding-left:     $spacing * $i !important; }
-      .px-#{$p}-#{$i} { padding-right:    $spacing * $i !important; padding-left:   $spacing * $i !important; }
-      .py-#{$p}-#{$i} { padding-top:      $spacing * $i !important; padding-bottom: $spacing * $i !important; }
+      .pt#{$p}-#{$i}  { padding:          #{$i * 0.25rem} !important; }
+      .pt-#{$p}-#{$i} { padding-top:      #{$i * 0.25rem} !important; }
+      .pr-#{$p}-#{$i} { padding-right:    #{$i * 0.25rem} !important; }
+      .pb-#{$p}-#{$i} { padding-bottom:   #{$i * 0.25rem} !important; }
+      .pl-#{$p}-#{$i} { padding-left:     #{$i * 0.25rem} !important; }
+      .px-#{$p}-#{$i} { padding-right:    #{$i * 0.25rem} !important; padding-left:   #{$i * 0.25rem} !important; }
+      .py-#{$p}-#{$i} { padding-top:      #{$i * 0.25rem} !important; padding-bottom: #{$i * 0.25rem} !important; }
     
-      .m-#{$p}-#{$i}  { margin:         $spacing * $i !important; }
-      .mt-#{$p}-#{$i} { margin-top:     $spacing * $i !important; }
-      .mr-#{$p}-#{$i} { margin-right:   $spacing * $i !important; }
-      .mb-#{$p}-#{$i} { margin-bottom:  $spacing * $i !important; }
-      .ml-#{$p}-#{$i} { margin-left:    $spacing * $i !important; }
-      .mx-#{$p}-#{$i} { margin-right:   $spacing * $i !important; margin-left:   $spacing * $i !important; }
-      .my-#{$p}-#{$i} { margin-top:     $spacing * $i !important; margin-bottom: $spacing * $i !important; }
+      .m-#{$p}-#{$i}  { margin:         #{$i * 0.25rem} !important; }
+      .mt-#{$p}-#{$i} { margin-top:     #{$i * 0.25rem} !important; }
+      .mr-#{$p}-#{$i} { margin-right:   #{$i * 0.25rem} !important; }
+      .mb-#{$p}-#{$i} { margin-bottom:  #{$i * 0.25rem} !important; }
+      .ml-#{$p}-#{$i} { margin-left:    #{$i * 0.25rem} !important; }
+      .mx-#{$p}-#{$i} { margin-right:   #{$i * 0.25rem} !important; margin-left:   #{$i * 0.25rem} !important; }
+      .my-#{$p}-#{$i} { margin-top:     #{$i * 0.25rem} !important; margin-bottom: #{$i * 0.25rem} !important; }
     }
   }
   
@@ -275,28 +275,28 @@ $prefix-list: 'xxl', 'xl', 'lg', 'md', 'sm', 'xs';
   }
 }
 
-.text-xs    { font-size: 0.75rem !important; }
-.text-sm    { font-size: 0.875rem !important; }
-.text-base  { font-size: 1rem !important; }
-.text-lg    { font-size: 1.125rem !important; }
-.text-xl    { font-size: 1.25rem !important; }
-.text-2xl   { font-size: 1.5rem !important; }
-.text-3xl   { font-size: 1.875rem !important; }
-.text-4xl   { font-size: 2.25rem !important; }
-.text-5xl   { font-size: 3rem !important; }
-.text-6xl   { font-size: 3.75rem !important; }
+.text-xs    { font-size: 0.75rem !important;   line-height: 1rem !important; }
+.text-sm    { font-size: 0.875rem !important;  line-height: 1.25rem !important; }
+.text-base  { font-size: 1rem !important;      line-height: 1.5rem !important; }
+.text-lg    { font-size: 1.125rem !important;  line-height: 1.75rem !important; }
+.text-xl    { font-size: 1.25rem !important;   line-height: 1.75rem !important; }
+.text-2xl   { font-size: 1.5rem !important;    line-height: 2rem !important; }
+.text-3xl   { font-size: 1.875rem !important;  line-height: 2.25rem !important; }
+.text-4xl   { font-size: 2.25rem !important;   line-height: 2.5rem !important; }
+.text-5xl   { font-size: 3rem !important;      line-height: 1 !important; }
+.text-6xl   { font-size: 3.75rem !important;   line-height: 1 !important; }
 
 @each $p in $prefix-list {
   @include mq-down($p) {
-    .text-#{$p}-xs   { font-size: 0.75rem !important; }
-    .text-#{$p}-sm   { font-size: 0.875rem !important; }
-    .text-#{$p}-base { font-size: 1rem !important; }
-    .text-#{$p}-lg   { font-size: 1.125rem !important; }
-    .text-#{$p}-xl   { font-size: 1.25rem !important; }
-    .text-#{$p}-2xl  { font-size: 1.5rem !important; }
-    .text-#{$p}-3xl  { font-size: 1.875rem !important; }
-    .text-#{$p}-4xl  { font-size: 2.25rem !important; }
-    .text-#{$p}-5xl  { font-size: 3rem !important; }
-    .text-#{$p}-6xl  { font-size: 3.75rem !important; }
+    .text-#{$p}-xs   { font-size: 0.75rem !important;   line-height: 1rem !important; }
+    .text-#{$p}-sm   { font-size: 0.875rem !important;  line-height: 1.25rem !important; }
+    .text-#{$p}-base { font-size: 1rem !important;      line-height: 1.5rem !important; }
+    .text-#{$p}-lg   { font-size: 1.125rem !important;  line-height: 1.75rem !important; }
+    .text-#{$p}-xl   { font-size: 1.25rem !important;   line-height: 1.75rem !important; }
+    .text-#{$p}-2xl  { font-size: 1.5rem !important;    line-height: 2rem !important; }
+    .text-#{$p}-3xl  { font-size: 1.875rem !important;  line-height: 2.25rem !important; }
+    .text-#{$p}-4xl  { font-size: 2.25rem !important;   line-height: 2.5rem !important; }
+    .text-#{$p}-5xl  { font-size: 3rem !important;      line-height: 1 !important; }
+    .text-#{$p}-6xl  { font-size: 3.75rem !important;   line-height: 1 !important; }
   }
 }

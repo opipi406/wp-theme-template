@@ -1,7 +1,7 @@
 module.exports = {
   // mode: 'development',
   mode: 'production',
-  entry: './assets/js/dev/entry.js',
+  entry: './assets/js/dev/_entry.js',
 
   output: {
     path: `${__dirname}/assets/js`,

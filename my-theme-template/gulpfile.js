@@ -8,7 +8,7 @@ const purgecss = require('gulp-purgecss')
 // compact      セレクタごとに１行にまとめて出力
 // compressed   圧縮された状態で出力
 const outputStyle = {
-  outputStyle: 'expanded',
+  outputStyle: 'compressed',
 }
 
 const utilityClassPath = 'assets/css/scss/utils.scss'
@@ -52,7 +52,20 @@ task('compile', () => {
 })
 
 /*----------------------------------------------------
-  Purge Utility Classes
+  Purge style.css
+-----------------------------------------------------*/
+task('purge', () => {
+  return src('assets/css/style.css')
+    .pipe(
+      purgecss({
+        content: ['*.php', 'template-parts/**/*.php'],
+      }),
+    )
+    .pipe(dest('assets/css'))
+})
+
+/*----------------------------------------------------
+  Purge utils.css
 -----------------------------------------------------*/
 task('purge-utils', () => {
   return src('assets/css/utils.css')
@@ -65,7 +78,7 @@ task('purge-utils', () => {
 })
 
 /*----------------------------------------------------
-  Sass Compile Utility Classes
+  Compile utils.scss
 -----------------------------------------------------*/
 task('sass-utils', () => {
   return (

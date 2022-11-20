@@ -1,0 +1,21 @@
+.img {
+  object-fit: contain;
+
+  @include mq-down(md) {
+    width: 70%;
+    min-width: 250px;
+    max-width: 420px;
+  }
+}
+
+img.lazy-fadein {
+  transition: 2s;
+  transform: translate(0, 100px);
+
+  opacity: 0;
+}
+img.lazy-fadein.lazyloaded {
+  transform: translate(0, 0);
+
+  opacity: 1;
+}

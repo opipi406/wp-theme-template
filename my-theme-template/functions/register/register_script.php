@@ -11,9 +11,8 @@ function register_script()
     外部スクリプト
   -----------------------------------------------------*/
   $extensions = array(
-    // 'wow' => "$base_url/ext/wow.min.js",
+    'lazysizes' => "$base_url/ext/lazysizes.min.js",
     // 'anime' => "$base_url/ext/anime.min.js",
-    // 'arctext' => "$base_url/ext/jquery.arctext.js",
   );
 
   if (JSEXT_USE_GSAP) {
@@ -33,7 +32,8 @@ function register_script()
   -----------------------------------------------------*/
   $my_scripts = array(
     'main-js' => 'main.js',
-    'burger-js' => 'burger-menu.js',
+    'span-wrap-js' => 'span_wrap.js',
+    'burger-js' => 'burger_menu.js',
     'anim-js' => 'anim.js',
     'slider-js' => 'slider.js',
   );

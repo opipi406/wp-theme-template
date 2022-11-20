@@ -6,6 +6,7 @@
     "dev": "gulp",
     "dev:nosync": "gulp nosync",
     "build:utils": "gulp sass-utils",
+    "purge": "gulp purge",
     "purge:utils": "gulp purge-utils",
     "build:webpack": "webpack",
     "dev:webpack": "webpack --watch"

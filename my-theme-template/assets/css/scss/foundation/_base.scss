@@ -1,16 +1,30 @@
 body {
+  // GPUを使わせる
+  transform: translate3d(0, 0, 0);
   // 背景画像を設定する場合
   // background-image: url('../images/bg.jpg');
   // background-repeat: repeat;
   // background-size: contain;
+
+  background-color: bg-palette(main);
 }
 
-// セクション共通
+//----------------------------------------------------
+//	セクション共通
+//----------------------------------------------------
 section {
   position: relative;
+
+  padding-bottom: 8rem;
+
+  @include mq-down(sm) {
+    padding-bottom: 4rem;
+  }
 }
 
-// メインコンテンツ
+//----------------------------------------------------
+//	メインコンテンツ
+//----------------------------------------------------
 main {
   min-height: 100vh;
   padding-top: $header-height--default;
@@ -22,7 +36,9 @@ main {
   }
 }
 
-// コンテナ
+//----------------------------------------------------
+//	コンテナ
+//----------------------------------------------------
 .container {
   max-width: $container-size;
   margin: 0 auto;
@@ -38,11 +54,6 @@ main {
 // Wrapper
 .wrap {
   overflow: hidden;
-}
-
-// Spacer
-.spacer {
-  margin: auto;
 }
 
 // クリック・タップ時の青枠除去

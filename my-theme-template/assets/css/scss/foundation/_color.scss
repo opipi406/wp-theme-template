@@ -43,9 +43,9 @@ $ui-palettes: (
 // ----------------------------------------------------------
 $bg-palettes: (
   main: (
-    light: #ffffff,
-    default: darken(#ffffff, 5%),
-    dark: darken(#ffffff, 10%),
+    light: lighten(#e3e3e3, 10%),
+    default: #e3e3e3,
+    dark: darken(#e3e3e3, 10%),
   ),
   //
   primary: #fff3e5,
@@ -55,9 +55,9 @@ $bg-palettes: (
   //
   inverse:
     (
-      light: lighten(#000000, 10%),
-      default: lighten(#000000, 15%),
-      dark: lighten(#000000, 20%),
+      light: lighten(#202020, 10%),
+      default: #202020,
+      dark: darken(#202020, 10%),
     ),
 ) !default;
 

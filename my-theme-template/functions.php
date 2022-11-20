@@ -1,8 +1,8 @@
 <?php
-define('USE_BUNDLE_JS', false);   // バンドルされたJavaScriptファイルを使用する
+define('USE_BUNDLE_JS', 0);   // バンドルされたJavaScriptファイルを使用する
 
-define('JSEXT_USE_GSAP', false);  // GSAP (アニメーションプラグイン) を使用
-define('JSEXT_USE_SLICK', false); // slick (スライダープラグイン) を使用
+define('JSEXT_USE_GSAP', 1);  // GSAP (アニメーションプラグイン) を使用
+define('JSEXT_USE_SLICK', 0); // slick (スライダープラグイン) を使用
 
 
 /*----------------------------------------------------

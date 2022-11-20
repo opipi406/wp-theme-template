@@ -1,0 +1,36 @@
+* {
+  & > .char {
+    display: inline-block;
+
+    opacity: 0;
+  }
+
+  &.js-animated {
+    & > .char {
+      animation-name: fadeInChar;
+      animation-duration: 1s;
+      animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+
+      animation-fill-mode: both;
+
+      @for $i from 0 through 30 {
+        &:nth-of-type(#{$i}) {
+          animation-delay: #{$i * 0.05 + 0}s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInChar {
+  from {
+    transform: translateX(100px) scale(2);
+
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+
+    opacity: 1;
+  }
+}
