@@ -1,37 +1,39 @@
-version: "3.7"
+version: "3"
 services:
-  db:
-    image: mysql:5.7
-    platform: linux/amd64 # M1,M2 Macでなければコメントアウト
-    container_name: wp_db
-    environment:
-      MYSQL_ROOT_PASSWORD: password # rootユーザのパスワード（任意に指定可）
-      MYSQL_DATABASE: wp_db # WordPress用データベース名（任意に指定可）
-      MYSQL_USER: user # WordPress用接続ユーザ名（任意に指定可）
-      MYSQL_PASSWORD: password # WordPress用パスワード（任意に指定可）
-    volumes:
-      - ./db_data:/var/lib/mysql
-
   wordpress:
     image: wordpress:latest
     platform: linux/amd64 # M1,M2 Macでなければコメントアウト
     container_name: wordpress
     depends_on:
-     - db
+      - db
     ports:
-     - "10090:80"
+      - "10090:80"
     environment:
-      WORDPRESS_DB_HOST: db:3306 # データベースサーバ名：ポート番号
-      WORDPRESS_DB_NAME: wp_db # WordPress用データベース名（MYSQL_DATABASEに合わせる）
-      WORDPRESS_DB_USER: user # WordPress用接続ユーザ名（MYSQL_USERに合わせる）
-      WORDPRESS_DB_PASSWORD: password # WordPress用パスワード（MYSQL_PASSWORDに合わせる）
-      WORDPRESS_DEBUG : 1 #デバッグモードON
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wp
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: qweqwe
+      WORDPRESS_DEBUG: 1
     volumes:
-       - ./html:/var/www/html
-       
+      - ./html:/var/www/html
+
+  db:
+    container_name: "db"
+    build:
+      dockerfile: ./docker/db/Dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: qweqwe
+      MYSQL_DATABASE: wp
+      MYSQL_USER: user
+      MYSQL_PASSWORD: qweqwe
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    platform: linux/amd64 # M1,M2 Macでなければコメントアウト
+    # platform: linux/amd64
     container_name: phpmyadmin
     depends_on:
       - db

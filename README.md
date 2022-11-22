@@ -1,5 +1,5 @@
-# WordPress自作テーマ開発用テンプレート（Docker環境）
-WordPress案件用のセットアップテンプレート
+# WordPress開発用テンプレート（Docker環境）
+WordPress用の初期セットアップテンプレート
 
 # Installation
 ## 1. リポジトリの作成・クローン
@@ -14,10 +14,10 @@ docker-compose up -d
 WordPressコンテナ : `localhost:10090`  
 phpMyAdminコンテナ : `localhost:10099`  
 
-mysqlのユーザーアカウントを作成していない場合、`localhost:10099`に接続して以下のユーザーアカウントを作成  
+MySQLに「user」のアカウントが無い場合、`localhost:10099`に接続して以下のユーザーアカウントを作成  
 
 ユーザ名: user  
-パスワード: password  
+パスワード: qweqwe  
 
 ## 3. WordPressのセットアップ
 `localhost:10090`にアクセス  

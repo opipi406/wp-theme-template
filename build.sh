@@ -82,7 +82,7 @@ if [ $MODE = "production" ]; then
     echo "--------------------------------------------------------"
     echo "1. utils.cssのパージが完了しているか --> npm run purge:utils"
     echo "2. jsのバンドルが完了しているか --> npm run build:webpack"
-    echo "3. bundle.jsを読み込む設定になっているか --> functions.php \"USE_BUNDLE_JS\" を true にする"
+    echo "3. bundle.jsを読み込む設定になっているか --> functions.php \"USE_BUNDLE_JS\" を 1 にする"
     echo "--------------------------------------------------------"
     echo ""
 fi
