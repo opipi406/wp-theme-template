@@ -37,13 +37,14 @@ function register_script()
     'anim-js' => 'anim.js',
     'slider-js' => 'slider.js',
   );
+  $version = date('YmdHi');
   $deps = array('jquery', ...array_keys($extensions));
 
   if (USE_BUNDLE_JS) {
-    wp_enqueue_script('bundle-js', "$base_url/bundle.js", $deps, null, true);
+    wp_enqueue_script('bundle-js', "$base_url/bundle.js?date=$version", $deps, null, true);
   } else {
     foreach ($my_scripts as $key => $path) {
-      wp_enqueue_script($key, "$base_url/dev/$path", $deps, null, true);
+      wp_enqueue_script($key, "$base_url/dev/$path?date=$version", $deps, null, true);
     }
   }
 }
