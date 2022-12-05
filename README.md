@@ -10,9 +10,10 @@ WordPress用の初期セットアップテンプレート
 ```bash
 docker-compose up -d
 ```
-
-WordPressコンテナ : `localhost:10090`  
-phpMyAdminコンテナ : `localhost:10099`  
+|container|port|
+|-|-|
+|WordPressコンテナ|localhost:10090|
+|phpMyAdminコンテナ|localhost:10099|
 
 MySQLに「user」のアカウントが無い場合、`localhost:10099`に接続して以下のユーザーアカウントを作成  
 
@@ -31,15 +32,13 @@ mv ./my-theme-template ./html/wp-content/themes/<自作テーマ名>
 
 ## 5. 自作テーマディレクトリのシンボリックリンクを作成 （任意）
 ```bash
-ln -s ./html/wp-content/themes/<自作テーマ名> <自作テーマ名>
+ln -s ./html/wp-content/themes/<自作テーマ名> src
 ```
 
 ## 6. 後処理、テーマディレクトリをgit管理下に置く
 ```bash
 rm -rf .git .gitignore
-```
-```bash
-cd ./html/wp-content/themes/<自作テーマ名>
+cd src
 git init
 ```
 
@@ -83,18 +82,18 @@ npm run build:webpack
 |OS|Mac OS|
 |node|v16.17.0|
 
-# Note
+# Tips
 
 ## 環境移行についてのメモ（All-in-One WP Migration）
 [サーバー上のWordPressサイトの画像や投稿データを超簡単にローカルにコピーする方法](https://yosiakatsuki.net/blog/copy-site-data-to-local/)
 
-### データベースの置換設定 (末尾の"/"は消す)
+## データベースの置換設定 (末尾の"/"は消す)
 ```
 https://hogehoge.com/wp-huga
 http://localhost:10090
 ```
 
-### アップロードサイズの変更
+## アップロードサイズの変更
 ```
 php_value upload_max_filesize 512M
 php_value post_max_size 512M
