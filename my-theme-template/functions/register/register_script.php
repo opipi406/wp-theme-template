@@ -5,15 +5,16 @@
  */
 function register_script()
 {
+  $version = wp_get_theme()->get('Version');
   $base_url = get_template_directory_uri() . '/assets/js';
 
   /*----------------------------------------------------
     外部スクリプト
   -----------------------------------------------------*/
-  $extensions = array(
+  $extensions = [
     'lazysizes' => "$base_url/ext/lazysizes.min.js",
     // 'anime' => "$base_url/ext/anime.min.js",
-  );
+  ];
 
   if (JSEXT_USE_GSAP) {
     $extensions['gsap-core'] = "//cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js";
@@ -24,27 +25,26 @@ function register_script()
   }
 
   foreach ($extensions as $key => $file_path) {
-    wp_enqueue_script($key, "$file_path", array('jquery'));
+    wp_enqueue_script($key, "$file_path", ['jquery']);
   }
 
   /*----------------------------------------------------
     自作スクリプト
   -----------------------------------------------------*/
-  $my_scripts = array(
+  $my_scripts = [
     'main-js' => 'main.js',
     'span-wrap-js' => 'span_wrap.js',
     'burger-js' => 'burger_menu.js',
     'anim-js' => 'anim.js',
     'slider-js' => 'slider.js',
-  );
-  $version = date('YmdHi');
-  $deps = array('jquery', ...array_keys($extensions));
+  ];
+  $deps = ['jquery', ...array_keys($extensions)];
 
   if (USE_BUNDLE_JS) {
-    wp_enqueue_script('bundle-js', "$base_url/bundle.js?date=$version", $deps, null, true);
+    wp_enqueue_script('bundle-js', "$base_url/bundle.js", $deps, null, $version);
   } else {
     foreach ($my_scripts as $key => $path) {
-      wp_enqueue_script($key, "$base_url/dev/$path?date=$version", $deps, null, true);
+      wp_enqueue_script($key, "$base_url/dev/$path", $deps, null, $version);
     }
   }
 }
