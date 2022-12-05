@@ -11,7 +11,7 @@ $font-mincho: '游明朝体', 'Yu Mincho', YuMincho, 'ヒラギノ明朝 Pro',
 //	Container
 //----------------------------------------------------
 $container-size: 1200px;
-$container-default-pad: 16px;
+$container-pad--default: 16px;
 $container-pad: (
   // "xs": 16px,
   'sm': 32px,
@@ -21,8 +21,8 @@ $container-pad: (
 //----------------------------------------------------
 //	Header
 //----------------------------------------------------
+$header-height--default: 120px;
 $header-height: (
-  'default': 120px,
   'sm': 60px,
   'md': 100px,
   'lg': 120px,

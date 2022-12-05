@@ -51,9 +51,37 @@ git remote add origin <URL>
 git push -uf origin main
 ```
 
+# Usage
+## gulp, webpack実行環境の準備
+```bash
+npm ci
+```
+## 開発サーバー起動 (sass, autoprefixer, browser-sync)
+```bash
+npm run dev
+```
+## browser-syncを使わずにsassコンパイル監視環境を構築
+```bash
+npm run dev:nosync
+```
+## Utilityクラス定義ファイルの生成
+```bash
+npm run build:utils
+```
+## Utilityクラス定義ファイルの最適化
+```bash
+npm run purge:utils
+```
+## JavaScriptファイルをbundle.jsにバンドル
+```bash
+npm run build:webpack
+```
+
 # 実行環境
-OS `mac OS`  
-node `v16.17.0`  
+|||
+|-|-|
+|OS|Mac OS|
+|node|v16.17.0|
 
 # Note
 
