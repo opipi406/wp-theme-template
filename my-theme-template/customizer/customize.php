@@ -108,6 +108,24 @@ if (!class_exists('My_Customize')) {
           'settings' => "slider_alt_$i",
         )));
       }
+
+      /*----------------------------------------------------
+        Youtube埋め込み設定
+      -----------------------------------------------------*/
+      $wp_customize->add_section('youtube_section', array(
+        'title' => 'Youtube埋め込み設定',
+        'priority' => 9500,
+        'description' => ''
+      ));
+
+      $wp_customize->add_setting(
+        'youtube_html',
+      );
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'youtube_html', array(
+        'label' => '埋め込みURL',
+        'section' => 'youtube_section',
+        'settings' => 'youtube_html',
+      )));
     }
   }
 
@@ -177,4 +195,14 @@ function get_slider_data()
     }
   }
   return $data;
+}
+
+
+/**
+ * Youtube埋め込みHTMLの取得
+ */
+function get_youtube_link()
+{
+  $youtube_html = get_theme_mod('youtube_html');
+  return $youtube_html ? $youtube_html : '';
 }

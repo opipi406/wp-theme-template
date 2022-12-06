@@ -17,8 +17,12 @@ function my_theme_support()
 {
   add_theme_support('post-thumbnails');   // アイキャッチ画像の有効化
   add_theme_support('menus');             // 管理画面で「外観」->「メニュー」を使えるようにする
-  // add_theme_support('wp-block-styles');   // テーマをブロックエディタに対応させる
   add_theme_support('custom-logo');
+
+  add_theme_support('wp-block-styles');
+  // add_theme_support('align-wide');
+  // add_theme_support('editor-styles'); // エディターcssの適用
+  // add_editor_style('editor-style.css');
 
   register_nav_menu('header-menu', 'ヘッダー');
   register_nav_menu('footer-menu', 'フッター');

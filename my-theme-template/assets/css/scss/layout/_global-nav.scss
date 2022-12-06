@@ -12,7 +12,7 @@
     cursor: pointer;
     transition: all 0.3s;
 
-    color: ui-palette();
+    color: ui-palette(primary, dark);
 
     &:hover {
       color: ui-palette(secondary, dark);
