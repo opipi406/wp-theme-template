@@ -1,4 +1,10 @@
 br {
+  &.u-xl {
+    display: none;
+    @include mq-down(xl) {
+      display: block;
+    }
+  }
   &.u-lg {
     display: none;
     @include mq-down(lg) {

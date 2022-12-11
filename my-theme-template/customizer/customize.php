@@ -65,16 +65,6 @@ if (!class_exists('My_Customize')) {
         'settings' => 'instagram_link',
       )));
 
-      $wp_customize->add_setting(
-        'MANKAI_production_link',
-        array('sanitize_callback' => 'esc_url_raw')
-      );
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'MANKAI_production_link', array(
-        'label' => 'MANKAI production 外部リンク',
-        'section' => 'link_section',
-        'settings' => 'MANKAI_production_link',
-      )));
-
       /*----------------------------------------------------
         TOPスライダー設定
       -----------------------------------------------------*/
@@ -126,6 +116,21 @@ if (!class_exists('My_Customize')) {
         'section' => 'youtube_section',
         'settings' => 'youtube_html',
       )));
+
+      /*----------------------------------------------------
+        フォーム設定
+      -----------------------------------------------------*/
+      $wp_customize->add_section('form_section', array(
+        'title' => 'フォーム設定(ContactForm7)',
+        'priority' => 9020,
+        'description' => 'ContactForm7のフォーム設定を行います。'
+      ));
+      $wp_customize->add_setting('cf7_shortcode');
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'cf7_shortcode', array(
+        'label' => 'ContactForm7のショートコード',
+        'section' => 'form_section',
+        'settings' => 'cf7_shortcode',
+      )));
     }
   }
 
@@ -162,16 +167,6 @@ function get_youtube_url()
 function get_instagram_url()
 {
   $url = esc_url(get_theme_mod('instagram_link'));
-  return $url ? $url : '#';
-}
-
-
-/**
- * MANKAI production外部リンクの取得
- */
-function get_MANKAI_production_url()
-{
-  $url = esc_url(get_theme_mod('MANKAI_production_link'));
   return $url ? $url : '#';
 }
 

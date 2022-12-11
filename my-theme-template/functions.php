@@ -4,6 +4,7 @@ define('USE_BUNDLE_JS', 0);   // バンドルされたJavaScriptファイルを�
 define('JSEXT_USE_GSAP', 1);  // GSAP (アニメーションプラグイン) を使用
 define('JSEXT_USE_SLICK', 0); // slick (スライダープラグイン) を使用
 
+define('THEME_NAME', esc_html(get_template())); // テーマ名
 
 /*----------------------------------------------------
   管理バーの非表示
@@ -30,7 +31,7 @@ function my_theme_support()
 }
 
 /*----------------------------------------------------
-  汎用的な関数群
+  Register
 -----------------------------------------------------*/
 require get_template_directory() . '/functions/register/register_style.php'; // スタイルファイルの読み込み
 require get_template_directory() . '/functions/register/register_script.php'; // スクリプトファイルの読み込み
@@ -49,6 +50,12 @@ require get_template_directory() . '/customizer/style_customize.php';
 require get_template_directory() . '/functions/add_head/add_head_adobefont.php'; // webフォント(Adobeフォント)の読み込み
 require get_template_directory() . '/functions/add_head/add_head_custom_styles.php'; // カスタマイザーで設定したstyle情報の設定
 
+/*----------------------------------------------------
+  その他の拡張メソッド
+-----------------------------------------------------*/
+require get_template_directory() . '/functions/plugin/plugin_ai1wm.php';
+require get_template_directory() . '/functions/plugin/plugin_cf7.php';
+// require get_template_directory() . '/functions/plugin/plugin_bc_custom.php';
 
 
 /**
@@ -92,6 +99,7 @@ function post_is_in_descendant_category($cats, $_post = null)
   }
   return false;
 }
+
 
 
 /**
@@ -140,7 +148,6 @@ function my_disable_redirect_canonical($redirect_url)
 add_filter('redirect_canonical', 'my_disable_redirect_canonical');
 // */
 
-
 /**
  * /category/階層を消すメソッド
  *
@@ -164,42 +171,4 @@ function remcat_rewrite($wp_rewrite)
   $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
 }
 add_filter('generate_rewrite_rules', 'remcat_rewrite');
-// */
-
-
-/**
- * Breadcrumb NavXTプラグイン (パンくずリスト) で
- * メインカテゴリのみを表示させるメソッド
- *
- * @param mixed $trail
- */
-/* <- CTRL + /
-function bc_custom($trail)
-{
-  $max = count($trail->breadcrumbs);
-  $trail->trail[$max - 1]->set_title('トップ');
-
-  // 紙芝居師・紙芝居絵師のカスタム投稿ページの場合、中間のパンくずを書き換える
-  if (is_post_type_archive('actor') || is_singular('actor') || is_post_type_archive('artist') || is_singular('artist')) {
-    $trail->trail[$max - 2]->set_title('紙芝居師・紙芝居絵師');
-    $trail->trail[$max - 2]->set_url(home_url('members/'));
-  }
-  // お知らせ or ブログカテゴリーの投稿ページの場合、中間のパンくずを書き換える
-  if (in_category('notice') || in_category('blog')) {
-    $trail->trail[$max - 2]->set_title('ブログ・お知らせ');
-    $trail->trail[$max - 2]->set_url(home_url('blogs/'));
-  }
-
-  // 和文化コンテンツのカスタム投稿のページ場合、「和文化コンテンツ一覧」を表示するためにパンくずの除去をせずに関数を抜ける。
-  if (is_post_type_archive('wabunka') || is_singular('wabunka')) {
-    return;
-  }
-
-  for ($i = 1; $i < $max - 2; $i++) {
-    unset($trail->trail[$i]);
-  }
-
-  // echo '<pre>'; print_r($trail->trail); echo '</pre>';
-}
-add_action('bcn_after_fill', 'bc_custom');
 // */
