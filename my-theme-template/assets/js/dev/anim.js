@@ -1,4 +1,9 @@
+AOS.init({
+  once: true,
+})
+
 const start = 'top bottom-=10%'
+const markers = false
 
 /**
  * GSAP初期設定
@@ -15,15 +20,19 @@ gsap.config({
   Sample Code
 -----------------------------------
 
+const jsAnimSelectors = [
+  '.js-fadein',
+]
+
 // スクロールトリガーでclass付与
-ScrollTrigger.batch('.heading', {
+ScrollTrigger.batch(jsAnimSelectors.join(','), {
   start: start,
   onEnter: (batch) => {
     for (const elm of batch) {
       elm.classList.add('js-animated')
     }
   },
-  markers: true,
+  markers: markers,
   once: true,
 })
 

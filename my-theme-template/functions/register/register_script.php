@@ -16,10 +16,16 @@ function register_script()
     // 'anime' => "$base_url/ext/anime.min.js",
   ];
 
+  // AOS.js
+  if (JSEXT_USE_AOS) {
+    $extensions['aos'] = "$base_url/ext/aos.js";
+  }
+  // GSAP
   if (JSEXT_USE_GSAP) {
     $extensions['gsap-core'] = "//cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js";
     $extensions['gsap-scroll'] = "//cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js";
   }
+  // slick.js
   if (JSEXT_USE_SLICK) {
     $extensions['slick'] = "$base_url/ext/slick.min.js";
   }
@@ -41,10 +47,10 @@ function register_script()
   $deps = ['jquery', ...array_keys($extensions)];
 
   if (USE_BUNDLE_JS) {
-    wp_enqueue_script('bundle-js', "$base_url/bundle.js", $deps, null, $version);
+    wp_enqueue_script('bundle-js', "$base_url/bundle.js", $deps, null, $version, true);
   } else {
     foreach ($my_scripts as $key => $path) {
-      wp_enqueue_script($key, "$base_url/dev/$path", $deps, null, $version);
+      wp_enqueue_script($key, "$base_url/dev/$path", $deps, $version, true);
     }
   }
 }

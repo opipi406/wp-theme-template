@@ -1,6 +1,5 @@
 module.exports = {
-  // mode: 'development',
-  mode: 'production',
+  mode: 'development',
   entry: './assets/js/dev/_entry.js',
 
   output: {

@@ -1,4 +1,4 @@
-<div class="card" style="min-height: 300px;">
+<div class="card" style="min-height: 300px;" data-aos="fade-up">
   <div class="card__thumb-box">
     <img class="card__thumb" src="<?php echo img_dir() . '/noimage.jpg' ?>">
   </div>

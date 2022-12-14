@@ -8,8 +8,8 @@
     "build:utils": "gulp sass-utils",
     "purge": "gulp purge",
     "purge:utils": "gulp purge-utils",
-    "build:webpack": "webpack",
-    "dev:webpack": "webpack --watch"
+    "build:js": "webpack --mode=production",
+    "dev:js": "webpack --watch"
   },
   "keywords": [],
   "author": "opipi",
