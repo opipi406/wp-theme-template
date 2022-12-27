@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="<?php echo (is_home() || is_front_page()) ? '' : 'wf-lazy' ?>">
 
 <head>
   <meta charset="UTF-8">

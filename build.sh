@@ -100,6 +100,9 @@ rm -rf dist
 mkdir dist
 
 rsync -avh html/wp-content/themes/$TARGET_DIR/ dist/$TARGET_DIR/ --exclude-from="$EXCLUDE_FILE"
+cd dist
+zip -r $TARGET_DIR.zip $TARGET_DIR
+cd ..
 
 echo ""
 echo "ビルドが完了しました。"
