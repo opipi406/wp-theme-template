@@ -2,12 +2,11 @@ version: "3"
 services:
   wordpress:
     image: wordpress:latest
-    platform: linux/amd64 # M1,M2 Macでなければコメントアウト
     container_name: wordpress
     depends_on:
       - db
     ports:
-      - "10090:80"
+      - "8080:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_NAME: wp
@@ -33,9 +32,8 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    # platform: linux/amd64
     container_name: phpmyadmin
     depends_on:
       - db
     ports:
-      - 10099:80
+      - 8089:80
