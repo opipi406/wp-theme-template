@@ -47,7 +47,7 @@ function register_script()
   $deps = ['jquery', ...array_keys($extensions)];
 
   if (USE_BUNDLE_JS) {
-    wp_enqueue_script('bundle-js', "$base_url/bundle.js", $deps, null, $version, true);
+    wp_enqueue_script('bundle-js', "$base_url/bundle.js", $deps, $version, true);
   } else {
     foreach ($my_scripts as $key => $path) {
       wp_enqueue_script($key, "$base_url/dev/$path", $deps, $version, true);

@@ -1,5 +1,6 @@
 const { task, watch, dest, src, series } = require('gulp')
-const sass = require('gulp-sass')(require('sass'))
+// const sass = require('gulp-sass')(require('sass'))
+const dartSass = require('gulp-dart-sass');
 const autoprefixer = require('gulp-autoprefixer')
 const browserSync = require('browser-sync')
 const purgecss = require('gulp-purgecss')
@@ -8,9 +9,13 @@ const purgecss = require('gulp-purgecss')
 // compact      セレクタごとに１行にまとめて出力
 // compressed   圧縮された状態で出力
 const outputStyle = {
-  outputStyle: 'compressed',
+  outputStyle: 'expanded',
 }
 
+const sassPath = 'assets/css/scss/**/*.scss'
+const outputPath = 'assets/css'
+
+const jsPath = 'assets/js/**/*.js'
 const utilityClassPath = 'assets/css/scss/utils.scss'
 
 /*----------------------------------------------------
@@ -23,17 +28,14 @@ task('default', () => {
     open: 'external',
   })
 
-  watch(
-    ['assets/css/scss/**/*.scss', 'assets/js/**/*.js', '**/*.php'],
-    series(['compile']),
-  ).on('change', browserSync.reload)
+  watch([sassPath, jsPath, '**/*.php'], series(['compile'])).on(
+    'change',
+    browserSync.reload,
+  )
 })
 
 task('nosync', () => {
-  return watch(
-    ['assets/css/scss/**/*.scss', 'assets/js/**/*.js', '**/*.php'],
-    series(['compile']),
-  )
+  return watch([sassPath, jsPath, '**/*.php'], series(['compile']))
 })
 
 /*----------------------------------------------------
@@ -41,13 +43,13 @@ task('nosync', () => {
 -----------------------------------------------------*/
 task('compile', () => {
   return (
-    src(['assets/css/scss/**/*.scss', '!' + utilityClassPath])
+    src([sassPath, '!' + utilityClassPath])
       // Sassコンパイル
-      .pipe(sass(outputStyle).on('error', sass.logError))
+      .pipe(dartSass(outputStyle).on('error', dartSass.logError))
       // ベンダープレフィックス自動付与
       .pipe(autoprefixer())
       // 出力先
-      .pipe(dest('assets/css'))
+      .pipe(dest(outputPath))
   )
 })
 
@@ -55,13 +57,13 @@ task('compile', () => {
   Purge style.css
 -----------------------------------------------------*/
 task('purge', () => {
-  return src('assets/css/style.css')
+  return src(`${outputPath}/style.css`)
     .pipe(
       purgecss({
         content: ['*.php', 'template-parts/**/*.php'],
       }),
     )
-    .pipe(dest('assets/css'))
+    .pipe(dest(outputPath))
 })
 
 /*----------------------------------------------------
@@ -74,7 +76,7 @@ task('purge-utils', () => {
         content: ['*.php', 'template-parts/**/*.php'],
       }),
     )
-    .pipe(dest('assets/css'))
+    .pipe(dest(outputPath))
 })
 
 /*----------------------------------------------------
@@ -92,8 +94,7 @@ task('sass-utils', () => {
       // ベンダープレフィックス自動付与
       .pipe(autoprefixer())
       // 出力先
-      // .pipe(dest('assets/css/dist.utils')).on('end', () => { console.info('Generated utility class!! [assets/css/dist.utils/utils.css]'); })
-      .pipe(dest('assets/css'))
+      .pipe(dest(outputPath))
       .on('end', () => {
         console.info('Generated utility class!! [assets/css/utils.css]')
       })
