@@ -14,7 +14,7 @@ function register_style()
 
   // AOS.css
   if (JSEXT_USE_AOS) {
-    wp_enqueue_style('utils', $base_url . '/aos.css', $deps, $version);
+    wp_enqueue_style('aos', $base_url . '/aos.css', $deps, $version);
   }
   // slick.css
   if (JSEXT_USE_SLICK) {

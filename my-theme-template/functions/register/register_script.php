@@ -38,16 +38,16 @@ function register_script()
     自作スクリプト
   -----------------------------------------------------*/
   $my_scripts = [
-    'main-js' => 'main.js',
-    'span-wrap-js' => 'span_wrap.js',
-    'burger-js' => 'burger_menu.js',
-    'anim-js' => 'anim.js',
-    'slider-js' => 'slider.js',
+    'main' => 'main.js',
+    'span-wrap' => 'span_wrap.js',
+    'burger' => 'burger_menu.js',
+    'anim' => 'anim.js',
+    'slider' => 'slider.js',
   ];
   $deps = ['jquery', ...array_keys($extensions)];
 
   if (USE_BUNDLE_JS) {
-    wp_enqueue_script('bundle-js', "$base_url/bundle.js", $deps, $version, true);
+    wp_enqueue_script('bundle', "$base_url/bundle.js", $deps, $version, true);
   } else {
     foreach ($my_scripts as $key => $path) {
       wp_enqueue_script($key, "$base_url/dev/$path", $deps, $version, true);

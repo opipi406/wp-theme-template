@@ -12,16 +12,16 @@ docker-compose up -d
 ```
 |container|port|
 |-|-|
-|WordPressコンテナ|localhost:10090|
-|phpMyAdminコンテナ|localhost:10099|
+|WordPressコンテナ|localhost:8080|
+|phpMyAdminコンテナ|localhost:8089|
 
-MySQLに「user」のアカウントが無い場合、`localhost:10099`に接続して以下のユーザーアカウントを作成  
+MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続して以下のユーザーアカウントを作成  
 
 ユーザ名: user  
 パスワード: qweqwe  
 
 ## 3. WordPressのセットアップ
-`localhost:10090`にアクセス  
+`localhost:8080`にアクセス  
 ユーザ名、パスワード等を設定してWordPressをインストールする
 
 ## 4. 雛形テーマファイルの移行
@@ -90,13 +90,13 @@ npm run build:webpack
 ## データベースの置換設定 (末尾の"/"は消す)
 ```
 https://hogehoge.com/wp-huga
-http://localhost:10090
+http://localhost:8080
 ```
 
 ## アップロードサイズの変更
 ```
-php_value upload_max_filesize 512M
-php_value post_max_size 512M
+php_value upload_max_filesize 1024M
+php_value post_max_size 1024M
 php_value memory_limit 256M
 php_value max_execution_time 300
 php_value max_input_time 300
