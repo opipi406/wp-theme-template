@@ -1,0 +1,277 @@
+// ==========================================================================
+// Utility Classes
+// 
+//  media query prefix - [xs, sm, md, lg, xl, xxl]
+//  Example) sm:relative, md:mx-2 etc...
+// ==========================================================================
+// 
+// 
+// ----------------------------
+//  Layout
+// ----------------------------
+// relative       - position: relative
+// absolute       - position: absolute
+// 
+// none           - display: none
+// inline         - display: inline 
+// block          - display: block
+// flex           - display: flex
+// 
+// object-cover   - object-fit: cover
+// object-contain - object-fit: contain
+// 
+// ----------------------------
+//  Flex Box
+// ----------------------------
+// justify-start    - justify-content: flex-start
+// justify-end      - justify-content: flex-end
+// justify-center   - justify-content: center
+// justify-between  - justify-content: space-between
+// justify-around   - justify-content: space-around
+// justify-evenly   - justify-content: space-evenly
+// 
+// items-center     - align-items: center
+// items-stretch    - align-items: stretch
+// 
+// flex-grow        - flex-grow: 1
+// 
+// flex-row           - flex-direction: row
+// flex-row-reverse   - flex-direction: row-reverse
+// flex-col           - flex-direction: column
+// flex-col-reverse   - flex-direction: column-reverse
+// 
+// ----------------------------
+//  inset layout
+// ----------------------------
+// top-[n]      - top: [n]rem ([n] = 0.25, 0.5, 0.75...)
+// 
+// ----------------------------
+//  Sizing
+// ----------------------------
+// w-[n]        - width
+// 
+// ----------------------------
+//  Spacing
+// ----------------------------
+// px-[n]       - padding-left, padding-right ([n] = 0 ~ 24)
+// mx-[n]       - margin-left, margin-right ([n] = 0 ~ 24)
+// 
+// ----------------------------
+//  Text
+// ----------------------------
+// text-center  - text-center
+// text-left    - text-left
+// text-right   - text-right
+// 
+// text-bold    - font-weight: bold 
+// text-red     - color: red
+// 
+// text-[s]     - font-size ([s] = xs, sm, base, lg, xl, 2xl, 3xl ... 6xl)
+
+@import "foundation/media-query";
+@import "foundation/variable";
+
+@mixin wrapper-mq-down($breakpoint: md) {
+  @if $breakpoint == '' {
+    @content;
+  } @else {
+    $bp : str-slice($breakpoint, 0, -3);
+    @include mq-down($bp) {
+      @content;
+    }
+  }
+}
+
+$spacing: 8px;
+$prefix-list: '', 'xxl\\:', 'xl\\:', 'lg\\:', 'md\\:', 'sm\\:', 'xs\\:';
+
+// ----------------------------------------------------------
+//  Layout, Flex Box
+// ----------------------------------------------------------
+@each $p in $prefix-list {
+  @include wrapper-mq-down($p) {
+    .#{$p}relative { position: relative !important; }
+    .#{$p}absolute { position: absolute !important; }
+    .#{$p}none { display: none !important; }
+    .#{$p}inline { display: inline !important; }
+    .#{$p}block { display: block !important; }
+    .#{$p}flex { display: flex !important; }
+
+    .#{$p}object-cover { object-fit: cover !important; }
+    .#{$p}object-contain { object-fit: contain !important; }
+  }
+}
+
+// ----------------------------------------------------------
+//  Flex Box
+// ----------------------------------------------------------
+@each $p in $prefix-list {
+  @include wrapper-mq-down($p) {
+    .#{$p}justify-start { justify-content: flex-start !important; }
+    .#{$p}justify-end { justify-content: flex-end !important; }
+    .#{$p}justify-center { justify-content: center !important; }
+    .#{$p}justify-between { justify-content: space-between !important; }
+    .#{$p}justify-around { justify-content: space-around !important; }
+    .#{$p}justify-evenly { justify-content: space-evenly !important; }
+
+    .#{$p}align-center { align-items: center !important; }
+    .#{$p}align-stretch { align-items:stretch !important; }
+
+    .#{$p}flex-row { flex-direction: row !important; }
+    .#{$p}flex-row-reverse { flex-direction: row-reverse !important; }
+    .#{$p}flex-col { flex-direction: column !important; }
+    .#{$p}flex-col-reverse { flex-direction: column-reverse !important; }
+
+    .#{$p}flex-grow { flex-grow: 1 !important; }
+
+    .#{$p}flex-wrap { flex-wrap: wrap !important; }
+    .#{$p}flex-wrap-reverse { flex-wrap: wrap-reverse !important; }
+  }
+}
+
+// ----------------------------------------------------------
+//  Sizing
+// ----------------------------------------------------------
+@each $p in $prefix-list {
+  @include wrapper-mq-down($p) {
+    .#{$p}w-auto { width: auto !important; }
+    .#{$p}w-full { width: 100% !important; }
+
+    .#{$p}w-0   { width: 0px !important; }
+    .#{$p}w-1   { width: 0.25rem !important; }
+    .#{$p}w-2   { width: 0.5rem !important; }
+    .#{$p}w-3   { width: 0.75rem !important; }
+    .#{$p}w-4   { width: 1rem !important; }
+    .#{$p}w-5   { width: 1.25rem !important; }
+    .#{$p}w-6   { width: 1.5rem !important; }
+    .#{$p}w-7   { width: 1.75rem !important; }
+    .#{$p}w-8   { width: 2rem !important; }
+    .#{$p}w-9   { width: 2.25rem !important; }
+    .#{$p}w-10  { width: 2.5rem !important; }
+    .#{$p}w-11  { width: 2.75rem !important; }
+    .#{$p}w-12  { width: 3rem !important; }
+    .#{$p}w-14  { width: 3.5rem !important; }
+    .#{$p}w-16  { width: 4rem !important; }
+    .#{$p}w-20  { width: 5rem !important; }
+    .#{$p}w-24  { width: 6rem !important; }
+    .#{$p}w-28  { width: 7rem !important; }
+    .#{$p}w-32  { width: 8rem !important; }
+    .#{$p}w-36  { width: 9rem !important; }
+    .#{$p}w-40  { width: 10rem !important; }
+    .#{$p}w-44  { width: 11rem !important; }
+    .#{$p}w-48  { width: 12rem !important; }
+    .#{$p}w-52  { width: 13rem !important; }
+    .#{$p}w-56  { width: 14rem !important; }
+    .#{$p}w-60  { width: 15rem !important; }
+
+    .#{$p}w-1\/5 { width: 20% !important; }
+    .#{$p}w-2\/5 { width: 40% !important; }
+    .#{$p}w-3\/5 { width: 60% !important; }
+    .#{$p}w-4\/5 { width: 80% !important; }
+    .#{$p}w-1\/6, .#{$p}w-1\/12 { width: 8.333333% !important; }
+    .#{$p}w-2\/12  { width: 16.666667% !important; }
+    .#{$p}w-1\/4, .#{$p}w-3\/12  { width: 25% !important; }
+    .#{$p}w-1\/3, .#{$p}w-2\/6, .#{$p}w-4\/12  { width: 33.333333% !important; }
+    .#{$p}w-5\/12 { width: 41.666667% !important; }
+    .#{$p}w-1\/2, .#{$p}w-2\/4, .#{$p}w-3\/6, .#{$p}w-6\/12 { width: 50% !important; }
+    .#{$p}w-7\/12{ width: 58.333333% !important; }
+    .#{$p}w-2\/3, .#{$p}w-4\/6, .#{$p}w-8\/12 { width: 66.666667% !important; }
+    .#{$p}w-3\/4, .#{$p}w-9\/12 { width: 75% !important; }
+    .#{$p}w-5\/6, .#{$p}w-10\/12 { width: 83.333333% !important; }
+    .#{$p}w-11\/12 { width: 91.666667% !important; }
+  }
+}
+
+
+// ----------------------------------------------------------
+//  inset layout
+// ----------------------------------------------------------
+@each $p in $prefix-list {
+  @for $i from -8 through 24 {
+    @include wrapper-mq-down($p) {
+      .#{$p}inset-#{$i}    { inset:    #{$i * 0.25rem} !important; }
+      .#{$p}top-#{$i}      { top:      #{$i * 0.25rem} !important; }
+      .#{$p}right-#{$i}    { right:    #{$i * 0.25rem} !important; }
+      .#{$p}bottom-#{$i}   { bottom:   #{$i * 0.25rem} !important; }
+      .#{$p}left-#{$i}     { left:     #{$i * 0.25rem} !important; }
+      .#{$p}inset-x-#{$i}  { left:     #{$i * 0.25rem} !important; right:  #{$i * 0.25rem} !important; }
+      .#{$p}inset-y-#{$i}  { top:      #{$i * 0.25rem} !important; bottom: #{$i * 0.25rem} !important; }
+    }
+  }
+}
+
+// ----------------------------------------------------------
+//  Spacing
+// ----------------------------------------------------------
+@each $p in $prefix-list {
+  @include wrapper-mq-down($p) {
+    .#{$p}pt-auto { padding-top:      auto !important; }
+    .#{$p}pr-auto { padding-right:    auto !important; }
+    .#{$p}pb-auto { padding-bottom:   auto !important; }
+    .#{$p}pl-auto { padding-left:     auto !important; }
+    .#{$p}px-auto { padding-right:    auto !important; padding-left:   auto !important; }
+    .#{$p}py-auto { padding-top:      auto !important; padding-bottom: auto !important; }
+
+    .#{$p}mt-auto { margin-top:       auto !important; }
+    .#{$p}mr-auto { margin-right:     auto !important; }
+    .#{$p}mb-auto { margin-bottom:    auto !important; }
+    .#{$p}ml-auto { margin-left:      auto !important; }
+    .#{$p}mx-auto { margin-right:     auto !important; margin-left:   auto !important; }
+    .#{$p}my-auto { margin-top:       auto !important; margin-bottom: auto !important; }
+  }
+  @for $i from 0 through 24 {
+    @include wrapper-mq-down($p) {
+      .#{$p}p-#{$i}  { padding:         #{$i * 0.25rem} !important; }
+      .#{$p}pt-#{$i} { padding-top:     #{$i * 0.25rem} !important; }
+      .#{$p}pr-#{$i} { padding-right:   #{$i * 0.25rem} !important; }
+      .#{$p}pb-#{$i} { padding-bottom:  #{$i * 0.25rem} !important; }
+      .#{$p}pl-#{$i} { padding-left:    #{$i * 0.25rem} !important; }
+      .#{$p}px-#{$i} { padding-right:   #{$i * 0.25rem} !important; padding-left:   #{$i * 0.25rem} !important; }
+      .#{$p}py-#{$i} { padding-top:     #{$i * 0.25rem} !important; padding-bottom: #{$i * 0.25rem} !important; }
+    
+      .#{$p}m-#{$i}  { margin:          #{$i * 0.25rem} !important; }
+      .#{$p}mt-#{$i} { margin-top:      #{$i * 0.25rem} !important; }
+      .#{$p}mr-#{$i} { margin-right:    #{$i * 0.25rem} !important; }
+      .#{$p}mb-#{$i} { margin-bottom:   #{$i * 0.25rem} !important; }
+      .#{$p}ml-#{$i} { margin-left:     #{$i * 0.25rem} !important; }
+      .#{$p}mx-#{$i} { margin-right:    #{$i * 0.25rem} !important; margin-left:   #{$i * 0.25rem} !important; }
+      .#{$p}my-#{$i} { margin-top:      #{$i * 0.25rem} !important; margin-bottom: #{$i * 0.25rem} !important; }
+    }
+
+    @for $i from 0 through 24 {
+      @include wrapper-mq-down($p) {
+        .#{$p}gap-#{$i} { gap: #{$i * 0.25rem} !important; }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------
+//  Text
+// ----------------------------------------------------------
+@each $p in $prefix-list {
+  @include wrapper-mq-down($p) {
+    .#{$p}text-left { text-align: left !important; }
+    .#{$p}text-right { text-align: right !important; }
+    .#{$p}text-center { text-align: center !important; }
+
+    .#{$p}text-bold { font-weight: bold !important; }
+    .#{$p}text-red { color: red !important; }
+  }
+}
+
+@each $p in $prefix-list {
+  @include wrapper-mq-down($p) {
+    .#{$p}text-xs   { font-size: 0.75rem !important;   line-height: 1rem !important; }
+    .#{$p}text-sm   { font-size: 0.875rem !important;  line-height: 1.25rem !important; }
+    .#{$p}text-base { font-size: 1rem !important;      line-height: 1.5rem !important; }
+    .#{$p}text-lg   { font-size: 1.125rem !important;  line-height: 1.75rem !important; }
+    .#{$p}text-xl   { font-size: 1.25rem !important;   line-height: 1.75rem !important; }
+    .#{$p}text-2xl  { font-size: 1.5rem !important;    line-height: 2rem !important; }
+    .#{$p}text-3xl  { font-size: 1.875rem !important;  line-height: 2.25rem !important; }
+    .#{$p}text-4xl  { font-size: 2.25rem !important;   line-height: 2.5rem !important; }
+    .#{$p}text-5xl  { font-size: 3rem !important;      line-height: 1 !important; }
+    .#{$p}text-6xl  { font-size: 3.75rem !important;   line-height: 1 !important; }
+  }
+}
+

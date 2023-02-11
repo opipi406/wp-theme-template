@@ -1,9 +1,10 @@
 const { task, watch, dest, src, series } = require('gulp')
-// const sass = require('gulp-sass')(require('sass'))
-const dartSass = require('gulp-dart-sass');
 const autoprefixer = require('gulp-autoprefixer')
 const browserSync = require('browser-sync')
 const purgecss = require('gulp-purgecss')
+
+// const sass = require('gulp-sass')(require('sass'))
+const sass = require('gulp-dart-sass')
 
 // expanded     一般的なCSSのフォーマットで出力
 // compact      セレクタごとに１行にまとめて出力
@@ -12,11 +13,11 @@ const outputStyle = {
   outputStyle: 'expanded',
 }
 
-const sassPath = 'assets/css/scss/**/*.scss'
+const sassPath = 'assets/scss/**/*.scss'
 const outputPath = 'assets/css'
 
 const jsPath = 'assets/js/**/*.js'
-const utilityClassPath = 'assets/css/scss/utils.scss'
+const utilityClassPath = 'assets/scss/utils.scss'
 
 /*----------------------------------------------------
   Watch
@@ -45,7 +46,7 @@ task('compile', () => {
   return (
     src([sassPath, '!' + utilityClassPath])
       // Sassコンパイル
-      .pipe(dartSass(outputStyle).on('error', dartSass.logError))
+      .pipe(sass(outputStyle).on('error', sass.logError))
       // ベンダープレフィックス自動付与
       .pipe(autoprefixer())
       // 出力先
@@ -96,7 +97,7 @@ task('sass-utils', () => {
       // 出力先
       .pipe(dest(outputPath))
       .on('end', () => {
-        console.info('Generated utility class!! [assets/css/utils.css]')
+        console.info('generated utility class! -> assets/css/utils.css')
       })
   )
 })
