@@ -13,30 +13,30 @@ const outputStyle = {
   outputStyle: 'expanded',
 }
 
-const sassPath = 'assets/scss/**/*.scss'
-const outputPath = 'assets/css'
-
-const jsPath = 'assets/js/**/*.js'
-const utilityClassPath = 'assets/scss/utils.scss'
+const path = {
+  dist: 'assets/css',
+  sass: 'assets/scss',
+  js: 'assets/js',
+}
 
 /*----------------------------------------------------
   Watch
 -----------------------------------------------------*/
 task('default', () => {
   browserSync.init({
-    proxy: 'localhost:10090',
+    proxy: 'localhost:8080',
     notify: false,
     open: 'external',
   })
 
-  watch([sassPath, jsPath, '**/*.php'], series(['compile'])).on(
+  watch([`${path.sass}/**/*.scss`, `${path.js}/**/*.js`, '**/*.html', '**/*.php'], series(['compile'])).on(
     'change',
     browserSync.reload,
   )
 })
 
 task('nosync', () => {
-  return watch([sassPath, jsPath, '**/*.php'], series(['compile']))
+  return watch([`${path.sass}/**/*.scss`, `${path.js}/**/*.js`, '**/*.html', '**/*.php'], series(['compile']))
 })
 
 /*----------------------------------------------------
@@ -44,13 +44,13 @@ task('nosync', () => {
 -----------------------------------------------------*/
 task('compile', () => {
   return (
-    src([sassPath, '!' + utilityClassPath])
+    src([`${path.sass}/**/*.scss`, `!${path.sass}/utils.scss`])
       // Sassコンパイル
       .pipe(sass(outputStyle).on('error', sass.logError))
       // ベンダープレフィックス自動付与
       .pipe(autoprefixer())
       // 出力先
-      .pipe(dest(outputPath))
+      .pipe(dest(path.dist))
   )
 })
 
@@ -58,13 +58,13 @@ task('compile', () => {
   Purge style.css
 -----------------------------------------------------*/
 task('purge', () => {
-  return src(`${outputPath}/style.css`)
+  return src(`${path.dist}/style.css`)
     .pipe(
       purgecss({
         content: ['*.php', 'template-parts/**/*.php'],
       }),
     )
-    .pipe(dest(outputPath))
+    .pipe(dest(path.dist))
 })
 
 /*----------------------------------------------------
@@ -77,7 +77,7 @@ task('purge-utils', () => {
         content: ['*.php', 'template-parts/**/*.php'],
       }),
     )
-    .pipe(dest(outputPath))
+    .pipe(dest(path.dist))
 })
 
 /*----------------------------------------------------
@@ -85,7 +85,7 @@ task('purge-utils', () => {
 -----------------------------------------------------*/
 task('sass-utils', () => {
   return (
-    src(utilityClassPath)
+    src(`${path.sass}/utils.scss`)
       // Sassコンパイル
       .pipe(
         sass({
@@ -95,9 +95,9 @@ task('sass-utils', () => {
       // ベンダープレフィックス自動付与
       .pipe(autoprefixer())
       // 出力先
-      .pipe(dest(outputPath))
+      .pipe(dest(path.dist))
       .on('end', () => {
-        console.info('generated utility class! -> assets/css/utils.css')
+        console.info(`generated utility class! -> ${path.dist}/utils.css`)
       })
   )
 })
