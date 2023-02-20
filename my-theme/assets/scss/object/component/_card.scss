@@ -1,0 +1,150 @@
+@use '../../foundation' as *;
+
+$x-pad: 20px;
+$y-pad: 20px;
+$thumb-height: 150px;
+$card-gap: 24px;
+
+//----------------------------------------------------
+//	カードリストボックス
+//----------------------------------------------------
+.card-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @include mq-down(sm) {
+    flex-direction: column;
+
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  gap: $card-gap $card-gap;
+}
+
+//----------------------------------------------------
+//	カード本体
+//----------------------------------------------------
+.card {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 25%;
+  height: auto;
+
+  transition: 0.3s;
+
+  background-color: #ffffff;
+  box-shadow: 0 0 5px #6f6f6f6d;
+
+  @include mq-down(xxl) {
+    width: calc(100% / 4 - (#{$card-gap} * 0.75));
+  }
+  @include mq-down(lg) {
+    width: calc(100% / 3 - (#{$card-gap} * 0.6666));
+  }
+  @include mq-down(md) {
+    width: calc(50% - (#{$card-gap} * 0.5));
+  }
+  @include mq-down(sm) {
+    width: 100%;
+  }
+
+  // サムネイルボックス
+  &__thumb-box {
+    overflow: hidden;
+  }
+  // サムネイル
+  &__thumb {
+    width: 100%;
+    height: $thumb-height;
+
+    transition: 0.6s;
+
+    @include mq-down(md) {
+      height: 40vw;
+    }
+
+    backface-visibility: hidden;
+    will-change: transform;
+    object-fit: cover;
+  }
+
+  // ボディ
+  &__body {
+    min-height: 170px;
+    padding: 24px;
+
+    background-color: #efedf7;
+
+    @include mq-down(sm) {
+      padding: 8px 12px;
+    }
+  }
+
+  // タイトル
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    overflow: hidden;
+
+    height: 42px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  // テキスト
+  &__text {
+  }
+
+  // 詳細 （日付　or author?）
+  &__detail {
+    font-size: 0.75rem;
+
+    min-height: 40px;
+    padding: 0 12px;
+
+    color: $color-secondary;
+  }
+
+  // タグリスト
+  &__tag-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+    padding-right: 80px;
+
+    @include mq-down(xl) {
+      padding-right: 50px;
+    }
+
+    .tag {
+      margin-top: 12px;
+    }
+  }
+
+  &:hover {
+    color: $color-primary;
+    background-color: $color-fg-primary;
+  }
+  &:hover &__thumb {
+    transform: scale(1.1);
+  }
+  &:hover &__btn {
+    background-color: light($color-fg-primary);
+  }
+
+  &__link {
+    position: absolute;
+
+    display: block;
+
+    inset: 0;
+  }
+}

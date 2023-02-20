@@ -1,0 +1,83 @@
+@use '../../foundation' as *;
+
+.news-list {
+  padding: 120px 60px;
+
+  @include mq-down(xl) {
+    padding: 60px 30px;
+  }
+  @include mq-down(md) {
+    padding: 40px 12px;
+  }
+
+  & > * + * {
+    margin-top: 80px;
+  }
+}
+
+.news {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  @include mq-down(md) {
+    display: block;
+  }
+
+  // 日付
+  &__date {
+    font-size: 0.75rem;
+
+    width: 10%;
+    min-width: 150px;
+
+    color: $color-secondary;
+
+    @include mq-down(lg) {
+      min-width: 80px;
+    }
+    @include mq-down(md) {
+      min-width: 110px;
+    }
+  }
+
+  // バッジ
+  &__badge {
+    font-size: 0.75rem;
+
+    width: 15%;
+    min-width: 15%; // 200px
+    margin: 0 4px;
+    margin-left: 12px;
+    padding: 0 8px;
+
+    text-align: center;
+
+    color: $color-inv;
+    background-color: dark($color-fg-primary);
+
+    @include mq-down(md) {
+      display: inline-block;
+
+      width: auto;
+      min-width: auto;
+    }
+  }
+
+  // 記事タイトル
+  &__title {
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    line-height: 1.4;
+    margin-left: 40px;
+
+    @include mq-down(md) {
+      font-size: 1rem;
+
+      display: block;
+
+      margin: 12px 0 0 0;
+    }
+  }
+}

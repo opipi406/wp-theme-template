@@ -1,0 +1,50 @@
+@use '../../foundation' as *;
+
+.u-txt-primary {
+  color: $color-primary;
+}
+.u-txt-secondary {
+  color: $color-secondary;
+}
+.u-txt-error {
+  color: $color-error;
+}
+
+.u-txt-block {
+  $mq: md;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  @include mq-down($mq) {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  & > *:last-child {
+    padding-left: 3rem;
+
+    @include mq-down($mq) {
+      padding-top: 3rem;
+      padding-left: 0;
+    }
+  }
+
+  &__img {
+    min-width: 45%;
+    width: 45%;
+
+    @include mq-down($mq) {
+      width: 70%;
+      min-width: 250px;
+      max-width: 420px;
+    }
+
+    object-fit: contain;
+  }
+
+  &__text {
+    // 
+  }
+}

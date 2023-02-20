@@ -1,0 +1,25 @@
+@use '../../foundation' as *;
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+
+  display: inline-block;
+
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+
+  border-bottom: 4px solid $color-main;
+  text-shadow: none;
+
+  // @include mq-down(sm) {
+  //   font-size: 6vw;
+
+  //   &.-sm {
+  //     font-size: 5vw;
+  //   }
+  //   &.-lg {
+  //     font-size: 8vw;
+  //   }
+  // }
+}

@@ -1,0 +1,15 @@
+@use '../../foundation' as *;
+
+#breadcrumbs {
+  padding: 20px 0;
+
+  color: #868686;
+
+  .current-item {
+    color: dark($color-primary);
+  }
+
+  @include mq-down(md) {
+    font-size: .75rem;
+  }
+}

@@ -1,0 +1,28 @@
+@use '../../foundation' as *;
+
+.btn {
+  $root: #{&};
+
+  position: relative;
+
+  min-width: 140px;
+  padding: 4px 16px;
+
+  transition: 0.3s;
+  text-align: center;
+
+  color: $color-inv;
+  border-radius: 2rem;
+  background-color: dark($color-fg-primary);
+
+  @include mq-down(sm) {
+    font-size: 1rem;
+
+    min-width: auto;
+    padding: 0 8px;
+  }
+
+  &:hover {
+    background-color: light($color-fg-primary);
+  }
+}

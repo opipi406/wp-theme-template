@@ -1,0 +1,122 @@
+@use '../foundation' as *;
+
+$wp-block--margin-bottom: 2rem;
+
+/*----------------------------------------------------
+  Image
+-----------------------------------------------------*/
+.wp-caption.aligncenter,
+img.aligncenter {
+  display: block;
+
+  margin: 0 auto;
+}
+.wp-caption.alignright,
+img.alignright {
+  float: right;
+}
+.wp-caption.alignleft,
+img.alignleft {
+  float: left;
+}
+.wp-caption.alignright,
+.wp-caption.alignleft,
+img.alignright,
+img.alignleft {
+  margin: 8px;
+}
+img[class*='wp-image-'],
+img[class*='attachment-'] {
+  max-width: 100%;
+  height: auto;
+}
+.clearfix {
+  overflow: hidden;
+  zoom: 1;
+  &:after {
+    display: block;
+    clear: both;
+
+    content: '';
+  }
+}
+.wp-caption {
+  max-width: 100%;
+}
+
+.wp-block-image {
+  padding-bottom: 2.5rem;
+}
+
+/*----------------------------------------------------
+  Embed
+-----------------------------------------------------*/
+.wp-block-embed {
+  margin-bottom: $wp-block--margin-bottom;
+
+  // alignment
+  &.aligncenter {
+    display: block;
+
+    text-align: center;
+  }
+  &.alignright {
+    max-width: none;
+
+    text-align: right;
+  }
+  &.alignwide {
+    max-width: none;
+
+    text-align: center;
+    iframe {
+      width: 80%;
+    }
+  }
+  &.alignfull {
+    max-width: none;
+    iframe {
+      width: 100%;
+    }
+  }
+}
+
+.wp-block-embed-youtube.wp-embed-aspect-16-9 {
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+
+  &.alignright {
+    margin-right: 0;
+  }
+  &.alignleft {
+    margin-left: 0;
+  }
+  &.alignwide {
+    max-width: min(800px, 80%);
+
+    @include mq-down(md) {
+      max-width: none;
+    }
+  }
+  &.alignfull {
+    max-width: none;
+  }
+
+  .wp-block-embed__wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

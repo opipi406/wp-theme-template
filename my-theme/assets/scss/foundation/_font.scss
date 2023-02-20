@@ -1,0 +1,12 @@
+@use 'variable' as *;
+@use 'color' as *;
+@use 'media-query' as *;
+
+html {
+  font-family: $font-gothic;
+  font-size: 16px;
+
+  line-height: 1.5;
+
+  color: $color-main;
+}

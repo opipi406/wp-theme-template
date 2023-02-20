@@ -1,0 +1,56 @@
+@use '../foundation' as *;
+
+header {
+  position: fixed;
+  // position: relative;
+  z-index: 99;
+  inset: 0 0 auto 0;
+
+  width: 100vw;
+  height: $header-height;
+
+  box-shadow: 0 0 5px #a0a0a0;
+
+  @include mq-down(lg) {
+    height: $header-height-lg;
+  }
+  @include mq-down(md) {
+    height: $header-height-md;
+  }
+  @include mq-down(sm) {
+    height: $header-height-sm;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+
+  background-color: $color-header;
+
+  @include mq-up(md) {
+    padding: 0 40px;
+  }
+  @include mq-down(md) {
+    padding: 0 12px;
+
+    &__nav {
+      display: none;
+
+      pointer-events: none;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+
+    color: $color-inv;
+  }
+
+  & > * + * {
+    margin-left: 16px;
+  }
+}

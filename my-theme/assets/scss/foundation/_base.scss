@@ -1,0 +1,84 @@
+@use 'variable' as *;
+@use 'color' as *;
+@use 'media-query' as *;
+
+body {
+  overflow-x: hidden;
+
+  width: 100%;
+
+  // FIXME: position: fixed が効かなくなる可能性がある?
+  // transform: translate3d(0, 0, 0); // GPUを使わせる
+
+  // 背景画像を設定する場合
+  // background-image: url('../images/bg.jpg');
+  // background-repeat: repeat;
+  // background-size: contain;
+
+  background-color: $color-bg-main;
+}
+
+//----------------------------------------------------
+//	セクション共通
+//----------------------------------------------------
+section {
+  position: relative;
+
+  padding-bottom: 8rem;
+
+  @include mq-down(sm) {
+    padding-bottom: 4rem;
+  }
+}
+
+//----------------------------------------------------
+//	メインコンテンツ
+//----------------------------------------------------
+main {
+  min-height: 100vh;
+  padding-top: $header-height;
+
+  @include mq-down(lg) {
+    padding-top: $header-height-lg;
+  }
+  @include mq-down(md) {
+    padding-top: $header-height-md;
+  }
+  @include mq-down(sm) {
+    padding-top: $header-height-sm;
+  }
+}
+
+//----------------------------------------------------
+//	コンテナ
+//----------------------------------------------------
+.container {
+  max-width: $container-size;
+  margin: 0 auto;
+  padding: 0 $container-x-pad;
+
+  @include mq-down(lg) {
+    padding: 0 $container-x-pad-lg;
+  }
+  @include mq-down(md) {
+    padding: 0 $container-x-pad-md;
+  }
+  @include mq-down(sm) {
+    padding: 0 $container-x-pad-sm;
+  }
+}
+
+// Wrapper
+.wrap {
+  overflow: hidden;
+}
+
+// クリック・タップ時の青枠除去
+*:focus {
+  outline: none;
+}
+a {
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+}

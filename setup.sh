@@ -11,7 +11,7 @@ if [ -z $DIR ]; then
   exit 0
 fi
 
-mv ./my-theme-template ./html/wp-content/themes/$DIR
+mv ./my-theme ./html/wp-content/themes/$DIR
 echo
 echo "Make theme file."
 echo "-> html/wp-content/themes/$DIR"

@@ -27,7 +27,7 @@ MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続�
 ## 4. 雛形テーマファイルの移行
 `html/wp-content/themes/` に `my-theme`ディレクトリを移動する
 ```bash
-mv ./my-theme-template ./html/wp-content/themes/<自作テーマ名>
+mv ./my-theme ./html/wp-content/themes/<自作テーマ名>
 ```
 
 ## 5. 自作テーマディレクトリのシンボリックリンクを作成 （任意）
