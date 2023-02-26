@@ -1,0 +1,54 @@
+// Sample Code
+// ---------------------------------------------
+// <div class="txt-content -reverse">
+//   <img class="txt-content__img" src="...">
+//   <p class="txt-content__txt">テキストテキストテキスト</p>
+// </div>
+// ---------------------------------------------
+
+@use '../../foundation' as *;
+$mq: md;
+$gap: 60px;
+$gap-sp: 30px;
+
+.txt-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  gap: $gap;
+
+  @include mq-down($mq) {
+    align-items: center;
+    flex-direction: column;
+    gap: $gap-sp;
+  }
+
+  &.-reverse {
+    flex-direction: row;
+
+    @include mq-down($mq) {
+      flex-direction: column;
+    }
+  }
+
+  &__img {
+    flex: 1;
+    width: 40%;
+    min-width: 40%;
+
+    object-fit: contain;
+    border-radius: 6px;
+
+    @include mq-down($mq) {
+      width: 70%;
+      min-width: 300px;
+      max-width: 450px;
+    }
+  }
+
+  &__txt {
+    flex: 1;
+    @include font-sizing();
+  }
+}

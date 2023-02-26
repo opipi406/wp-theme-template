@@ -3,10 +3,20 @@
 @use 'media-query' as *;
 
 html {
-  font-family: $font-gothic;
+  font-family: $font-main;
   font-size: 16px;
 
   line-height: 1.5;
 
   color: $color-main;
+}
+
+@mixin font-sizing {
+  font-size: 1.5rem;
+  @include mq-down(xl) {
+    font-size: 1.25rem;
+  }
+  @include mq-down(lg) {
+    font-size: 1rem;
+  }
 }

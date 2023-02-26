@@ -2,19 +2,17 @@
 
 @mixin g-nav-link {
   & > a {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1rem;
 
     line-height: 1.8;
 
     cursor: pointer;
     transition: all 0.3s;
 
-    color: dark($color-fg-primary);
+    color: $color-inv;
 
     &:hover {
-      color: dark($color-fg-secondary);
+      color: dark($color-inv);
     }
   }
 }
