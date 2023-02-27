@@ -13,10 +13,10 @@ html {
 
 @mixin font-sizing {
   font-size: 1.5rem;
-  @include mq-down(xl) {
+  @include mq-down(xxl) {
     font-size: 1.25rem;
   }
-  @include mq-down(lg) {
+  @include mq-down(xl) {
     font-size: 1rem;
   }
 }
