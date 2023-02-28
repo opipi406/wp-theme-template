@@ -1,5 +1,5 @@
 <?php
-define('USE_BUNDLE_JS',   0);   // バンドルされたJavaScriptファイルを使用する
+define('USE_MINIFY_JS',   0);   // バンドルされたJavaScriptファイルを使用する
 
 define('JSEXT_USE_AOS',   1);   // AOS（スクロールアニメーションプラグイン）を使用
 define('JSEXT_USE_GSAP',  1);   // GSAP (アニメーションプラグイン) を使用

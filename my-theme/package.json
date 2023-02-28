@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "gulp",
     "dev:sync": "gulp sync",
-    "build:utils": "gulp sass-utils",
     "purge": "gulp purge",
     "purge:utils": "gulp purge-utils",
-    "build:js": "webpack --mode=production",
-    "dev:js": "webpack --watch"
+    "build:utils": "gulp sass-utils",
+    "dev:js": "webpack --watch",
+    "build:js": "webpack --mode=production"
   },
   "keywords": [],
   "author": "opipi",

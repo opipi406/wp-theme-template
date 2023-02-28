@@ -4,7 +4,7 @@ module.exports = {
 
   output: {
     path: `${__dirname}/assets/js`,
-    filename: 'bundle.js',
+    filename: 'script.js',
   },
 
   // バンドル対象から外す

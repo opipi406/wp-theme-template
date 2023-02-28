@@ -53,27 +53,31 @@ git push -uf origin main
 # Usage
 ## gulp, webpack実行環境の準備
 ```bash
-npm ci
+npm install
 ```
-## 開発サーバー起動 (sass, autoprefixer, browser-sync)
+## Sassのwatcher起動 (sass, autoprefixer)
 ```bash
 npm run dev
 ```
-## browser-syncを使わずにsassコンパイル監視環境を構築
+## browser-syncを使用してwatcher起動
 ```bash
-npm run dev:nosync
+npm run dev:sync
 ```
-## Utilityクラス定義ファイルの生成
+## Utilityクラス定義CSSファイルの生成
 ```bash
 npm run build:utils
 ```
-## Utilityクラス定義ファイルの最適化
+## Utilityクラス定義CSSファイルの最適化
 ```bash
 npm run purge:utils
 ```
-## JavaScriptファイルをbundle.jsにバンドル
+## webpackのwatcher起動
 ```bash
-npm run build:webpack
+npm run dev:js
+```
+## JavaScriptファイルをscript.jsにバンドル
+```bash
+npm run build:js
 ```
 
 # 実行環境
