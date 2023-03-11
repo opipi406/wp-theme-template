@@ -2,11 +2,11 @@
 WordPress用の初期セットアップテンプレート
 
 # Installation
-## 1. リポジトリの作成・クローン
-1. [テンプレートリポジトリ](https://github.com/opipi406/wp-theme-template/generate)からリポジトリを作成
-2. Git clone & change directory
+```bash
+git clone https://github.com/opipi406/wp-theme-template.git <プロジェクト名>
+```
 
-## 2. イメージ・コンテナの作成
+## イメージ・コンテナの作成
 ```bash
 docker-compose up -d
 ```
@@ -20,35 +20,32 @@ MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続�
 ユーザ名: user  
 パスワード: qweqwe  
 
-## 3. WordPressのセットアップ
+## WordPressのセットアップ
 `localhost:8080`にアクセス  
 ユーザ名、パスワード等を設定してWordPressをインストールする
 
-## 4. 雛形テーマファイルの移行
+## 雛形テーマファイルの移行
 `html/wp-content/themes/` に `my-theme`ディレクトリを移動する
 ```bash
 mv ./my-theme ./html/wp-content/themes/<自作テーマ名>
 ```
 
-## 5. 自作テーマディレクトリのシンボリックリンクを作成 （任意）
-```bash
-ln -s ./html/wp-content/themes/<自作テーマ名> src
-```
-
-## 6. 後処理、テーマディレクトリをgit管理下に置く
+## 後処理、テーマディレクトリをgit管理下に置く
 ```bash
 rm -rf .git .gitignore
 cd src
 git init
 ```
 
-## 7. first commit
+## コミット
 ```bash
 git add .
 git commit -m "first commit"
 git remote add origin <URL>
-git push -uf origin main
+git push -u origin main
 ```
+
+### Shellが実行できる環境であれば、上記のstep1〜6までを`setup.sh`を実行することで自動化できます。
 
 # Usage
 ## gulp, webpack実行環境の準備
@@ -91,14 +88,8 @@ npm run build:js
 ## 環境移行についてのメモ（All-in-One WP Migration）
 [サーバー上のWordPressサイトの画像や投稿データを超簡単にローカルにコピーする方法](https://yosiakatsuki.net/blog/copy-site-data-to-local/)
 
-## データベースの置換設定 (末尾の"/"は消す)
-```
-https://hogehoge.com/wp-huga
-http://localhost:8080
-```
-
-## アップロードサイズの変更
-```
+### アップロードサイズの変更
+```bash
 php_value upload_max_filesize 1024M
 php_value post_max_size 1024M
 php_value memory_limit 256M
