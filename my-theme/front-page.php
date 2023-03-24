@@ -75,6 +75,42 @@
     </div>
   </section>
 
+  <section>
+    <div class="container">
+      <h2 class="heading">Posts</h2>
+      <?php
+      $wp_query = new WP_Query([
+        'post_type' => 'post',
+        'posts_per_page' => 8,
+        'orderby' => 'rand',
+      ]);
+      ?>
+      <ul>
+        <?php if (have_posts()) : ?>
+          <?php while (have_posts()) : the_post(); ?>
+            <?php
+            $title      = esc_html(get_the_title());                              //投稿タイトル
+            $url        = esc_url(get_permalink());                               //投稿のurl
+            $date       = get_the_time('Y/m/d');                                  //投稿日
+            $modify     = get_the_modified_date('Y/m/d');                         //更新日
+            $category   = get_the_category();                                     //カテゴリ情報
+            $tags       = get_the_tags();                                         //タグ情報
+            $content    = mb_substr(esc_html(get_the_content()), 0, 60) . "...";  //本文
+            ?>
+            <li class="mt-4 p-2 u-shadow">
+              <a href="<?php echo $url ?>">
+                <div class="flex justify-between items-center">
+                  <h3 class="text-2xl"><?php echo $title ?></h3>
+                  <date><?php echo $date ?></date>
+                </div>
+              </a>
+            </li>
+          <?php endwhile; ?>
+        <?php endif; ?>
+      </ul>
+      <?php wp_reset_postdata() ?>
+    </div>
+  </section>
 </main>
 
 <?php get_footer(); ?>

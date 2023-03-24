@@ -76,7 +76,7 @@ if (!class_exists('My_Customize')) {
 
       for ($i = 1; $i <= 10; $i++) {
         $wp_customize->add_section("slider_section_$i", array(
-          'title' => "スライダー ${i}枚目",
+          'title' => "スライダー {$i}枚目",
           'panel' => "slider_panel",
         ));
         $wp_customize->add_setting("slider_src_pc_$i");
@@ -137,39 +137,18 @@ if (!class_exists('My_Customize')) {
   add_action('customize_register', array('My_Customize', 'register'));
 }
 
-/**
- * Facebookリンクの取得
- */
-function get_facebook_url()
-{
-  $url = esc_url(get_theme_mod('facebook_link'));
-  return $url ? $url : '#';
-}
-/**
- * Twitterリンクの取得
- */
-function get_twitter_url()
-{
-  $url = esc_url(get_theme_mod('twitter_link'));
-  return $url ? $url : '#';
-}
-/**
- * Youtubeリンクの取得
- */
-function get_youtube_url()
-{
-  $url = esc_url(get_theme_mod('youtube_link'));
-  return $url ? $url : '#';
-}
-/**
- * インスタグラムリンクの取得
- */
-function get_instagram_url()
-{
-  $url = esc_url(get_theme_mod('instagram_link'));
-  return $url ? $url : '#';
-}
 
+
+/**
+ * URLの取得
+ *
+ * @param string $name
+ */
+function get_url(string $name)
+{
+  $url = esc_url(get_theme_mod($name));
+  return $url ? $url : '';
+}
 
 /**
  * スライダー情報の取得
@@ -190,14 +169,4 @@ function get_slider_data()
     }
   }
   return $data;
-}
-
-
-/**
- * Youtube埋め込みHTMLの取得
- */
-function get_youtube_link()
-{
-  $youtube_html = get_theme_mod('youtube_html');
-  return $youtube_html ? $youtube_html : '';
 }

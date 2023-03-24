@@ -14,7 +14,7 @@
   <div class="wrap">
     <header>
 
-      <div class="header customizer__header_bgcolor">
+      <div class="header">
         <?php the_custom_logo(); ?>
         <nav class="header__nav">
           <?php wp_nav_menu(); ?>

@@ -1,4 +1,4 @@
-<footer class="customizer__footer_bgcolor">
+<footer>
   <div class="footer-content">
     <div class="content">
       <h2 class="content__title">ABOUT</h2>

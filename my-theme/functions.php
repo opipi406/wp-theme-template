@@ -32,31 +32,27 @@ function my_theme_support()
 }
 
 /*----------------------------------------------------
-  Register
+  Base
 -----------------------------------------------------*/
-require get_template_directory() . '/functions/register/register_style.php'; // スタイルファイルの読み込み
-require get_template_directory() . '/functions/register/register_script.php'; // スクリプトファイルの読み込み
-// require get_template_directory() . '/functions/register/register_font.php'; // フォントファイルの読み込み
-require get_template_directory() . '/functions/register/register_custom_post_type.php'; // カスタム投稿タイプの追加
+require get_template_directory() . '/functions_common/register_style.php';            // スタイルファイルの読み込み
+require get_template_directory() . '/functions_common/register_script.php';           // スクリプトファイルの読み込み
+// require get_template_directory() . '/functions_common/register_exfont.php';           // フォントファイルの読み込み
+require get_template_directory() . '/functions_common/register_custom_post_type.php'; // カスタム投稿タイプの追加
+require get_template_directory() . '/functions_common/add_head_adobefont.php';        // webフォント(Adobeフォント)の読み込み
+// require get_template_directory() . '/functions_common/add_head_custom_styles.php';    // カスタマイザーで設定したstyle情報の設定
 
 /*----------------------------------------------------
-  テーマカスタマイザーの読み込み
+  Theme Customizer
 -----------------------------------------------------*/
-require get_template_directory() . '/customizer/customize.php';
-require get_template_directory() . '/customizer/style_customize.php';
+require get_template_directory() . '/functions_customizer/customize.php';             // ベースのカスタマイズ項目
+// require get_template_directory() . '/functions_customizer/style_customize.php';       // スタイル用カスタマイズ項目
 
 /*----------------------------------------------------
-  headタグに追加するコード
+  Plugins
 -----------------------------------------------------*/
-require get_template_directory() . '/functions/add_head/add_head_adobefont.php'; // webフォント(Adobeフォント)の読み込み
-require get_template_directory() . '/functions/add_head/add_head_custom_styles.php'; // カスタマイザーで設定したstyle情報の設定
-
-/*----------------------------------------------------
-  その他の拡張メソッド
------------------------------------------------------*/
-require get_template_directory() . '/functions/plugin/plugin_ai1wm.php';
-require get_template_directory() . '/functions/plugin/plugin_cf7.php';
-// require get_template_directory() . '/functions/plugin/plugin_bc_custom.php';
+require get_template_directory() . '/functions_plugin/plugin_ai1wm.php';              // All-in-One WP Migration
+require get_template_directory() . '/functions_plugin/plugin_cf7.php';                // Contact Form 7
+require get_template_directory() . '/functions_plugin/plugin_breadcrumb_custom.php';  // Breadcrumb NavXT
 
 
 /**
