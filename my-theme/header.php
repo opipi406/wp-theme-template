@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
   <div class="wrap">
     <header>
 
@@ -19,12 +18,12 @@
         <nav class="header__nav">
           <?php wp_nav_menu(); ?>
         </nav>
-        <button class="burger-menu">
+        <button class="burger-menu ml-auto">
           <div class="burger-menu__btn">
             <div class="burger-menu-line"></div>
           </div>
           <nav class="burger-menu__nav">
-            <?php wp_nav_menu(); ?>
+            <?php wp_nav_menu(['theme_location' => 'burger-menu']); ?>
           </nav>
           <div class="burger-overlay"></div>
         </button>

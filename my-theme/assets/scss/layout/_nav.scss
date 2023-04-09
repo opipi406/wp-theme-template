@@ -2,30 +2,35 @@
 
 @mixin g-nav-link {
   & > a {
-    font-size: 1rem;
-
-    line-height: 1.8;
+    font-family: $font-main;
 
     cursor: pointer;
     transition: all 0.3s;
 
-    color: $color-inv;
+    color: $color-main;
 
     &:hover {
-      color: dark($color-inv);
+      color: light($color-primary);
     }
   }
 }
 
-// ヘッダーメニュー
+/*----------------------------------------------------
+  ヘッダーメニュー
+-----------------------------------------------------*/
 .header__nav .menu {
   display: flex;
   flex-wrap: wrap;
 
   user-select: none;
 
-  .menu-item {
+  .menu-item,
+  .page_item {
+    font-size: 1rem;
+
     position: relative;
+
+    line-height: 1.8;
 
     @include g-nav-link();
   }
@@ -35,21 +40,23 @@
   }
 }
 
-// ハンバーガーメニュー
+/*----------------------------------------------------
+  ハンバーガーメニュー
+-----------------------------------------------------*/
 .burger-menu__nav .menu {
   margin: 160px 0;
   padding: 0 16px;
 
   user-select: none;
 
-  .menu-item {
+  .menu-item,
+  .page_item {
     font-size: 1.5rem;
 
     position: relative;
 
+    line-height: 1.8;
     margin-bottom: 18px;
-
-    text-align: center;
 
     @include g-nav-link();
   }

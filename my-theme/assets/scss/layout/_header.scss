@@ -24,7 +24,7 @@ header {
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   height: 100%;
@@ -35,7 +35,7 @@ header {
     padding: 0 40px;
   }
   @include mq-down(md) {
-    padding: 0 12px;
+    padding: 0 24px;
 
     &__nav {
       display: none;
@@ -43,18 +43,27 @@ header {
       pointer-events: none;
     }
   }
-  
-  // タイトル
-  &__title {
-    font-size: 1.5rem;
-
-    color: $color-inv;
-  }
 
   // ロゴ
-  .custom-logo-link img {
-    width: 200px;
-    object-fit: contain;
+  .custom-logo-link {
+    height: $header-height;
+    padding: 8px 0;
+
+    @include mq-down(lg) {
+      height: $header-height-lg;
+    }
+    @include mq-down(md) {
+      height: $header-height-md;
+    }
+    @include mq-down(sm) {
+      height: $header-height-sm;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
   }
 
   & > * + * {
