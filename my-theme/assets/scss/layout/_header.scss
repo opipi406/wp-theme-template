@@ -43,11 +43,18 @@ header {
       pointer-events: none;
     }
   }
-
+  
+  // タイトル
   &__title {
     font-size: 1.5rem;
 
     color: $color-inv;
+  }
+
+  // ロゴ
+  .custom-logo-link img {
+    width: 200px;
+    object-fit: contain;
   }
 
   & > * + * {
