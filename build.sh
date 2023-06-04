@@ -80,29 +80,27 @@ if [ $MODE = "production" ]; then
     echo "ビルド前に以下のチェックリストを確認してください。"
     echo ""
     echo "--------------------------------------------------------"
-    echo "1. utils.cssのパージが完了しているか --> npm run purge:utils"
-    echo "2. jsのバンドルが完了しているか --> npm run build:webpack"
-    echo "3. script.jsを読み込む設定になっているか --> functions.php \"USE_MINIFY_JS\" を 1 にする"
+    echo " 1. utils.cssのパージが完了しているか --> npm run purge:utils"
+    echo " 2. jsのバンドルが完了しているか --> npm run build:webpack"
+    echo " 3. webpack.config.jsのmodeがproductionになっているか"
     echo "--------------------------------------------------------"
     echo ""
 fi
 
-echo ビルド対象のテーマディレクトリ: $TARGET_DIR
+echo "[INFO] ビルド対象のテーマディレクトリ: $TARGET_DIR"
 
-echo -n "ビルドしてもよろしいですか? - $MODE [Y/n]: "
-read ANSWER
-case $ANSWER in
-    "Y" | "y" | "yes" | "Yes" | "YES" ) ;;
-    * ) exit 0;;
-esac
+echo -n "[INFO] ビルドしてもよろしいですか? [y/N] "; read ANSWER
+if [ "$ANSWER" != "y" ]; then
+    exit 0;
+fi
 
 rm -rf dist
 mkdir dist
 
-rsync -avh html/wp-content/themes/$TARGET_DIR/ dist/$TARGET_DIR/ --exclude-from="$EXCLUDE_FILE"
+rsync -avh html/wp-content/themes/"$TARGET_DIR"/ dist/"$TARGET_DIR"/ --exclude-from="$EXCLUDE_FILE"
 cd dist
-zip -r $TARGET_DIR.zip $TARGET_DIR
+zip -r "$TARGET_DIR".zip "$TARGET_DIR"
 cd ..
 
 echo ""
-echo "ビルドが完了しました。"
+echo "[INFO] ビルドが完了しました。"

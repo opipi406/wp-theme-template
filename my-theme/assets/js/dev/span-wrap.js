@@ -3,7 +3,7 @@
  * @param string selector
  * @param string className
  */
- function spanWrap(selector, className = 'char') {
+function spanWrap(selector, className = 'char') {
   const targets = document.querySelectorAll(selector)
 
   if (className) {
@@ -12,9 +12,9 @@
 
   for (const target of targets) {
     const nodes = [...target.childNodes]
-  
+
     let spanWrapText = ''
-  
+
     nodes.forEach((node) => {
       if (node.nodeType == 3) {
         const text = node.textContent.replace(/\r?\n/g, '') // テキストから改行コード削除
@@ -30,11 +30,11 @@
         spanWrapText = spanWrapText + node.outerHTML
       }
     })
-  
+
     target.innerHTML = spanWrapText
   }
 }
 
 window.addEventListener('DOMContentLoaded', function () {
-  // 
+  spanWrap('.anim-ttl')
 })

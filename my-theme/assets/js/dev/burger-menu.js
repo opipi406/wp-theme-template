@@ -1,13 +1,15 @@
-jQuery(function ($) {
+export default function jqBurgerMenu($) {
+  console.log('ready burger-menu.js')
+
   const selectors = [
     '.burger-menu',
-    '.burger-menu__btn',
     '.burger-menu-line',
     '.burger-menu__nav',
     '.burger-overlay',
+    '.js-burger-open',
   ]
 
-  $('body').on('click', '.burger-menu__btn', function () {
+  $('body').on('click', '.js-burger-open', function () {
     $(selectors.join(', ')).toggleClass('open')
     if ($(this).hasClass('open')) {
       document.addEventListener('touchmove', noscroll, {
@@ -26,7 +28,7 @@ jQuery(function ($) {
     }
   })
 
-  $('body').on('click', '.burger-overlay', function () {
+  $('body').on('click', '.js-burger-close', function () {
     $(selectors.join(', ')).removeClass('open')
     document.removeEventListener('touchmove', noscroll, {
       passive: false,
@@ -61,4 +63,4 @@ jQuery(function ($) {
       e.preventDefault()
     }
   }
-})
+}

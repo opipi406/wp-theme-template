@@ -1,7 +1,5 @@
 // エントリポイント
 import './main'
-import './span_wrap'
-import './anim'
-import './burger_menu'
-import './slider'
+import './span-wrap'
+import './anim/index'
 // import './webfont'

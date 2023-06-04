@@ -1,4 +1,6 @@
-jQuery(function ($) {
+export default function jqSlider($) {
+  console.log('ready slider.js')
+
   const $fvImgs = $.makeArray($('.fv-slider .fv-img')).map((x) => $(x))
   const $fvDots = $.makeArray($('.fv-slider__dot')).map((x) => $(x))
   const fadeInterval_ms = 1000 // フェードイン・アウトの間隔
@@ -73,4 +75,4 @@ jQuery(function ($) {
     }
     // console.log('next', currentSliderIndex);
   }
-})
+}

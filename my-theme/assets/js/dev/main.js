@@ -1,3 +1,6 @@
+import jqBurgerMenu from './burger-menu'
+import jqSlider from './slider'
+
 jQuery(function ($) {
   console.log('ready main.js')
 
@@ -18,6 +21,9 @@ jQuery(function ($) {
     )
     return false
   })
+
+  jqBurgerMenu($)
+  jqSlider($)
 })
 
 /**
@@ -26,5 +32,5 @@ jQuery(function ($) {
  */
 jQuery(window).on('load', function () {
   const $ = jQuery
-  // 
+  //
 })

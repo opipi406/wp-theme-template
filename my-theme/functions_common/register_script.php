@@ -35,24 +35,10 @@ function register_script()
   }
 
   /*----------------------------------------------------
-    自作スクリプト
+    script.js
   -----------------------------------------------------*/
-  $my_scripts = [
-    'main' => 'main.js',
-    'span-wrap' => 'span_wrap.js',
-    'burger' => 'burger_menu.js',
-    'anim' => 'anim.js',
-    'slider' => 'slider.js',
-  ];
   $deps = ['jquery', ...array_keys($extensions)];
-
-  if (USE_MINIFY_JS) {
-    wp_enqueue_script('script', "$base_url/script.js", $deps, $version, true);
-  } else {
-    foreach ($my_scripts as $key => $path) {
-      wp_enqueue_script($key, "$base_url/dev/$path", $deps, $version, true);
-    }
-  }
+  wp_enqueue_script('script', "$base_url/script.js", $deps, $version, true);
 }
 
 add_action('wp_enqueue_scripts', 'register_script');
