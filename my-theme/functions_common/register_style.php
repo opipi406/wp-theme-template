@@ -5,7 +5,10 @@
  */
 function register_style()
 {
-  $version = wp_get_theme()->get('Version');
+  $version = '1';
+  if (file_exists(get_theme_file_path('assets/css/style.css'))) {
+    $version = filemtime(get_theme_file_path('assets/css/style.css'));
+  }
   $base_url = get_template_directory_uri() . '/assets/css';
   $deps = [];
 
