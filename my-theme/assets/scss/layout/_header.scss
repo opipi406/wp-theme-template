@@ -36,12 +36,6 @@ header {
   }
   @include mq-down(md) {
     padding: 0 24px;
-
-    &__nav {
-      display: none;
-
-      pointer-events: none;
-    }
   }
 
   // ロゴ

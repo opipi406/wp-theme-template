@@ -1,0 +1,32 @@
+name: Build and Deploy
+run-name: ${{ github.actor }} is deploying (${{ github.ref_name }}) ✅
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Production deploy job
+        if: github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USER }}
+          key: ${{ secrets.PRODUCTION_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PRODUCTION_PORT }}
+          script: |
+            cd ~/workspace/wp-theme-template/
+            git fetch
+            git checkout main
+            git pull origin main
+            cd ~/unico-unique.com/public_html/wp-theme-template/wp-content/themes/
+            rm -rf ~/unico-unique.com/public_html/wp-theme-template/wp-content/themes/my-theme
+            cp -r ~/workspace/wp-theme-template/my-theme ~/unico-unique.com/public_html/wp-theme-template/wp-content/themes/my-theme
+            exit

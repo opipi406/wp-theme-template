@@ -2,7 +2,8 @@
 
 @mixin g-nav-link {
   & > a {
-    font-family: $font-main;
+    font-family: $font-display;
+    line-height: 1.8;
 
     cursor: pointer;
     transition: all 0.3s;
@@ -10,7 +11,7 @@
     color: $color-main;
 
     &:hover {
-      color: light($color-primary);
+      color: $color-primary;
     }
   }
 }
@@ -18,46 +19,88 @@
 /*----------------------------------------------------
   ヘッダーメニュー
 -----------------------------------------------------*/
-.header__nav .menu {
-  display: flex;
-  flex-wrap: wrap;
-
-  user-select: none;
-
-  .menu-item,
-  .page_item {
-    font-size: 1rem;
-
-    position: relative;
-
-    line-height: 1.8;
-
-    @include g-nav-link();
+.header-nav {
+  @include mq-down(sm) {
+    display: none;
   }
 
-  & > * + * {
-    margin-left: 16px;
+  .menu {
+    display: flex;
+
+    user-select: none;
+
+    .menu-item {
+      font-size: 2rem;
+      font-style: italic;
+
+      position: relative;
+
+      @include g-nav-link();
+    }
+
+    & > .menu-item + .menu-item {
+      margin-left: 60px;
+    }
   }
 }
 
 /*----------------------------------------------------
   ハンバーガーメニュー
 -----------------------------------------------------*/
-.burger-menu__nav .menu {
-  margin: 160px 0;
-  padding: 0 16px;
+.burger-nav {
+  overflow: scroll;
+
+  height: 100%;
 
   user-select: none;
 
-  .menu-item,
-  .page_item {
-    font-size: 1.5rem;
+  .menu-burger-menu-container {
+    padding: 0 60px;
 
+    @include mq-down(sm) {
+      padding: 0 50px;
+    }
+  }
+
+  .menu {
     position: relative;
 
-    line-height: 1.8;
-    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
 
-    @include g-nav-link();
+    height: 100%;
+    padding: 160px 0;
+
+    @include mq-down(md) {
+      padding: 80px 0;
+    }
+
+    .menu-item {
+      font-size: $font-xl;
+
+      position: relative;
+
+      @include mq-down(lg) {
+        font-size: $font-lg;
+      }
+      @include mq-down(md) {
+        font-size: $font-lg;
+      }
+      @include g-nav-link();
+    }
+
+    // & > .menu-item + .menu-item {
+    //   margin-top: 60px;
+    // }
+
+    .menu-item-contact > a {
+      color: $color-primary;
+    }
   }
+}
+
+.burger.open .burger-nav {
+  user-select: auto;
 }

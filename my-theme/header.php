@@ -15,18 +15,18 @@
 
       <div class="header">
         <?php the_custom_logo(); ?>
-        <nav class="header__nav">
+        <nav class="header-nav">
           <?php wp_nav_menu(); ?>
         </nav>
-        <button class="burger-menu ml-auto">
-          <div class="burger-menu__btn">
-            <div class="burger-menu-line"></div>
+        <div class="burger">
+          <div class="burger__btn">
+            <div class="burger-line"></div>
           </div>
-          <nav class="burger-menu__nav">
+          <nav class="burger-nav">
             <?php wp_nav_menu(['theme_location' => 'burger-menu']); ?>
           </nav>
           <div class="burger-overlay"></div>
-        </button>
+        </div>
       </div>
 
     </header>
