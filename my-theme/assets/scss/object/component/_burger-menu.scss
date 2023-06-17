@@ -7,30 +7,33 @@ $btn-color--open: black;
 $bg-color: $color-bg-main;
 // メニューコンテンツの基本横幅
 $contain-width: 100vw;
+// rootのz-index
+$root-z-index: 1000;
 
 /*----------------------------------------------------
   Body
 -----------------------------------------------------*/
 .burger {
   position: relative;
-  z-index: 1000;
+  z-index: $root-z-index;
 
-  display: none;
+  display: flex;
   align-items: center;
   flex-direction: column;
 
   margin-left: auto;
 
-  @include mq-down(sm) {
-    display: flex;
-  }
+  pointer-events: none;
+
   @include mq-down(sm) {
     width: 15px;
     height: 30px;
+
+    pointer-events: auto;
   }
 
   &.open {
-    display: flex;
+    pointer-events: auto;
   }
 }
 
@@ -39,8 +42,8 @@ $contain-width: 100vw;
 -----------------------------------------------------*/
 .burger-btn {
   position: absolute;
-  z-index: 1000;
-  inset: -20px;
+  z-index: $root-z-index;
+  inset: -30px -20px;
 
   cursor: pointer;
 }
@@ -69,6 +72,7 @@ $contain-width: 100vw;
     line-height: 80px;
 
     position: absolute;
+    z-index: $root-z-index;
     right: 180px;
 
     display: none;
