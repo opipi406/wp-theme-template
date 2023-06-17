@@ -1,8 +1,19 @@
 @charset "UTF-8";
+html {
+  font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "Noto Serif JP", "MS P明朝", "MS PMincho", serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #3a3a3a;
+}
+
 body {
   overflow-x: hidden;
   width: 100%;
   background-color: #f5f5f5;
+}
+body.disabled-scroll {
+  overflow: hidden;
+  height: 100%;
 }
 
 section {
@@ -16,6 +27,7 @@ section {
 }
 
 main {
+  overflow: hidden;
   min-height: 100vh;
   padding-top: 80px;
 }
@@ -36,18 +48,13 @@ main {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1330px;
   margin: 0 auto;
   padding: 0 64px;
 }
-@media screen and (max-width: 1599px) {
-  .container {
-    max-width: 1000px;
-  }
-}
 @media screen and (max-width: 999px) {
   .container {
-    max-width: 800px;
+    max-width: 1216px;
     padding: 0 48px;
   }
 }
@@ -71,21 +78,13 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-html {
-  font-family: "Noto Sans JP", "Quicksand", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #3a3a3a;
-}
-
 header {
   position: fixed;
   z-index: 99;
   inset: 0 0 auto 0;
   width: 100vw;
   height: 80px;
-  -webkit-box-shadow: 0 0 5px #a0a0a0;
-          box-shadow: 0 0 5px #a0a0a0;
+  background-color: rgba(255, 255, 255, 0.5019607843);
 }
 @media screen and (max-width: 999px) {
   header {
@@ -114,28 +113,29 @@ header {
       -ms-flex-align: center;
           align-items: center;
   height: 100%;
-  background-color: black;
-}
-@media screen and (min-width: 768px) {
-  .header {
-    padding: 0 40px;
-  }
+  padding: 0 165px;
 }
 @media screen and (max-width: 767px) {
   .header {
-    padding: 0 12px;
+    padding: 0 60px;
   }
-  .header__nav {
-    display: none;
-    pointer-events: none;
+}
+@media screen and (max-width: 559px) {
+  .header {
+    padding: 0 30px;
   }
 }
 .header__title {
   font-size: 1.5rem;
   color: #f1f1f1;
 }
+@media screen and (max-width: 559px) {
+  .header .custom-logo-link {
+    display: none;
+  }
+}
 .header .custom-logo-link img {
-  width: 200px;
+  width: 160px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -144,7 +144,7 @@ header {
 }
 
 footer {
-  background-color: rgba(148, 148, 148, 0.4156862745);
+  background-color: rgba(255, 255, 255, 0.6196078431);
 }
 
 footer .footer-content {
@@ -203,59 +203,119 @@ footer .footer-title {
   color: #3a3a3a;
 }
 
-.header__nav .menu {
+/*----------------------------------------------------
+  ヘッダーメニュー
+-----------------------------------------------------*/
+@media screen and (max-width: 559px) {
+  .header-nav {
+    display: none;
+  }
+}
+.header-nav .menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
-.header__nav .menu .menu-item {
+.header-nav .menu .menu-item {
+  font-size: 2rem;
+  font-style: italic;
   position: relative;
 }
-.header__nav .menu .menu-item > a {
-  font-size: 1rem;
+.header-nav .menu .menu-item > a {
+  font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "Noto Serif JP", "MS P明朝", "MS PMincho", serif;
   line-height: 1.8;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  color: #f1f1f1;
+  color: #3a3a3a;
 }
-.header__nav .menu .menu-item > a:hover {
-  color: #cec7c7;
+.header-nav .menu .menu-item > a:hover {
+  color: #0f5387;
 }
-.header__nav .menu > * + * {
-  margin-left: 16px;
+.header-nav .menu > .menu-item + .menu-item {
+  margin-left: 60px;
 }
 
-.burger-menu__nav .menu {
-  margin: 160px 0;
-  padding: 0 16px;
+/*----------------------------------------------------
+  ハンバーガーメニュー
+-----------------------------------------------------*/
+.burger-nav {
+  overflow: scroll;
+  height: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
-.burger-menu__nav .menu .menu-item {
-  font-size: 1.5rem;
-  position: relative;
-  margin-bottom: 18px;
-  text-align: center;
+.burger-nav .menu-burger-menu-container {
+  padding: 0 60px;
 }
-.burger-menu__nav .menu .menu-item > a {
-  font-size: 1rem;
+@media screen and (max-width: 559px) {
+  .burger-nav .menu-burger-menu-container {
+    padding: 0 50px;
+  }
+}
+.burger-nav .menu {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  padding: 160px 0;
+}
+@media screen and (max-width: 767px) {
+  .burger-nav .menu {
+    padding: 80px 0;
+  }
+}
+.burger-nav .menu .menu-item {
+  font-size: 48px;
+  position: relative;
+}
+@media screen and (max-width: 999px) {
+  .burger-nav .menu .menu-item {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .burger-nav .menu .menu-item {
+    font-size: 32px;
+  }
+}
+.burger-nav .menu .menu-item > a {
+  font-family: "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "Noto Serif JP", "MS P明朝", "MS PMincho", serif;
   line-height: 1.8;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  color: #f1f1f1;
+  color: #3a3a3a;
 }
-.burger-menu__nav .menu .menu-item > a:hover {
-  color: #cec7c7;
+.burger-nav .menu .menu-item > a:hover {
+  color: #0f5387;
+}
+.burger-nav .menu .menu-item-contact > a {
+  color: #0f5387;
+}
+
+.burger.open .burger-nav {
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
 }
 
 .fv {
@@ -579,18 +639,23 @@ footer .footer-title {
 }
 
 table.table {
-  font-size: 1.5rem;
+  font-size: 32px;
   width: 100%;
   margin: 0 auto;
 }
-@media screen and (max-width: 1599px) {
+@media screen and (max-width: 999px) {
   table.table {
-    font-size: 1.25rem;
+    font-size: 24px;
   }
 }
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 767px) {
   table.table {
-    font-size: 1rem;
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 559px) {
+  table.table {
+    font-size: 20px;
   }
 }
 @media screen and (max-width: 767px) {
@@ -734,75 +799,129 @@ ul.list li:after {
   background-color: #ede6fc;
 }
 
-.burger-menu {
+/*----------------------------------------------------
+  Body
+-----------------------------------------------------*/
+.burger {
   position: relative;
-  z-index: 100;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  z-index: 1000;
+  display: none;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 30px;
-  height: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: auto;
 }
-.burger-menu__btn {
-  position: relative;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
+@media screen and (max-width: 559px) {
+  .burger {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
-.burger-menu span {
-  margin-left: 10px;
+@media screen and (max-width: 559px) {
+  .burger {
+    width: 15px;
+    height: 30px;
+  }
 }
-.burger-menu.open span {
-  color: #494949 !important;
+.burger.open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-.burger-menu__nav {
+
+/*----------------------------------------------------
+  Button
+-----------------------------------------------------*/
+.burger-btn {
+  position: absolute;
+  z-index: 1000;
+  inset: -20px;
+  cursor: pointer;
+}
+
+/*----------------------------------------------------
+  Contents
+-----------------------------------------------------*/
+.burger-nav {
   position: fixed;
-  overflow-y: scroll;
-  width: 400px;
+  inset: 0;
+  width: 100vw;
   height: 100vh;
   cursor: default;
   -webkit-transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
   opacity: 0;
   background-color: #f5f5f5;
-  inset: 0 0 0 100vw;
 }
-.burger-menu__nav.open {
-  z-index: 99;
+.burger-nav .js-burger-close {
+  font-size: 2rem;
+  font-style: italic;
+  line-height: 80px;
+  position: absolute;
+  right: 180px;
+  display: none;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  letter-spacing: 2px;
+}
+.burger-nav .js-burger-close:hover {
+  color: #0f5387;
+}
+.burger-nav .burger-bg {
+  position: fixed;
+  inset: 0;
+  opacity: 0.25;
+}
+
+.burger.open .burger-nav {
+  z-index: 990;
+  display: block;
+  pointer-events: auto;
   opacity: 1;
 }
 @media screen and (min-width: 560px) {
-  .burger-menu__nav.open {
-    width: 400px;
-    inset: 0 0 0 calc(100vw - 400px);
+  .burger.open .burger-nav {
+    width: 100vw;
   }
 }
 @media screen and (max-width: 559px) {
-  .burger-menu__nav.open {
-    width: 100vw;
+  .burger.open .burger-nav {
     inset: 0;
+    width: 100vw;
+  }
+}
+.burger.open .burger-nav .js-burger-close {
+  display: inline-block;
+}
+@media screen and (max-width: 559px) {
+  .burger.open .burger-nav .js-burger-close {
+    display: none;
   }
 }
 
-/*-----------------------------------------------------
-  ハンバーガーメニューのボタンアイコン
-------------------------------------------------------*/
-.burger-menu-line {
+/*----------------------------------------------------
+  Lines
+-----------------------------------------------------*/
+.burger-lines span {
   position: absolute;
-  z-index: 100;
-  left: 0;
+  z-index: 999;
   bottom: calc(50% - 1.5px);
+  left: 0;
   display: inline-block;
   width: 100%;
-  height: 3px;
+  height: 2px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  background-color: #494949;
+  background-color: black;
 }
-.burger-menu-line::before, .burger-menu-line::after {
+.burger-lines span::before, .burger-lines span::after {
   position: absolute;
   left: 0;
   width: 100%;
@@ -810,49 +929,41 @@ ul.list li:after {
   content: "";
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  background-color: #494949;
+  background-color: black;
 }
-.burger-menu-line::before {
-  -webkit-transform: translateY(-11px);
-          transform: translateY(-11px);
+.burger-lines span::before {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
 }
-.burger-menu-line::after {
-  -webkit-transform: translateY(11px);
-          transform: translateY(11px);
+@media screen and (max-width: 559px) {
+  .burger-lines span::before {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
 }
-.burger-menu-line.open {
-  background-color: transparent !important;
+.burger-lines span::after {
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
 }
-.burger-menu-line.open::before {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  background-color: #494949 !important;
-}
-.burger-menu-line.open::after {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  background-color: #494949 !important;
+@media screen and (max-width: 559px) {
+  .burger-lines span::after {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+  }
 }
 
-/*-----------------------------------------------------
-  オーバーレイ
-------------------------------------------------------*/
-.burger-overlay {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  pointer-events: none;
-  background: transparent;
-  inset: 0;
+.burger.open .burger-lines span {
+  background-color: transparent !important;
 }
-.burger-overlay.open {
-  z-index: 90;
-  cursor: default;
-  pointer-events: auto;
-  opacity: 0.25;
-  background-color: #000000;
+.burger.open .burger-lines span::before {
+  -webkit-transform: rotate(-45deg) scaleX(1.5);
+          transform: rotate(-45deg) scaleX(1.5);
+  background-color: black !important;
+}
+.burger.open .burger-lines span::after {
+  -webkit-transform: rotate(45deg) scaleX(1.5);
+          transform: rotate(45deg) scaleX(1.5);
+  background-color: black !important;
 }
 
 .card-list {
@@ -1270,16 +1381,21 @@ ul.list li:after {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  font-size: 1.5rem;
+  font-size: 32px;
 }
-@media screen and (max-width: 1599px) {
+@media screen and (max-width: 999px) {
   .txt-content__txt {
-    font-size: 1.25rem;
+    font-size: 24px;
   }
 }
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 767px) {
   .txt-content__txt {
-    font-size: 1rem;
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 559px) {
+  .txt-content__txt {
+    font-size: 20px;
   }
 }
 

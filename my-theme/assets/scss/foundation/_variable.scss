@@ -13,10 +13,8 @@ $font-mincho: '游明朝体', 'Yu Mincho', YuMincho, 'ヒラギノ明朝 Pro',
 //----------------------------------------------------
 //	Container
 //----------------------------------------------------
-$container-size: 1400px;
-$container-size-xxl: 1000px;
-$container-size-lg: 800px;
-
+$container-size: 1330px;
+$container-size-lg: 1216px;
 $container-x-pad: 64px;
 $container-x-pad-lg: 48px;
 $container-x-pad-md: 32px;
@@ -29,3 +27,17 @@ $header-height: 80px;
 $header-height-lg: 80px;
 $header-height-md: 80px;
 $header-height-sm: 60px;
+
+//----------------------------------------------------
+//	Font Size
+//----------------------------------------------------
+$font-5xl: 128px;
+$font-4xl: 86px;
+$font-3xl: 64px;
+$font-2xl: 52px;
+$font-xl: 48px;
+$font-lg: 32px;
+$font-base: 24px;
+$font-md: 22px;
+$font-sm: 20px;
+$font-xs: 16px;

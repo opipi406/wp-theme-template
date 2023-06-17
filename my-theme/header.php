@@ -10,23 +10,21 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
+  <header>
 
-      <div class="header">
-        <?php the_custom_logo(); ?>
-        <nav class="header-nav">
-          <?php wp_nav_menu(); ?>
+    <div class="header">
+      <?php the_custom_logo(); ?>
+      <nav class="header-nav">
+        <?php wp_nav_menu(); ?>
+      </nav>
+      <div class="burger">
+        <div class="burger-btn js-burger-open"></div>
+        <div class="burger-lines"><span></span></div>
+        <nav class="burger-nav">
+          <?php wp_nav_menu(['theme_location' => 'burger-menu']); ?>
         </nav>
-        <div class="burger">
-          <div class="burger__btn">
-            <div class="burger-line"></div>
-          </div>
-          <nav class="burger-nav">
-            <?php wp_nav_menu(['theme_location' => 'burger-menu']); ?>
-          </nav>
-          <div class="burger-overlay"></div>
-        </div>
+        <div class="burger-overlay"></div>
       </div>
+    </div>
 
-    </header>
+  </header>

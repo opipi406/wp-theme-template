@@ -11,10 +11,15 @@ html {
 }
 
 @mixin font-sizing {
-  font-size: $font-base;
-  line-height: 1.8;
+  font-size: $font-lg;
 
   @include mq-down(lg) {
+    font-size: $font-base;
+  }
+  @include mq-down(md) {
+    font-size: $font-md;
+  }
+  @include mq-down(sm) {
     font-size: $font-sm;
   }
 }
