@@ -57,13 +57,13 @@ main {
   max-width: $container-size;
   margin: 0 auto;
   padding: 0 $container-x-pad;
+  // @include mq-down(xxl) {
+  //   max-width: $container-size-xxl;
+  // }
+  // @include mq-down(xl) {
+  //   max-width: $container-size-xl;
+  // }
 
-  @include mq-down(xxl) {
-    max-width: $container-size-xxl;
-  }
-  @include mq-down(xl) {
-    // max-width: $container-size-xl;
-  }
   @include mq-down(lg) {
     max-width: $container-size-lg;
     padding: 0 $container-x-pad-lg;

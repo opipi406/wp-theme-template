@@ -2,23 +2,9 @@
 @use 'color' as *;
 @use 'media-query' as *;
 
-//----------------------------------------------------
-//	Font Size
-//----------------------------------------------------
-$font-4xl: 128px;
-$font-3xl: 86px;
-$font-2xl: 64px;
-$font-xl: 52px;
-$font-lg: 32px;
-$font-base: 24px;
-$font-sm: 22px;
-$font-xs: 20px;
-
-
 html {
-  font-family: $font-display;
+  font-family: $font-mincho;
   font-size: 16px;
-
   line-height: 1.5;
 
   color: $color-main;
@@ -26,7 +12,6 @@ html {
 
 @mixin font-sizing {
   font-size: $font-base;
-
   line-height: 1.8;
 
   @include mq-down(lg) {

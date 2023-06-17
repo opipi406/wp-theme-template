@@ -2,7 +2,7 @@
 
 @mixin g-nav-link {
   & > a {
-    font-family: $font-display;
+    font-family: $font-mincho;
     line-height: 1.8;
 
     cursor: pointer;
