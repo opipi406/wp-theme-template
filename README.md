@@ -24,6 +24,15 @@ MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続�
 `localhost:8080`にアクセス  
 ユーザ名、パスワード等を設定してWordPressをインストールする
 
+## .htaccessにアップロード制限解除の設定を追記
+```bash
+echo "php_value upload_max_filesize 1024M" >> html/.htaccess \
+  && echo "php_value post_max_size 1024M" >> html/.htaccess \
+  && echo "php_value memory_limit 256M" >> html/.htaccess \
+  && echo "php_value max_execution_time 300" >> html/.htaccess
+  && echo "php_value max_input_time 300" >> html/.htaccess
+```
+
 ## 雛形テーマファイルの移行
 `html/wp-content/themes/` に `my-theme`ディレクトリを移動する
 ```bash
