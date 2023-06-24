@@ -1,8 +1,9 @@
 version: "3"
 services:
   wordpress:
-    image: wordpress:latest
-    container_name: wordpress
+    container_name: "wordpress"
+    build:
+      dockerfile: ./docker/wordpress/Dockerfile
     depends_on:
       - db
     ports:

@@ -8,7 +8,7 @@ clear
 echo -n "テーマディレクトリ名を入力: "
 read DIR
 if [ -z $DIR ]; then
-  exit 0
+    exit 0
 fi
 
 mv ./my-theme ./html/wp-content/themes/$DIR
