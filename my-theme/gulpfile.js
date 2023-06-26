@@ -91,6 +91,7 @@ task('purge', () => {
     .pipe(
       purgecss({
         content: ['*.php', 'template-parts/**/*.php'],
+        defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
       }),
     )
     .pipe(dest(path.dist))
@@ -100,10 +101,11 @@ task('purge', () => {
   Purge utils.css
 -----------------------------------------------------*/
 task('purge-utils', () => {
-  return src('assets/css/utils.css')
+  return src(`${path.dist}/utils.css`)
     .pipe(
       purgecss({
         content: ['*.php', 'template-parts/**/*.php'],
+        defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
       }),
     )
     .pipe(dest(path.dist))
