@@ -1,8 +1,4 @@
 <?php
-define('JSEXT_USE_AOS',   1);   // AOS（スクロールアニメーションプラグイン）を使用
-define('JSEXT_USE_GSAP',  1);   // GSAP (アニメーションプラグイン) を使用
-define('JSEXT_USE_SLICK', 0);   // slick (スライダープラグイン) を使用
-
 define('THEME_NAME', esc_html(get_template())); // テーマ名
 
 /*----------------------------------------------------
@@ -32,25 +28,30 @@ function my_theme_support()
 /*----------------------------------------------------
   Base
 -----------------------------------------------------*/
-require get_template_directory() . '/functions_common/register_style.php';            // スタイルファイルの読み込み
-require get_template_directory() . '/functions_common/register_script.php';           // スクリプトファイルの読み込み
-// require get_template_directory() . '/functions_common/register_exfont.php';           // フォントファイルの読み込み
-require get_template_directory() . '/functions_common/register_custom_post_type.php'; // カスタム投稿タイプの追加
-require get_template_directory() . '/functions_common/add_head_adobefont.php';        // webフォント(Adobeフォント)の読み込み
-// require get_template_directory() . '/functions_common/add_head_custom_styles.php';    // カスタマイザーで設定したstyle情報の設定
+require get_template_directory() . '/functions/register_assets.php';           // css,jsファイルの読み込み
+require get_template_directory() . '/functions/register_custom_post_type.php'; // カスタム投稿タイプの追加
+require get_template_directory() . '/functions/add_head_adobefont.php';        // webフォント(Adobeフォント)の読み込み
+// require get_template_directory() . '/functions/add_head_custom_styles.php';    // カスタマイザーで設定したstyle情報の設定
 
 /*----------------------------------------------------
-  Theme Customizer
+  Customizer
 -----------------------------------------------------*/
-require get_template_directory() . '/functions_customizer/customize.php';             // ベースのカスタマイズ項目
-// require get_template_directory() . '/functions_customizer/style_customize.php';       // スタイル用カスタマイズ項目
+require get_template_directory() . '/functions/customizer/customizer.php';        // ベースのカスタマイズ項目
+// require get_template_directory() . '/functions/customizer/customizer_style.php';  // スタイル用カスタマイズ項目
 
 /*----------------------------------------------------
   Plugins
 -----------------------------------------------------*/
-require get_template_directory() . '/functions_plugin/plugin_ai1wm.php';              // All-in-One WP Migration
-require get_template_directory() . '/functions_plugin/plugin_cf7.php';                // Contact Form 7
-require get_template_directory() . '/functions_plugin/plugin_breadcrumb_custom.php';  // Breadcrumb NavXT
+require get_template_directory() . '/functions/plugin/plugin_ai1wm.php';              // All-in-One WP Migration
+// require get_template_directory() . '/functions/plugin/plugin_cf7.php';                // Contact Form 7
+// require get_template_directory() . '/functions/plugin/plugin_breadcrumb_custom.php';  // Breadcrumb NavXT
+
+/*----------------------------------------------------
+  Lib
+-----------------------------------------------------*/
+// require get_template_directory() . '/lib/article.php';
+// require get_template_directory() . '/lib/article_query.php';
+
 
 
 /**
