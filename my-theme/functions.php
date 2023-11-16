@@ -52,26 +52,36 @@ require get_template_directory() . '/functions/plugin/plugin_ai1wm.php';        
 // require get_template_directory() . '/lib/article.php';
 // require get_template_directory() . '/lib/article_query.php';
 
-
-
 /**
  * 画像アセットディレクトリパス取得処理のシンタックスシュガー
  *
  * @return string imagesディレクトリのパス
  */
-function get_img_dir()
+function get_img_dir(string $file_name = "")
 {
-  return get_template_directory_uri() . '/assets/images';
+  if (substr($file_name, 0, 1) == "/") {
+    $file_name = substr($file_name, 1);
+  }
+  return get_template_directory_uri() . '/assets/images/' . $file_name;
 }
 
 /**
- * 画像アセットディレクトリパス取得処理のシンタックスシュガー
- *
- * @return void imagesディレクトリのパスをecho
+ * 画像タグを出力するメソッド
  */
-function img_dir()
+function img_dir(string $file_name = "")
 {
-  echo get_img_dir();
+  echo get_img_dir($file_name);
+}
+
+/**
+ * レスポンシブ対応の画像タグを出力するメソッド
+ */
+function img_set(string $file_name)
+{
+  [$name, $ext] = explode('.', $file_name);
+  $sp_file_name = "$name@sp.$ext";
+
+  echo 'src="' . get_img_dir($file_name) . '" srcset="' . get_img_dir($sp_file_name) . ' 768w, ' . get_img_dir($file_name) . ' 1280w"';
 }
 add_action('after_setup_theme', 'my_theme_support');
 
