@@ -22,7 +22,7 @@ jobs:
           key: ${{ secrets.PRODUCTION_SSH_PRIVATE_KEY }}
           port: ${{ secrets.PRODUCTION_PORT }}
           script: |
-            cd ~/workspace/wp-theme-template/
+            cd ~/git/wp-theme-template
             git fetch
             git checkout main
             git pull origin main
