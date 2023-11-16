@@ -28,5 +28,5 @@ jobs:
             git pull origin main
             cd ~/unico-unique.com/public_html/wp-theme-template/wp-content/themes/
             rm -rf ~/unico-unique.com/public_html/wp-theme-template/wp-content/themes/my-theme
-            cp -r ~/workspace/wp-theme-template/my-theme ~/unico-unique.com/public_html/wp-theme-template/wp-content/themes/my-theme
+            cp -r ~/git/wp-theme-template/my-theme ~/unico-unique.com/public_html/wp-theme-template/wp-content/themes/my-theme
             exit
