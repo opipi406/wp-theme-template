@@ -1,0 +1,62 @@
+@use 'variable' as *;
+@use 'color' as *;
+@use 'media-query' as *;
+
+//----------------------------------------------------
+//	レイアウト
+//----------------------------------------------------
+
+// コンテナ
+@mixin base-container {
+  max-width: $container-size;
+  margin: 0 auto;
+  padding: 0 $container-x-pad;
+
+  // @include mq-down(xxl) {
+  //   max-width: $container-size-xxl;
+  // }
+  // @include mq-down(xl) {
+  //   max-width: $container-size-xl;
+  // }
+  @include mq-down(lg) {
+    max-width: $container-size-lg;
+    padding: 0 $container-x-pad-lg;
+  }
+  @include mq-down(md) {
+    padding: 0 $container-x-pad-md;
+  }
+  @include mq-down(sm) {
+    padding: 0 $container-x-pad-sm;
+  }
+}
+
+// セクション
+@mixin base-section {
+  position: relative;
+
+  padding-bottom: 8rem;
+
+  @include mq-down(sm) {
+    padding-bottom: 4rem;
+  }
+}
+
+//----------------------------------------------------
+//	テキスト
+//----------------------------------------------------
+@mixin base-typography {
+  font-family: $font-mincho;
+  font-size: 36px;
+  line-height: 1.7;
+
+  margin-top: 50px;
+
+  @include mq-down(xl) {
+    font-size: $font-base;
+  }
+  @include mq-down(sm) {
+    font-size: $font-xs;
+
+    margin-top: 20px;
+  }
+}
