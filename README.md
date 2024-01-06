@@ -26,6 +26,9 @@ MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続�
 
 ## .htaccessにアップロード制限解除の設定を追記
 ```bash
+cd <project-root>
+```
+```bash
 echo "" >> html/.htaccess \
 && echo "php_value upload_max_filesize 1024M" >> html/.htaccess \
 && echo "php_value post_max_size 1024M" >> html/.htaccess \
@@ -43,13 +46,12 @@ mv ./my-theme ./html/wp-content/themes/<自作テーマ名>
 ## 後処理、テーマディレクトリをgit管理下に置く
 ```bash
 rm -rf .git .gitignore
-cd src
-git init
+cd html/wp-content/themes/<自作テーマ名> && git init
 ```
 
 ## コミット
 ```bash
-git add .
+git add -A
 git commit -m "first commit"
 git remote add origin <URL>
 git push -u origin main
