@@ -26,11 +26,12 @@ MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続�
 
 ## .htaccessにアップロード制限解除の設定を追記
 ```bash
-echo "php_value upload_max_filesize 1024M" >> html/.htaccess \
-  && echo "php_value post_max_size 1024M" >> html/.htaccess \
-  && echo "php_value memory_limit 256M" >> html/.htaccess \
-  && echo "php_value max_execution_time 300" >> html/.htaccess \
-  && echo "php_value max_input_time 300" >> html/.htaccess
+echo "" >> html/.htaccess \
+&& echo "php_value upload_max_filesize 1024M" >> html/.htaccess \
+&& echo "php_value post_max_size 1024M" >> html/.htaccess \
+&& echo "php_value memory_limit 256M" >> html/.htaccess \
+&& echo "php_value max_execution_time 300" >> html/.htaccess \
+&& echo "php_value max_input_time 300" >> html/.htaccess
 ```
 
 ## 雛形テーマファイルの移行
