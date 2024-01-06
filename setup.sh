@@ -22,6 +22,7 @@ echo
 echo "Deleted current git files."
 echo "-> .git/ .gitignore"
 
+echo
 echo "php_value upload_max_filesize 1024M" >> ./html/.htaccess
 echo "php_value post_max_size 1024M" >> ./html/.htaccess
 echo "php_value memory_limit 256M" >> ./html/.htaccess
