@@ -24,6 +24,8 @@ MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続�
 `localhost:8080`にアクセス  
 ユーザ名、パスワード等を設定してWordPressをインストールする
 
+> Shellが実行できる環境であれば、以降に記載している `.htaccessにアップロード制限解除の設定を追記` から `後処理、テーマディレクトリをgit管理下に置く` までを `setup.sh` で自動化できます。
+
 ## .htaccessにアップロード制限解除の設定を追記
 ```bash
 cd <project-root>
@@ -56,8 +58,6 @@ git commit -m "first commit"
 git remote add origin <URL>
 git push -u origin main
 ```
-
-### Shellが実行できる環境であれば、上記のstep1〜6までを`setup.sh`を実行することで自動化できます。
 
 # Usage
 ## gulp, webpack実行環境の準備
