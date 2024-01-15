@@ -1,23 +1,50 @@
 <?php
+
 /**
  * All-in-One WP Migrationで特定のファイル/ディレクトリを除外してエクスポートする。
  */
+
 add_filter(
   'ai1wm_exclude_themes_from_export',
   function ($exclude_filters) {
-    $exclude_filters = [
-      THEME_NAME . '/.DS_Store',
-      THEME_NAME . '/.gitignore',
-      THEME_NAME . '/.git',
-      THEME_NAME . '/node_modules',
-      THEME_NAME . '/.eslintrc.json',
-      THEME_NAME . '/.prettierrc.json',
-      THEME_NAME . '/.stylelintrc.json',
-      THEME_NAME . '/webpack.config.js',
-      THEME_NAME . '/gulpfile.js',
-      THEME_NAME . '/package-lock.json',
-      THEME_NAME . '/package.json',
-    ];
+    array_map(
+      function ($file) use (&$exclude_filters) {
+        $exclude_filters[] = THEME_NAME . '/' . $file;
+      },
+      [
+        ".DS_Store",
+        "README.md",
+
+        # Git files
+        ".gitignore",
+        ".git/",
+
+        # Setting files
+        ".vscode/",
+        ".editorconfig",
+        ".prettierrc.json",
+        ".stylelintrc.js",
+        "tsconfig.json",
+        "gulpfile.js",
+        "webpack.config.js",
+
+        # Package manager
+        "package.json",
+        "package-lock.json",
+        "yarn.lock",
+        "composer.json",
+        "node_modules/",
+
+        # Original
+        "assets/css/scss/",
+        "assets/css/dist.utils/",
+        "assets/js/dist",
+        "assets/js/src",
+
+        "__docs__/",
+        "__docs/",
+      ]
+    );
     return $exclude_filters;
   }
 );

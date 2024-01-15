@@ -1,9 +1,11 @@
-export default function jqSlider($) {
+import JQueryStatic from 'jquery'
+
+export default function jqSlider($: JQueryStatic) {
   console.log('ready slider.js')
 
   const $fvImgs = $.makeArray($('.fv-slider .fv-img')).map((x) => $(x))
   const $fvDots = $.makeArray($('.fv-slider__dot')).map((x) => $(x))
-  const fadeInterval_ms = 1000 // フェードイン・アウトの間隔
+  const fadeInterval_ms = 2000 // フェードイン・アウトの間隔
   const showInterval_ms = 5000 // 次の画像切り替えまでの間隔
 
   var currentSliderIndex = 0
@@ -29,10 +31,6 @@ export default function jqSlider($) {
 
       if (!$fv.hasClass('hide')) {
         const j = (i + $fvImgs.length - 1) % $fvImgs.length
-        const $currentDot = $fvDots[j]
-
-        $('.fv-slider__dot').removeClass('current')
-        $currentDot.addClass('current')
 
         $fv.fadeOut(fadeInterval_ms, function () {
           $(this).addClass('hide')
@@ -57,10 +55,6 @@ export default function jqSlider($) {
 
       if (!$fv.hasClass('hide')) {
         const j = (i + 1) % $fvImgs.length
-        const $currentDot = $fvDots[j]
-
-        $('.fv-slider__dot').removeClass('current')
-        $currentDot.addClass('current')
 
         $fv.fadeOut(fadeInterval_ms, function () {
           $(this).addClass('hide')

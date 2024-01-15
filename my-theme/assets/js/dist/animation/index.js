@@ -1,24 +1,14 @@
-AOS.init({
-  once: true,
-  offset: Number(window.innerHeight / 5),
-})
-
-/**
- * GSAP初期設定
- */
-gsap.defaults({
-  ease: 'power3.out',
-})
-
-gsap.config({
-  nullTargetWarn: false,
-})
-
-import './anim-to-scroll'
-import './anim-title'
-import './anim-typography'
-import './anim-parallax'
-
+import { initializeAOS, initializeGSAP } from './settings';
+if (typeof AOS !== 'undefined') {
+    initializeAOS(AOS);
+}
+if (typeof gsap !== 'undefined') {
+    initializeGSAP(gsap);
+}
+// import './anim-to-scroll'
+// import './anim-title'
+// import './anim-typography'
+// import './anim-parallax'
 /* --------------------------------
   Sample Code
 -----------------------------------*

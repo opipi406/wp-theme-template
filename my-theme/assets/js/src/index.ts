@@ -1,5 +1,6 @@
 import jqBurgerMenu from './burger-menu'
 import jqSlider from './slider'
+import jqAccordion from './accordion'
 
 jQuery(function ($) {
   console.log('ready main.js')
@@ -9,9 +10,9 @@ jQuery(function ($) {
    */
   $('a[href^="#"]').click(function () {
     const speed = 500
-    const href = $(this).attr('href')
+    const href = $(this).attr('href') ?? ''
     const target = $(href == '#' || href == '' ? 'html' : href)
-    const position = target.offset().top
+    const position = target.offset()?.top
     $('html').animate(
       {
         scrollTop: position,
@@ -24,6 +25,7 @@ jQuery(function ($) {
 
   jqBurgerMenu($)
   jqSlider($)
+  jqAccordion($)
 })
 
 /**
@@ -34,3 +36,8 @@ jQuery(window).on('load', function () {
   const $ = jQuery
   //
 })
+
+import './invert'
+import './span-wrap'
+import './animation/index'
+// import './webfont'

@@ -1,14 +1,16 @@
-export default function jqBurgerMenu($) {
+import JQueryStatic from 'jquery'
+
+export default function jqBurgerMenu($: JQueryStatic) {
   console.log('ready burger-menu.js')
 
   const selectors = ['.burger', '.burger-overlay']
 
-  $('.js-burger-open').click(function (e) {
+  $('.js-burger-open').on('click', function (e) {
     $(selectors.join(', ')).toggleClass('open')
     $('body').toggleClass('disabled-scroll')
   })
 
-  $('.js-burger-close').click(function (e) {
+  $('.js-burger-close').on('click', function (e) {
     $(selectors.join(', ')).removeClass('open')
     $('body').removeClass('disabled-scroll')
   })

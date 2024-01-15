@@ -1,7 +1,7 @@
 <?php
 
 define('EXTENSION_USES', [
-  'gsap' => true,
+  'gsap' => false,
   'aos' => false,
   'anime' => false,
   'slick' => false,
@@ -30,7 +30,7 @@ function register_script()
   }
   // AOS.js
   if (EXTENSION_USES['aos']) {
-    $extensions['aos'] = "$base_url/ext/aos.js";
+    $extensions['aos'] = "https://unpkg.com/aos@next/dist/aos.js";
   }
   // anime.js
   if (EXTENSION_USES['anime']) {
