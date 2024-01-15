@@ -10,8 +10,6 @@ case "${UNAMEOUT}" in
 esac
 
 if [ "$MACHINE" == "UNKNOWN" ]; then
-    echo "Unsupported operating system [$(uname -s)]. Laravel Sail supports macOS, Linux, and Windows (WSL2)." >&2
-    
     exit 1
 fi
 
@@ -72,6 +70,17 @@ if [ "$1" == "init" ]; then
     echo
     echo "${WATER}[INFO]${NC} Created new theme directory."
     echo "${GRAY}-> html/wp-content/themes/$DIR${NC}"
+    
+    cp README.theme.md ./html/wp-content/themes/"$DIR"/README.md
+    echo
+    echo "${WATER}[INFO]${NC} Created README.md"
+    echo "${GRAY}-> html/wp-content/themes/${DIR}/README.md${NC}"
+    
+    mkdir ./html/wp-content/themes/"$DIR"/.vscode/
+    cp .settings.exapmle.json ./html/wp-content/themes/"$DIR"/.vscode/.settings.json
+    echo
+    echo "${WATER}[INFO]${NC} Created vscode setting file."
+    echo "${GRAY}-> html/wp-content/themes/${DIR}/.vscode/.settings.json${NC}"
     
     {
         echo

@@ -59,41 +59,11 @@ git remote add origin <URL>
 git push -u origin main
 ```
 
-# Usage
-## gulp, webpack実行環境の準備
-```bash
-npm install
-```
-## Sassのwatcher起動 (sass, autoprefixer)
-```bash
-npm run dev
-```
-## browser-syncを使用してwatcher起動
-```bash
-npm run dev:sync
-```
-## Utilityクラス定義CSSファイルの生成
-```bash
-npm run build:utils
-```
-## Utilityクラス定義CSSファイルの最適化
-```bash
-npm run purge:utils
-```
-## webpackのwatcher起動
-```bash
-npm run dev:js
-```
-## JavaScriptファイルをscript.jsにバンドル
-```bash
-npm run build:js
-```
-
 # 実行環境
 |||
 |-|-|
 |OS|Mac OS|
-|node|v16.17.0|
+|node|v18.17.1|
 
 # Tips
 

@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  },
+  // Stylelint
+  "scss.validate": false,
+  "stylelint.validate": ["scss"]
+}
