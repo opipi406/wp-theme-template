@@ -35,6 +35,14 @@ npm run dev:js
 ```bash
 npm run build:js
 ```
+### 開発環境にテーマファイルを反映（デプロイ）
+```bash
+npm run deploy:dev
+```
+### 本番環境にテーマファイルを反映（デプロイ）
+```bash
+npm run deploy
+```
 
 # Requirement
 |||

@@ -1,3 +1,7 @@
 docker/db/data/
 html/
 .vscode
+
+# environment file
+.deploy.conf
+.deploy.develop.conf
