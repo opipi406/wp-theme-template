@@ -43,7 +43,10 @@ function display_help {
     echo "  wp-template [options]"
     echo
     echo "${YELLOW}Commands:${NC}"
-    echo "  ${GREEN}wp-template init${NC}       WordPressテーマテンプレートの初期化"
+    echo "  ${GREEN}wp-template init${NC}                           WordPressテーマテンプレートの初期化"
+    echo
+    echo "  ${GREEN}wp-template deploy${NC}                         テーマファイルのデプロイ（コピー）"
+    echo "  ${GREEN}wp-template deploy --develop (--dev)${NC}"
 
     exit
 }
@@ -56,7 +59,11 @@ fi
 
 ###################################################################################################
 
+#=====================================================
+#	Initialize
+#=====================================================
 if [ "$1" == "init" ]; then
+
     docker-compose down
     docker-compose build
     docker-compose up -d
@@ -103,6 +110,8 @@ if [ "$1" == "init" ]; then
     echo "${GRAY}-> .git/ .gitignore${NC}"
     rm -rf .git
     rm .gitignore
+    echo
+    echo "${WATER}[INFO]${NC} Initialized git repository."
     cd ./html/wp-content/themes/"$THEME_NAME" || exit 1
     git init
 
@@ -119,15 +128,45 @@ if [ "$1" == "init" ]; then
     {
         echo
         echo THEME_NAME="$THEME_NAME"
-    } | tee -a "$BASE_DIR"/.env "$BASE_DIR"/.env.develop
+    } | tee -a "$BASE_DIR"/.deploy.conf "$BASE_DIR"/.deploy.develop.conf >/dev/null
 
+#=====================================================
+#	Wordspress setup
+#=====================================================
+elif [ "$1" == "setup" ]; then
+    source "$BASE_DIR"/.deploy.conf
+
+    WORDPRESS_CONTAINER_ID=$(docker ps -q -f status=running -f name=wordpress)
+
+    if [ -z "$WORDPRESS_CONTAINER_ID" ]; then
+        echo "${GRAY}WordPress container is not runnning.${NC}"
+    fi
+
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp core install \
+        --url="http://localhost:8080" \
+        --title="${THEME_NAME}" \
+        --admin_user='admin' \
+        --admin_password='test' \
+        --admin_email='info@example.com' \
+        --allow-root
+
+    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentysixteen
+
+    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentysixteen
+    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentyseventeen
+    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentynineteen
+    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentytwenty
+
+#=====================================================
+#	Deploy
+#=====================================================
 elif [ "$1" == "deploy" ] || [ "$1" == "d" ]; then
 
     if [ "$2" == "--develop" ] || [ "$2" == "--dev" ]; then
         IGNORE_FILE=".deployignore.develop.conf"
 
         if [ ! -e "$BASE_DIR"/.deploy.develop.conf ]; then
-            echo "${BOLD}.deploy.develop.conf${NC} is not found." && exit
+            echo "${GRAY}.deploy.develop.conf is not found.${NC}" && exit
         fi
 
         source "$BASE_DIR"/.deploy.develop.conf
@@ -139,7 +178,7 @@ elif [ "$1" == "deploy" ] || [ "$1" == "d" ]; then
         IGNORE_FILE=".deployignore.conf"
 
         if [ ! -e "$BASE_DIR"/.deploy.conf ]; then
-            echo "${BOLD}.deploy.conf${NC} is not found." && exit
+            echo "${GRAY}.deploy.conf is not found.${NC}" && exit
         fi
 
         source "$BASE_DIR"/.deploy.conf

@@ -8,12 +8,6 @@ services:
       - db
     ports:
       - "8080:80"
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: wp
-      WORDPRESS_DB_USER: user
-      WORDPRESS_DB_PASSWORD: qweqwe
-      WORDPRESS_DEBUG: 1
     volumes:
       - ./html:/var/www/html
 
