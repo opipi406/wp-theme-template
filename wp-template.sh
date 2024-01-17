@@ -45,6 +45,8 @@ function display_help {
     echo "${YELLOW}Commands:${NC}"
     echo "  ${GREEN}wp-template init${NC}                           WordPressテーマテンプレートの初期化"
     echo
+    echo "  ${GREEN}wp-template setup${NC}                          WordPressの初期セットアップ"
+    echo
     echo "  ${GREEN}wp-template deploy${NC}                         テーマファイルのデプロイ（コピー）"
     echo "  ${GREEN}wp-template deploy --develop (--dev)${NC}"
 
@@ -65,7 +67,7 @@ fi
 if [ "$1" == "init" ]; then
 
     docker-compose down
-    docker-compose build
+    docker-compose build --no-cache
     docker-compose up -d
 
     clear
@@ -75,7 +77,7 @@ if [ "$1" == "init" ]; then
     echo -n "${WATER}?${NC} What is your Theme directory name? "
     read -r THEME_NAME
     if [ -z "$THEME_NAME" ]; then
-        exit
+        exit 1
     fi
     cp -r ./my-theme ./html/wp-content/themes/"$THEME_NAME"
     echo
@@ -88,7 +90,7 @@ if [ "$1" == "init" ]; then
     echo "${GRAY}-> html/wp-content/themes/${THEME_NAME}/README.md${NC}"
 
     mkdir ./html/wp-content/themes/"$THEME_NAME"/.vscode/
-    cp .settings.exapmle.json ./html/wp-content/themes/"$THEME_NAME"/.vscode/.settings.json
+    cp .settings.example.json ./html/wp-content/themes/"$THEME_NAME"/.vscode/.settings.json
     echo
     echo "${WATER}[INFO]${NC} Created vscode setting file."
     echo "${GRAY}-> html/wp-content/themes/${THEME_NAME}/.vscode/.settings.json${NC}"
@@ -106,10 +108,10 @@ if [ "$1" == "init" ]; then
     echo
     echo "=== Git setup"
     echo
-    echo "${WATER}[INFO]${NC} Deleted current git files."
-    echo "${GRAY}-> .git/ .gitignore${NC}"
-    rm -rf .git
-    rm .gitignore
+    # echo "${WATER}[INFO]${NC} Deleted current git files."
+    # echo "${GRAY}-> .git/ .gitignore${NC}"
+    # rm -rf .git
+    # rm .gitignore
     echo
     echo "${WATER}[INFO]${NC} Initialized git repository."
     cd ./html/wp-content/themes/"$THEME_NAME" || exit 1
@@ -119,6 +121,9 @@ if [ "$1" == "init" ]; then
     echo "${GREEN}Setup Completed!${NC}"
     echo
     echo "Next step..."
+    echo "${GRAY}\$${NC} rm -rf .git"
+    echo "${GRAY}\$${NC} rm .gitignore"
+    echo
     echo "${GRAY}\$${NC} cd ./html/wp-content/themes/$THEME_NAME"
     echo "${GRAY}\$${NC} git add -A"
     echo "${GRAY}\$${NC} git commit -m \"first commit\""
@@ -135,6 +140,7 @@ if [ "$1" == "init" ]; then
 #=====================================================
 elif [ "$1" == "setup" ]; then
     source "$BASE_DIR"/.deploy.conf
+    source "$BASE_DIR"/.env
 
     WORDPRESS_CONTAINER_ID=$(docker ps -q -f status=running -f name=wordpress)
 
@@ -142,20 +148,57 @@ elif [ "$1" == "setup" ]; then
         echo "${GRAY}WordPress container is not runnning.${NC}"
     fi
 
+    echo
+    echo "${BLUE}=== Created wp-config.${NC}"
+    docker exec -it "$WORDPRESS_CONTAINER_ID" cp wp-config-docker.php wp-config.php
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp config create \
+        --dbname="$WORDPRESS_DB_NAME" \
+        --dbuser="$WORDPRESS_DB_USER" \
+        --dbpass="$WORDPRESS_DB_PASSWORD" \
+        --dbhost="$WORDPRESS_DB_HOST" \
+        --allow-root
+
+    # core install
+    echo
+    echo "${BLUE}=== WordPress core setup.${NC}"
     docker exec -it "$WORDPRESS_CONTAINER_ID" wp core install \
         --url="http://localhost:8080" \
         --title="${THEME_NAME}" \
-        --admin_user='admin' \
-        --admin_password='test' \
-        --admin_email='info@example.com' \
+        --admin_user="opipi" \
+        --admin_password="${WORDPRESS_USER_PASSWORD:=admin}" \
+        --admin_email="${WORDPRESS_USER_EMAIL:=admin}" \
         --allow-root
+    # タイムゾーン
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp option update timezone_string 'Asia/Tokyo' --allow-root
+    # パーマリンク
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp rewrite structure '/%post_id%/' --allow-root
 
-    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentysixteen
+    # 言語設定
+    echo
+    echo "${BLUE}=== Installing language.${NC}"
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp language core install --allow-root --activate ja
 
-    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentysixteen
-    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentyseventeen
-    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentynineteen
-    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentytwenty
+    # デフォルトテーマの削除
+    echo
+    echo "${BLUE}=== Deleting default themes.${NC}"
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme activate --allow-root "$THEME_NAME"
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentytwentyone
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentytwentytwo
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp theme delete --allow-root twentytwentythree
+
+    # デフォルトプラグインの削除
+    echo
+    echo "${BLUE}=== Deleting default plugins.${NC}"
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin delete --allow-root hello.php
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin delete --allow-root akismet
+
+    echo
+    echo "${BLUE}=== Installing reccomend plugins.${NC}"
+    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin install contact-form-7 --allow-root
+    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin install advanced-custom-fields --activate --allow-root
+
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp language core update --allow-root
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp language plugin update --all --allow-root
 
 #=====================================================
 #	Deploy
@@ -166,19 +209,18 @@ elif [ "$1" == "deploy" ] || [ "$1" == "d" ]; then
         IGNORE_FILE=".deployignore.develop.conf"
 
         if [ ! -e "$BASE_DIR"/.deploy.develop.conf ]; then
-            echo "${GRAY}.deploy.develop.conf is not found.${NC}" && exit
+            echo "${GRAY}.deploy.develop.conf is not found.${NC}" && exit 1
         fi
 
         source "$BASE_DIR"/.deploy.develop.conf
         echo
         echo "${BLUE}=== Deployment to production${NC}"
         echo
-        exit
     else
         IGNORE_FILE=".deployignore.conf"
 
         if [ ! -e "$BASE_DIR"/.deploy.conf ]; then
-            echo "${GRAY}.deploy.conf is not found.${NC}" && exit
+            echo "${GRAY}.deploy.conf is not found.${NC}" && exit 1
         fi
 
         source "$BASE_DIR"/.deploy.conf
