@@ -247,7 +247,7 @@ elif [ "$1" == "deploy" ] || [ "$1" == "d" ]; then
         echo
         echo "${WATER}[INFO]${NC} Copying files..."
         echo "${GRAY}-> ${DEPLOY_PATH}${NC}"
-        rsync -avz "$BASE_DIR"/html/wp-content/themes/"$THEME_NAME" "$SSH_HOST_ALIAS":"$DEPLOY_PATH" --exclude-from="$BASE_DIR"/"$IGNORE_FILE"
+        rsync -avh "$BASE_DIR"/html/wp-content/themes/"$THEME_NAME"/ "$SSH_HOST_ALIAS":"$DEPLOY_PATH" --exclude-from="$BASE_DIR"/"$IGNORE_FILE"
         echo
         echo "${GREEN}Deployment completed!${NC}"
     fi
