@@ -214,7 +214,7 @@ elif [ "$1" == "deploy" ] || [ "$1" == "d" ]; then
 
         source "$BASE_DIR"/.deploy.develop.conf
         echo
-        echo "${BLUE}=== Deployment to production${NC}"
+        echo "${BLUE}=== Deployment to develop${NC}"
         echo
     else
         IGNORE_FILE=".deployignore.conf"
