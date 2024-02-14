@@ -1,4 +1,7 @@
+@use '../foundation' as *;
+
 $color-label: #2c3e50;
+$color-success: #057254;
 $color-error: #a11010;
 $color-input-bg: #efefef;
 $color-input-border: #858585;
@@ -15,34 +18,36 @@ $select-icon: url(img/lp/select-icon.svg);
 // フォームアイテム
 .form-item {
   p {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     label {
-      font-size: 1.5rem;
-
-      min-width: 280px;
-      padding-left: 25px;
-
+      display: block;
+      margin-bottom: 8px;
+      font-size: $font-xs;
+      line-height: 220%; /* 35.2px */
       color: $color-label;
+
+      @include mq-down(sm) {
+        font-size: $font-xs;
+        line-height: 160%; /* 24px */
+      }
     }
+
     span {
       position: relative;
-
       flex: 1;
     }
+  }
+
+  &.-short {
+    width: 200px;
   }
 
   &.-arrow > p > span::before {
     position: absolute;
     top: 26px;
     right: 20px;
-
     width: 15px;
     height: 15px;
-
     content: '';
-
     background: $select-icon;
     background-repeat: no-repeat;
     background-position: center;
@@ -51,10 +56,8 @@ $select-icon: url(img/lp/select-icon.svg);
 }
 
 @mixin cf7-base-label($text-color) {
-  font-size: 1rem;
-
   padding: 2px 6px;
-
+  font-size: 1rem;
   color: $text-color;
 }
 
@@ -71,104 +74,120 @@ $select-icon: url(img/lp/select-icon.svg);
 // --------------------------------------------------
 // Contact Form 7
 // --------------------------------------------------
-@mixin cf7-base-layout {
-  font-size: 1rem;
-
+@mixin cf7-base-layout($padding: 16px) {
   width: 100%;
-  padding: 20px;
-  // border: 1px solid $color-border;
+  padding: $padding;
+  font-size: $font-xs;
+  line-height: 220%; /* 35.2px */
+  color: $color-black;
 
-  border-radius: 5px;
-  background-color: $color-input-bg;
-
-  &::placeholder {
-    opacity: 0.5;
+  @include mq-down(sm) {
+    font-size: $font-xs;
+    line-height: 160%; /* 24px */
   }
 }
 
 .wpcf7 {
-  //----------------------------------------------------
+  // ----------------------------------------------------
   //	Label
-  //----------------------------------------------------
+  // ----------------------------------------------------
   label {
-    font-weight: bold;
-
     display: block;
-
     margin-bottom: 6px;
+    font-size: $font-xs;
+    line-height: 220%; /* 35.2px */
+
+    @include mq-down(sm) {
+      font-size: $font-xs;
+      line-height: 160%; /* 24px */
+    }
   }
 
-  //----------------------------------------------------
+  // ----------------------------------------------------
   //	Text Input
-  //----------------------------------------------------
+  // ----------------------------------------------------
   input[type='text'],
   input[type='email'],
   input[type='tel'] {
-    @include cf7-base-layout();
+    border-bottom: 1px solid $color-gray;
+
+    @include cf7-base-layout;
+
+    &::placeholder {
+      transition: 0.2s;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+    }
   }
 
   textarea {
-    height: 300px;
-
+    height: 244px;
     resize: none;
+    background: $color-bg-main;
 
-    @include cf7-base-layout();
+    @include cf7-base-layout($padding: 8px 16px);
   }
 
   select {
     cursor: pointer;
 
-    @include cf7-base-layout();
+    @include cf7-base-layout;
   }
 
-  //----------------------------------------------------
+  // ----------------------------------------------------
   //	Radio
-  //----------------------------------------------------
+  // ----------------------------------------------------
   .wpcf7-form-control.wpcf7-radio {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
     flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
 
     .wpcf7-list-item {
       width: calc(50% - 1rem);
 
-      & > label {
-        input[type='checkbox'] {
-        }
-      }
+      // & > label {
+      //   input[type='checkbox'] {
+      //   }
+      // }
     }
   }
 
-  //----------------------------------------------------
+  // ----------------------------------------------------
   //	Submit
-  //----------------------------------------------------
+  // ----------------------------------------------------
   .wpcf7-submit {
-    width: 4;
-    margin: 90px auto 0 auto;
+    width: 260px;
+    height: 60px;
     margin-top: 40px;
-
-    transition: 0.2s;
     text-align: center;
+    border: 1px solid $color-black;
+    transition: 0.5s;
 
     &:hover {
-      background-color: #e6e6e6;
+      color: $color-white;
+      background-color: $color-black;
+      border-color: transparent;
     }
   }
 
-  //----------------------------------------------------
+  .wpcf7-form > p:last-of-type {
+    text-align: center;
+  }
+
+  // ----------------------------------------------------
   //	Spinner
-  //----------------------------------------------------
+  // ----------------------------------------------------
   .wpcf7-spinner {
+    display: none;
     margin-top: 12px;
   }
-}
 
-.wpcf7 {
   // input要素のバリデーションエラー
   .wpcf7-not-valid {
-    border: 1px solid #a11010;
-    background: #f1dbdb !important;
+    // border-bottom: 1px solid #a11010;
   }
 
   // バリデーションエラーテキスト
@@ -178,18 +197,18 @@ $select-icon: url(img/lp/select-icon.svg);
 
   .wpcf7-response-output {
     padding: 12px;
-
     color: $color-error;
+    background: #ffe0e5;
     border: none !important;
     border-radius: 4px;
-    background: #ffe0e5;
   }
 
   // Success
   form.sent .wpcf7-response-output {
-    color: #057254;
+    color: $color-success;
     background: #e0ffe9;
   }
+
   // Error
   form.faild .wpcf7-response-output,
   form.invalid .wpcf7-response-output,
@@ -200,13 +219,13 @@ $select-icon: url(img/lp/select-icon.svg);
 
   .wpcf7-validation-errors {
     color: #b94a48;
-    border: 1px solid #eed3d7;
     background-color: #f2dede;
+    border: 1px solid #eed3d7;
   }
 
   .wpcf7-mail-sent-ok {
     color: #3a87ad;
-    border: 1px solid #bce8f1;
     background-color: #d9edf7;
+    border: 1px solid #bce8f1;
   }
 }

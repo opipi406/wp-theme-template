@@ -1,41 +1,39 @@
-
 .concentration-line-wrap {
   position: absolute;
-  inset: -80px 0 0 0;
-
+  inset: -80px 0 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-
+  justify-content: center;
   width: 100%;
 }
 
 .concentration-line-inner {
-  
   position: relative;
-
   display: flex;
-  overflow: hidden;
-  justify-content: center;
   align-items: center;
-
+  justify-content: center;
   min-width: 100vw;
   height: 100%;
+  overflow: hidden;
 }
 
 .concentration-line {
-  $color: rgba(224, 223, 223, 0.101);
+  $color: rgb(224 223 223 / 10.1%);
 
   width: 150vmax;
-  height: 150vmax;
   min-width: 150vmax;
+  height: 150vmax;
   min-height: 150vmax;
+  background: repeating-conic-gradient(
+      transparent,
+      transparent 12deg,
+      $color 12deg 15deg
+    ),
+    repeating-conic-gradient(transparent, transparent 19deg, $color 19deg 22deg),
+    repeating-conic-gradient(transparent, transparent 6deg, $color 6deg 8deg);
 
   // border-radius: 50%;
   animation: rotate-anim 30s linear infinite;
-  background: repeating-conic-gradient(transparent,transparent 12deg,$color 12deg 15deg),
-  repeating-conic-gradient(transparent,transparent 19deg,$color 19deg 22deg),
-  repeating-conic-gradient(transparent,transparent 6deg,$color 6deg 8deg);
 }
 
 @keyframes rotate-anim {

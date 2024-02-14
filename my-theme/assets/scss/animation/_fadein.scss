@@ -2,75 +2,77 @@
   opacity: 0;
 
   &.js-animated {
-    animation-name: fadeInBottom;
+    animation-name: fade-in-botton;
   }
+
   &.-bottom.js-animated {
-    animation-name: fadeInBottom;
+    animation-name: fade-in-botton;
   }
+
   &.-right.js-animated {
-    animation-name: fadeInRight;
+    animation-name: fade-in-right;
   }
+
   &.-left.js-animated {
-    animation-name: fadeInLeft;
+    animation-name: fade-in-left;
   }
+
   &.-top.js-animated {
     animation-name: fadeInTop;
   }
 
+  /* stylelint-disable-next-line */
   &.js-animated {
     animation-duration: 1s;
     animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
-
     animation-fill-mode: both;
   }
 }
 
-@keyframes fadeInBottom {
+@keyframes fade-in-botton {
   from {
+    opacity: 0;
     transform: translate(0, 100px);
-
-    opacity: 0;
   }
-  to {
-    transform: translate(0, 0);
 
+  to {
     opacity: 1;
+    transform: translate(0, 0);
   }
 }
 
-@keyframes fadeInUp {
+@keyframes fade-in-up {
   from {
+    opacity: 0;
     transform: translate(0, -100px);
-
-    opacity: 0;
   }
-  to {
-    transform: translate(0, 0);
 
+  to {
     opacity: 1;
+    transform: translate(0, 0);
   }
 }
-@keyframes fadeInRight {
+
+@keyframes fade-in-right {
   from {
+    opacity: 0;
     transform: translate(100px, 0);
-
-    opacity: 0;
   }
-  to {
-    transform: translate(0, 0);
 
+  to {
     opacity: 1;
+    transform: translate(0, 0);
   }
 }
-@keyframes fadeInLeft {
+
+@keyframes fade-in-left {
   from {
-    transform: translate(-100px, 0);
-
     opacity: 0;
+    transform: translate(-100px, 0);
   }
-  to {
-    transform: translate(0, 0);
 
+  to {
     opacity: 1;
+    transform: translate(0, 0);
   }
 }

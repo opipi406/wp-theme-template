@@ -1,20 +1,20 @@
 .cross {
-  &::before, &::after {
+  &::before,
+  &::after {
     position: absolute;
     top: 50%;
     left: 50%;
-
     width: 3px;
     height: 100%;
-
-    content: "";
-
-    background: #ffffff;
+    content: '';
+    background: #fff;
   }
+
   &::before {
-    transform: translate(-50%,-50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
   }
+
   &::after {
-    transform: translate(-50%,-50%) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 }

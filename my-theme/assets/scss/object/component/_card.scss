@@ -5,50 +5,46 @@ $y-pad: 20px;
 $thumb-height: 150px;
 $card-gap: 24px;
 
-//----------------------------------------------------
+// ----------------------------------------------------
 //	カードリストボックス
-//----------------------------------------------------
+// ----------------------------------------------------
 .card-list {
   display: flex;
+  flex-flow: row wrap;
+  gap: $card-gap $card-gap;
   justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
 
   @include mq-down(sm) {
     flex-direction: column;
-
     padding-right: 16px;
     padding-left: 16px;
   }
-
-  gap: $card-gap $card-gap;
 }
 
-//----------------------------------------------------
+// ----------------------------------------------------
 //	カード本体
-//----------------------------------------------------
+// ----------------------------------------------------
 .card {
   position: relative;
-
-  overflow: hidden;
-
   width: 25%;
   height: auto;
-
-  transition: 0.3s;
-
-  background-color: #ffffff;
+  overflow: hidden;
+  background-color: #fff;
   box-shadow: 0 0 5px #6f6f6f6d;
+  transition: 0.3s;
 
   @include mq-down(xxl) {
     width: calc(100% / 4 - (#{$card-gap} * 0.75));
   }
+
   @include mq-down(lg) {
     width: calc(100% / 3 - (#{$card-gap} * 0.6666));
   }
+
   @include mq-down(md) {
     width: calc(50% - (#{$card-gap} * 0.5));
   }
+
   @include mq-down(sm) {
     width: 100%;
   }
@@ -57,11 +53,11 @@ $card-gap: 24px;
   &__thumb-box {
     overflow: hidden;
   }
+
   // サムネイル
   &__thumb {
     width: 100%;
     height: $thumb-height;
-
     transition: 0.6s;
 
     @include mq-down(md) {
@@ -77,7 +73,6 @@ $card-gap: 24px;
   &__body {
     min-height: 170px;
     padding: 24px;
-
     background-color: #efedf7;
 
     @include mq-down(sm) {
@@ -87,37 +82,33 @@ $card-gap: 24px;
 
   // タイトル
   &__title {
+    height: 42px;
+    margin-bottom: 12px;
+    overflow: hidden;
     font-size: 1.5rem;
     font-weight: bold;
-
-    overflow: hidden;
-
-    height: 42px;
     line-height: 1.4;
-    margin-bottom: 12px;
   }
 
   // テキスト
   &__text {
+    //
   }
 
   // 詳細 （日付　or author?）
   &__detail {
-    font-size: 0.75rem;
-
     min-height: 40px;
     padding: 0 12px;
-
+    font-size: 0.75rem;
     color: $color-secondary;
   }
 
   // タグリスト
   &__tag-list {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-wrap: wrap;
-
+    align-items: center;
+    justify-content: flex-start;
     padding-right: 80px;
 
     @include mq-down(xl) {
@@ -133,18 +124,18 @@ $card-gap: 24px;
     color: $color-primary;
     background-color: $color-fg-primary;
   }
+
   &:hover &__thumb {
     transform: scale(1.1);
   }
+
   &:hover &__btn {
     background-color: light($color-fg-primary);
   }
 
   &__link {
     position: absolute;
-
-    display: block;
-
     inset: 0;
+    display: block;
   }
 }

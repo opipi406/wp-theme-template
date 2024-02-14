@@ -1,6 +1,7 @@
 @function light($color) {
   @return saturate(lighten($color, 15%), 15%);
 }
+
 @function dark($color) {
   @return saturate(darken($color, 15%), 7%);
 }
@@ -11,11 +12,7 @@
 $color-main: #3a3a3a;
 $color-primary: #0f5387;
 $color-secondary: #870e58;
-$color-inv: #f1f1f1;
-
 $color-success: #005b2a;
-$color-info: #00839d;
-$color-warn: #8f5f00;
 $color-error: #7d0000;
 
 // ----------------------------------------------------------
@@ -24,11 +21,7 @@ $color-error: #7d0000;
 $color-fg-main: #f1f1f1;
 $color-fg-primary: #bea9ed;
 $color-fg-secondary: #eda9cf;
-$color-fg-inv: #3a3a3a;
-
 $color-fg-success: #4cd78d;
-$color-fg-info: #00c6ed;
-$color-fg-warn: #f9c256;
 $color-fg-error: #f16565;
 
 // ----------------------------------------------------------
@@ -37,6 +30,11 @@ $color-fg-error: #f16565;
 $color-bg-main: #f5f5f5;
 $color-bg-primary: #f6ebe4;
 $color-bg-secondary: #f2dae8;
-$color-bg-inv: #202020;
-
 $color-header: #ffffff9e;
+
+// ----------------------------------------------------------
+//  Custom Color
+// ----------------------------------------------------------
+$color-gray: #9d9d9d;
+$color-black: #222;
+$color-white: #e4e4e4;

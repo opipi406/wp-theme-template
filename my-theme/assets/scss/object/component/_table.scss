@@ -1,7 +1,7 @@
 @use '../../foundation' as *;
 
 table.table {
-  @include font-sizing();
+  @include font-sizing;
 
   width: 100%;
   margin: 0 auto;
@@ -9,9 +9,9 @@ table.table {
   tr {
     @include mq-down(md) {
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
       flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
       margin-top: 40px;
     }
   }
@@ -28,30 +28,32 @@ table.table {
   }
 
   th {
-    padding-left: 50px;
     width: 200px;
+    padding-left: 50px;
 
     @include mq-down(md) {
-      padding-left: 40px;
       padding-bottom: 0;
+      padding-left: 40px;
       border: none;
     }
   }
 
-  th:after,
-  th:before {
-    content: '';
+  th::after,
+  th::before {
     position: absolute;
+    content: '';
     transform: rotate(45deg);
   }
-  th:before {
+
+  th::before {
     top: 0.7em;
     left: 0.2em;
     width: 12px;
     height: 12px;
     border: 2px solid transparentize($color-fg-secondary, 0.5);
   }
-  th:after {
+
+  th::after {
     top: 0.9em;
     left: 0.7em;
     width: 14px;

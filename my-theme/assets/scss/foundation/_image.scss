@@ -9,13 +9,12 @@
 }
 
 img.lazy-fadein {
+  opacity: 0;
   transition: 2s;
   transform: translate(0, 100px);
-
-  opacity: 0;
 }
-img.lazy-fadein.lazyloaded {
-  transform: translate(0, 0);
 
+img.lazy-fadein.lazyloaded {
   opacity: 1;
+  transform: translate(0, 0);
 }

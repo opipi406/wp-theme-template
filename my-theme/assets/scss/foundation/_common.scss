@@ -5,9 +5,9 @@
 @use 'font' as *;
 
 body {
+  width: 100%;
   overflow-x: hidden;
 
-  width: 100%;
   // FIXME: position: fixed が効かなくなる可能性がある?
   // transform: translate3d(0, 0, 0); // GPUを使わせる
   // 背景画像を設定する場合
@@ -18,68 +18,64 @@ body {
   background-color: $color-bg-main;
 
   &.disabled-scroll {
-    overflow: hidden;
-
     height: 100%;
+    overflow: hidden;
   }
 }
 
-//----------------------------------------------------
+// ----------------------------------------------------
 //	メインコンテンツ
-//----------------------------------------------------
+// ----------------------------------------------------
 main {
-  overflow: hidden;
-
   min-height: 100vh;
   padding-top: $header-height;
+  overflow: hidden;
 
   @include mq-down(lg) {
     padding-top: $header-height-lg;
   }
+
   @include mq-down(md) {
     padding-top: $header-height-md;
   }
+
   @include mq-down(sm) {
     padding-top: $header-height-sm;
   }
 }
 
-//----------------------------------------------------
+// ----------------------------------------------------
 //	コンテナ
-//----------------------------------------------------
+// ----------------------------------------------------
 .container {
-  @include base-container();
+  @include base-container;
 }
 
-//----------------------------------------------------
+// ----------------------------------------------------
 //	セクション
-//----------------------------------------------------
+// ----------------------------------------------------
 section {
-  @include base-section();
+  @include base-section;
 }
 
-//----------------------------------------------------
+// ----------------------------------------------------
 //	メインテキスト
-//----------------------------------------------------
+// ----------------------------------------------------
 .txt {
-  @include base-typography();
+  @include base-typography;
 }
 
-//----------------------------------------------------
+// ----------------------------------------------------
 //	リンク
-//----------------------------------------------------
+// ----------------------------------------------------
 a {
-  color: $color-primary;
+  cursor: $color-primary;
+  -webkit-tap-highlight-color: transparent;
 }
 
 // クリック・タップ時の青枠除去
 *:focus {
   outline: none;
-}
-a {
-  cursor: pointer;
-
-  -webkit-tap-highlight-color: transparent;
 }
 
 // reCAPTCHA非表示

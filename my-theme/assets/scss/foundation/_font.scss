@@ -3,11 +3,10 @@
 @use 'media-query' as *;
 
 html {
-  font-family: $font-mincho;
-  font-size: 16px;
+  font-family: $font-main;
+  font-size: $font-xs;
   line-height: 1.5;
-
-  color: $color-main;
+  color: $color-black;
 }
 
 @mixin font-sizing {
@@ -16,9 +15,11 @@ html {
   @include mq-down(lg) {
     font-size: $font-base;
   }
+
   @include mq-down(md) {
     font-size: $font-md;
   }
+
   @include mq-down(sm) {
     font-size: $font-sm;
   }

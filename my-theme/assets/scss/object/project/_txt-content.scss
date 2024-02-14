@@ -7,21 +7,23 @@
 // ---------------------------------------------
 
 @use '../../foundation' as *;
+
 $mq: md;
-$gap: 60px;
-$gap-sp: 30px;
+$gap: 40px;
+$gap-tb: 40px;
+$gap-sp: 50px;
 
 .txt-content {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
   flex-direction: row-reverse;
   gap: $gap;
+  align-items: flex-start;
+  justify-content: center;
 
   @include mq-down($mq) {
-    align-items: center;
     flex-direction: column;
     gap: $gap-sp;
+    align-items: center;
   }
 
   &.-reverse {
@@ -33,22 +35,10 @@ $gap-sp: 30px;
   }
 
   &__img {
-    flex: 1;
-    width: 40%;
-    min-width: 40%;
-
-    object-fit: contain;
-    border-radius: 6px;
-
-    @include mq-down($mq) {
-      width: 70%;
-      min-width: 300px;
-      max-width: 450px;
-    }
+    object-fit: cover;
   }
 
   &__txt {
     flex: 1;
-    @include font-sizing();
   }
 }

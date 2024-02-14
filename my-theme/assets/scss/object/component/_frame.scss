@@ -3,9 +3,9 @@
 .frame {
   position: relative;
 
-  border: 6px double #d4c6c8;
   // #c8bb9d
   background-color: $color-bg-main;
+  border: 6px double #d4c6c8;
 
   &__text {
     max-width: 1200px;

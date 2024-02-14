@@ -2,20 +2,20 @@
 
 header {
   position: fixed;
+  inset: 0 0 auto;
   z-index: 99;
-  inset: 0 0 auto 0;
-
   width: 100vw;
   height: $header-height;
-
   background-color: #ffffff80;
 
   @include mq-down(lg) {
     height: $header-height-lg;
   }
+
   @include mq-down(md) {
     height: $header-height-md;
   }
+
   @include mq-down(sm) {
     height: $header-height-sm;
   }
@@ -23,15 +23,15 @@ header {
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
+  justify-content: space-between;
   height: 100%;
   padding: 0 165px;
 
   @include mq-down(md) {
     padding: 0 60px;
   }
+
   @include mq-down(sm) {
     padding: 0 30px;
   }
@@ -39,8 +39,7 @@ header {
   // タイトル
   &__title {
     font-size: 1.5rem;
-
-    color: $color-inv;
+    color: $color-white;
   }
 
   // ロゴ
@@ -48,9 +47,9 @@ header {
     @include mq-down(sm) {
       display: none;
     }
+
     img {
       width: 160px;
-
       object-fit: contain;
     }
   }

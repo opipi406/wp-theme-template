@@ -4,11 +4,9 @@
   & > a {
     font-family: $font-mincho;
     line-height: 1.8;
-
+    color: $color-main;
     cursor: pointer;
     transition: all 0.3s;
-
-    color: $color-main;
 
     &:hover {
       color: $color-primary;
@@ -16,9 +14,9 @@
   }
 }
 
-/*----------------------------------------------------
-  ヘッダーメニュー
------------------------------------------------------*/
+// ----------------------------------------------------
+//	ヘッダーメニュー
+// ----------------------------------------------------
 .header-nav {
   @include mq-down(sm) {
     display: none;
@@ -26,32 +24,28 @@
 
   .menu {
     display: flex;
-
     user-select: none;
 
     .menu-item {
-      font-size: 2rem;
-      font-style: italic;
-
       position: relative;
+      font-size: $font-sm;
 
-      @include g-nav-link();
+      @include g-nav-link;
     }
 
     & > .menu-item + .menu-item {
-      margin-left: 60px;
+      margin-left: 40px;
     }
   }
 }
 
-/*----------------------------------------------------
-  ハンバーガーメニュー
------------------------------------------------------*/
+// ----------------------------------------------------
+//	ハンバーガーメニュー
+// ----------------------------------------------------
 .burger-nav {
-  overflow: scroll;
-
+  position: relative;
   height: 100%;
-
+  overflow: scroll;
   user-select: none;
 
   .menu-burger-menu-container {
@@ -64,12 +58,10 @@
 
   .menu {
     position: relative;
-
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     flex-direction: column;
-
+    align-items: flex-start;
+    justify-content: space-between;
     height: 100%;
     padding: 160px 0;
 
@@ -78,17 +70,18 @@
     }
 
     .menu-item {
-      font-size: $font-xl;
-
       position: relative;
+      font-size: $font-xl;
 
       @include mq-down(lg) {
         font-size: $font-lg;
       }
+
       @include mq-down(md) {
         font-size: $font-lg;
       }
-      @include g-nav-link();
+
+      @include g-nav-link;
     }
 
     // & > .menu-item + .menu-item {

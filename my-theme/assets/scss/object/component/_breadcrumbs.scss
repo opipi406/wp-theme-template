@@ -2,7 +2,6 @@
 
 #breadcrumbs {
   padding: 20px 0;
-
   color: #868686;
 
   .current-item {
@@ -10,6 +9,6 @@
   }
 
   @include mq-down(md) {
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 }

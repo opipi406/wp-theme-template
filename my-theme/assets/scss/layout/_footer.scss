@@ -1,65 +1,88 @@
 @use '../foundation' as *;
 
 footer {
-  background-color: $color-header;
-}
-
-footer .footer-content {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 259px;
+  background-color: $color-primary;
 
-  padding: 60px 60px 0 60px;
-
-  box-shadow: 0 0 5px #a0a0a0;
-}
-
-footer .content {
-  margin-right: 40px;
-  margin-bottom: 40px;
-
-  &__title {
-    font-size: 1.4rem;
-
-    margin-bottom: 24px;
+  @include mq-down(lg) {
+    padding: 0;
   }
 
-  &__list {
-    li {
-      font-size: 0.9rem;
+  @include mq-down(md) {
+    height: auto;
+    padding: 49px 0 62px;
+  }
+}
 
-      padding-bottom: 12px;
+footer .footer-wrapper {
+  display: inline-flex;
+  gap: 154px;
+  align-items: center;
+  justify-content: center;
+  width: 794px;
+  height: 100%;
 
-      a {
-        transition: 0.2s;
-        &:hover {
-          color: dark($color-main);
+  @include mq-down(md) {
+    flex-direction: column;
+    gap: 42px;
+    width: auto;
+  }
+
+  .footer-logo {
+    width: 120px;
+    height: 59px;
+
+    @include mq-down(sm) {
+      width: 60px;
+      height: 30px;
+    }
+  }
+
+  .footer-menu-wrapper {
+    @include mq-down(md) {
+      width: 100%;
+    }
+
+    .menu-footer-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      @include mq-down(md) {
+        flex-direction: column;
+      }
+
+      .menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        height: 100%;
+
+        @include mq-down(md) {
+          flex-direction: column;
+          gap: 16px;
+          align-items: center;
+          width: 100%;
+          max-width: 600px;
+        }
+
+        li {
+          font-size: $font-sm;
+          line-height: 220%;
+          color: $color-white;
+
+          @include mq-down(sm) {
+            font-size: $font-xs;
+            line-height: 160%;
+          }
         }
       }
     }
   }
-}
-
-footer .footer-title {
-  font-size: 3rem;
-
-  margin: 0 24px;
-
-  text-align: right;
-
-  @include mq-down(xs) {
-    text-align: center;
-  }
-}
-
-#copyright {
-  font-size: 1rem;
-
-  margin: 0;
-  padding: 8px;
-
-  text-align: center;
-
-  color: $color-main;
 }
