@@ -150,7 +150,7 @@ elif [ "$1" == "setup" ]; then
 
     echo
     echo "${BLUE}=== Created wp-config.${NC}"
-    docker exec -it "$WORDPRESS_CONTAINER_ID" cp wp-config-docker.php wp-config.php
+    docker exec -it "$WORDPRESS_CONTAINER_ID" rm wp-config.php
     docker exec -it "$WORDPRESS_CONTAINER_ID" wp config create \
         --dbname="$WORDPRESS_DB_NAME" \
         --dbuser="$WORDPRESS_DB_USER" \
@@ -192,10 +192,16 @@ elif [ "$1" == "setup" ]; then
     docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin delete --allow-root hello.php
     docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin delete --allow-root akismet
 
+    # wp update
+    echo
+    echo "${BLUE}=== Updating wp core.${NC}"
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp core update --allow-root
+
+    # 推奨プラグインのインストール
     echo
     echo "${BLUE}=== Installing reccomend plugins.${NC}"
     # docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin install contact-form-7 --allow-root
-    # docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin install advanced-custom-fields --activate --allow-root
+    docker exec -it "$WORDPRESS_CONTAINER_ID" wp plugin install advanced-custom-fields --activate --allow-root
 
     docker exec -it "$WORDPRESS_CONTAINER_ID" wp language core update --allow-root
     docker exec -it "$WORDPRESS_CONTAINER_ID" wp language plugin update --all --allow-root
