@@ -164,7 +164,7 @@ elif [ "$1" == "setup" ]; then
     docker exec -it "$WORDPRESS_CONTAINER_ID" wp core install \
         --url="http://localhost:8080" \
         --title="${THEME_NAME}" \
-        --admin_user="opipi" \
+        --admin_user="${WORDPRESS_USER:=admin}" \
         --admin_password="${WORDPRESS_USER_PASSWORD:=admin}" \
         --admin_email="${WORDPRESS_USER_EMAIL:=admin}" \
         --allow-root

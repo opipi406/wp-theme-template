@@ -2,6 +2,34 @@
 WordPress用の初期セットアップテンプレート
 
 # Installation
+> Shellが実行できない環境の場合は、`Installation(command)`の手順を参照してください。
+
+```bash
+git clone https://github.com/opipi406/wp-theme-template.git <プロジェクト名>
+```
+
+### WordPressのセットアップ ~ テーマファイル生成
+```bash
+bash wp-template.sh init
+```
+
+### テーマディレクトリのGitリポジトリ化
+```bash
+rm -rf .git .gitignore
+cd html/wp-content/themes/<自作テーマ名> && git init
+
+git add -A
+git commit -m "first commit"
+git remote add origin <URL>
+git push -u origin main
+```
+
+### WordPressコアファイルの初期セットアップ
+```bash
+bash wp-template.sh setup
+```
+
+# Installation(command)
 ```bash
 git clone https://github.com/opipi406/wp-theme-template.git <プロジェクト名>
 ```
@@ -10,21 +38,9 @@ git clone https://github.com/opipi406/wp-theme-template.git <プロジェクト�
 ```bash
 docker-compose up -d
 ```
-|container|port|
-|-|-|
-|WordPressコンテナ|localhost:8080|
-|phpMyAdminコンテナ|localhost:8089|
-
-MySQLに「user」のアカウントが無い場合、`localhost:8089`に接続して以下のユーザーアカウントを作成  
-
-ユーザ名: user  
-パスワード: qweqwe  
-
 ### WordPressのセットアップ
 `localhost:8080`にアクセス  
 ユーザ名、パスワード等を設定してWordPressをインストールする
-
-> Shellが実行できる環境であれば、以降に記載している `.htaccessにアップロード制限解除の設定を追記` から `後処理、テーマディレクトリをgit管理下に置く` までを `bash wp-template.sh init` で自動化できます。
 
 ### .htaccessにアップロード制限解除の設定を追記
 ```bash
@@ -45,14 +61,11 @@ echo "" >> html/.htaccess \
 mv ./my-theme ./html/wp-content/themes/<自作テーマ名>
 ```
 
-### 後処理、テーマディレクトリをgit管理下に置く
+### テーマディレクトリのGitリポジトリ化
 ```bash
 rm -rf .git .gitignore
 cd html/wp-content/themes/<自作テーマ名> && git init
-```
 
-### コミット
-```bash
 git add -A
 git commit -m "first commit"
 git remote add origin <URL>
@@ -60,6 +73,16 @@ git push -u origin main
 ```
 
 # Usage
+### 環境
+|container|port|
+|-|-|
+|WordPressコンテナ|localhost:8080|
+|phpMyAdminコンテナ|localhost:8089|
+
+- DBアクセス情報
+  - ユーザ名: user
+  - パスワード: qweqwe
+
 ### デプロイ
 `wp-template.sh deploy` を実行すると、`.deploy.conf` に記載されたリモートサーバーにテーマファイルがコピー（デプロイ）される。
 
@@ -75,7 +98,4 @@ git push -u origin main
 [Dockerでコンテナ起動後に「Error establishing a database connection 」と出てデータベースに接続できない時の対処法：Warning: mysqli_real_connect(): php_network_getaddresses: getaddrinfo failed:](https://prograshi.com/platform/docker/dokcer-wp-db-connection-error/)
 
 # Requirement
-|||
-|-|-|
-|OS|Mac OS|
-|node|v18.17.1|
+- Note.js `v18.17.1`
