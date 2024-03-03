@@ -90,7 +90,7 @@ if [ "$1" == "init" ]; then
     echo "${GRAY}-> html/wp-content/themes/${THEME_NAME}/README.md${NC}"
 
     mkdir ./html/wp-content/themes/"$THEME_NAME"/.vscode/
-    cp .settings.example.json ./html/wp-content/themes/"$THEME_NAME"/.vscode/.settings.json
+    cp settings.example.json ./html/wp-content/themes/"$THEME_NAME"/.vscode/settings.json
     echo
     echo "${WATER}[INFO]${NC} Created vscode setting file."
     echo "${GRAY}-> html/wp-content/themes/${THEME_NAME}/.vscode/.settings.json${NC}"
