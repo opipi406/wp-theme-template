@@ -9,7 +9,10 @@
     "purge:utils": "gulp purge-utils",
     "build:utils": "gulp sass-utils",
     "build:script": "tsc && webpack --mode=production",
-    "build:script:dev": "tsc && webpack"
+    "build:script:dev": "tsc && webpack",
+    "template": "bash ../../../../wp-template.sh",
+    "deploy": "bash ../../../../wp-template.sh deploy --dev",
+    "deploy:prod": "bash ../../../../wp-template.sh deploy"
   },
   "keywords": [],
   "author": "opipi",
