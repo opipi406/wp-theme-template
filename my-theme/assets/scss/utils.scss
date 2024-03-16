@@ -1,25 +1,25 @@
 // ==========================================================================
 // Utility Classes
-// 
+//
 //  media query prefix - [xs, sm, md, lg, xl, xxl]
 //  Example) sm:relative, md:mx-2 etc...
 // ==========================================================================
-// 
-// 
+//
+//
 // ----------------------------
 //  Layout
 // ----------------------------
 // relative       - position: relative
 // absolute       - position: absolute
-// 
+//
 // none           - display: none
-// inline         - display: inline 
+// inline         - display: inline
 // block          - display: block
 // flex           - display: flex
-// 
+//
 // object-cover   - object-fit: cover
 // object-contain - object-fit: contain
-// 
+//
 // ----------------------------
 //  Flex Box
 // ----------------------------
@@ -29,43 +29,43 @@
 // justify-between  - justify-content: space-between
 // justify-around   - justify-content: space-around
 // justify-evenly   - justify-content: space-evenly
-// 
+//
 // items-center     - align-items: center
 // items-stretch    - align-items: stretch
-// 
+//
 // flex-grow        - flex-grow: 1
-// 
+//
 // flex-row           - flex-direction: row
 // flex-row-reverse   - flex-direction: row-reverse
 // flex-col           - flex-direction: column
 // flex-col-reverse   - flex-direction: column-reverse
-// 
+//
 // ----------------------------
 //  inset layout
 // ----------------------------
 // top-[n]      - top: [n]rem ([n] = 0.25, 0.5, 0.75...)
-// 
+//
 // ----------------------------
 //  Sizing
 // ----------------------------
 // w-[n]        - width
-// 
+//
 // ----------------------------
 //  Spacing
 // ----------------------------
 // px-[n]       - padding-left, padding-right ([n] = 0 ~ 24)
 // mx-[n]       - margin-left, margin-right ([n] = 0 ~ 24)
-// 
+//
 // ----------------------------
 //  Text
 // ----------------------------
 // text-center  - text-center
 // text-left    - text-left
 // text-right   - text-right
-// 
-// text-bold    - font-weight: bold 
+//
+// text-bold    - font-weight: bold
 // text-red     - color: red
-// 
+//
 // text-[s]     - font-size ([s] = xs, sm, base, lg, xl, 2xl, 3xl ... 6xl)
 
 @import "foundation/media-query";
@@ -75,7 +75,8 @@
   @if $breakpoint == '' {
     @content;
   } @else {
-    $bp : str-slice($breakpoint, 0, -3);
+    $bp: str-slice($breakpoint, 0, -3);
+
     @include mq-down($bp) {
       @content;
     }
@@ -137,7 +138,7 @@ $prefix-list: '', 'xxl\\:', 'xl\\:', 'lg\\:', 'md\\:', 'sm\\:', 'xs\\:';
     .#{$p}w-auto { width: auto !important; }
     .#{$p}w-full { width: 100% !important; }
 
-    .#{$p}w-0   { width: 0px !important; }
+    .#{$p}w-0   { width: 0 !important; }
     .#{$p}w-1   { width: 0.25rem !important; }
     .#{$p}w-2   { width: 0.5rem !important; }
     .#{$p}w-3   { width: 0.75rem !important; }
@@ -194,7 +195,7 @@ $prefix-list: '', 'xxl\\:', 'xl\\:', 'lg\\:', 'md\\:', 'sm\\:', 'xs\\:';
       .#{$p}right-#{$i}    { right:    #{$i * 0.25rem} !important; }
       .#{$p}bottom-#{$i}   { bottom:   #{$i * 0.25rem} !important; }
       .#{$p}left-#{$i}     { left:     #{$i * 0.25rem} !important; }
-      .#{$p}inset-x-#{$i}  { left:     #{$i * 0.25rem} !important; right:  #{$i * 0.25rem} !important; }
+      .#{$p}inset-x-#{$i}  { right:  #{$i * 0.25rem} !important; left:     #{$i * 0.25rem} !important; }
       .#{$p}inset-y-#{$i}  { top:      #{$i * 0.25rem} !important; bottom: #{$i * 0.25rem} !important; }
     }
   }
@@ -219,6 +220,7 @@ $prefix-list: '', 'xxl\\:', 'xl\\:', 'lg\\:', 'md\\:', 'sm\\:', 'xs\\:';
     .#{$p}mx-auto { margin-right:     auto !important; margin-left:   auto !important; }
     .#{$p}my-auto { margin-top:       auto !important; margin-bottom: auto !important; }
   }
+
   @for $i from 0 through 24 {
     @include wrapper-mq-down($p) {
       .#{$p}p-#{$i}  { padding:         #{$i * 0.25rem} !important; }
@@ -228,7 +230,7 @@ $prefix-list: '', 'xxl\\:', 'xl\\:', 'lg\\:', 'md\\:', 'sm\\:', 'xs\\:';
       .#{$p}pl-#{$i} { padding-left:    #{$i * 0.25rem} !important; }
       .#{$p}px-#{$i} { padding-right:   #{$i * 0.25rem} !important; padding-left:   #{$i * 0.25rem} !important; }
       .#{$p}py-#{$i} { padding-top:     #{$i * 0.25rem} !important; padding-bottom: #{$i * 0.25rem} !important; }
-    
+
       .#{$p}m-#{$i}  { margin:          #{$i * 0.25rem} !important; }
       .#{$p}mt-#{$i} { margin-top:      #{$i * 0.25rem} !important; }
       .#{$p}mr-#{$i} { margin-right:    #{$i * 0.25rem} !important; }
