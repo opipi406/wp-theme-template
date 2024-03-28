@@ -36,7 +36,7 @@ require get_template_directory() . '/functions/add_head_adobefont.php';        /
 /*----------------------------------------------------
   Customizer
 -----------------------------------------------------*/
-require get_template_directory() . '/functions/customizer/customizer.php';        // ベースのカスタマイズ項目
+// require get_template_directory() . '/functions/customizer/customizer.php';        // ベースのカスタマイズ項目
 // require get_template_directory() . '/functions/customizer/customizer_style.php';  // スタイル用カスタマイズ項目
 
 /*----------------------------------------------------
