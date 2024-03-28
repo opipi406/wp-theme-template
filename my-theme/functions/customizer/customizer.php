@@ -98,39 +98,6 @@ if (!class_exists('My_Customize')) {
           'settings' => "slider_alt_$i",
         )));
       }
-
-      /*----------------------------------------------------
-        Youtube埋め込み設定
-      -----------------------------------------------------*/
-      $wp_customize->add_section('youtube_section', array(
-        'title' => 'Youtube埋め込み設定',
-        'priority' => 9500,
-        'description' => ''
-      ));
-
-      $wp_customize->add_setting(
-        'youtube_html',
-      );
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'youtube_html', array(
-        'label' => '埋め込みURL',
-        'section' => 'youtube_section',
-        'settings' => 'youtube_html',
-      )));
-
-      /*----------------------------------------------------
-        フォーム設定
-      -----------------------------------------------------*/
-      $wp_customize->add_section('form_section', array(
-        'title' => 'フォーム設定(ContactForm7)',
-        'priority' => 9020,
-        'description' => 'ContactForm7のフォーム設定を行います。'
-      ));
-      $wp_customize->add_setting('cf7_shortcode');
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'cf7_shortcode', array(
-        'label' => 'ContactForm7のショートコード',
-        'section' => 'form_section',
-        'settings' => 'cf7_shortcode',
-      )));
     }
   }
 
