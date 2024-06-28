@@ -79,6 +79,8 @@ if [ "$1" == "init" ]; then
     if [ -z "$THEME_NAME" ]; then
         exit 1
     fi
+
+    mkdir -p ./html/wp-content/themes/"$THEME_NAME"
     cp -r ./my-theme ./html/wp-content/themes/"$THEME_NAME"
     echo
     echo "${WATER}[INFO]${NC} Created new theme directory."
